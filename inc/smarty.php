@@ -1,9 +1,9 @@
 <?php
 
-require('../lib/smarty/Smarty.class.php');
+require(__DIR__ . '/../lib/smarty/Smarty.class.php');
 $smarty = new Smarty();
 
-$smarty->setTemplateDir('../templates');
-$smarty->setCompileDir('../tmp');
-$smarty->setCacheDir('../cache');
-$smarty->setConfigDir('../configs');
+$smarty->setTemplateDir(__DIR__ . '/../templates');
+$smarty->setCompileDir(__DIR__ . '/../tmp');
+$smarty->setCacheDir(__DIR__ . '/../cache');
+$smarty->setConfigDir(__DIR__ . '/../configs');

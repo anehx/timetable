@@ -1,6 +1,9 @@
 <?php
 
-class User {
+require_once(__DIR__ . '/../model/Model.class.php');
+require_once(__DIR__ . '/../datamapper/UserMapper.class.php');
+
+class User extends Model {
 	/*
 	 The id of the user
 	*/
@@ -32,6 +35,11 @@ class User {
 	public $last_name = null;
 
 	/*
+	 The is the user a superuser?
+	*/
+	public $is_superuser = false;
+
+	/*
 	 Fills the user model from a db row
 
 	 @param array $data
@@ -45,7 +53,8 @@ class User {
 			'password_hash' => $data['password_hash'],
 			'password_salt' => $data['password_salt'],
 			'first_name'    => $data['first_name'],
-			'last_name'     => $data['last_name']
+			'last_name'     => $data['last_name'],
+			'is_superuser'  => (bool)$data['is_superuser']
 		);
 
 		foreach ($data_map as $key => $value) {
@@ -61,5 +70,14 @@ class User {
 
 	public function login() {
 		$_SESSION['username'] = $this->username;
+		$_SESSION['is_superuser'] = $this->is_superuser;
+	}
+
+	public function generateSalt() {
+		$this->password_salt = uniqid(mt_rand(), true);
+	}
+
+	public function getMapper() {
+		return UserMapper::getInstance();
 	}
 }

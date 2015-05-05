@@ -12,13 +12,14 @@
 
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-				<li><a href="#">Link</a></li>
+				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/user/">Users</a></li>{/if}
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				{if !isset($smarty.session.username)}<li><a href="login.php">Login</a></li>
-				{else}<li><a href="logout.php">Logout</a></li>{/if}
+				{if !isset($smarty.session.username)}<li><a href="/login.php">Login</a></li>
+				{else}
+				<li><p class="navbar-text">Logged in as {$smarty.session.username}</p></li>
+				<li><a href="/logout.php"><span class="glyphicon glyphicon-off"></span></a></li>{/if}
 			</ul>
 		</div>
 	</div>

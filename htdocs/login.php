@@ -2,9 +2,9 @@
 
 session_start();
 
-require_once('../inc/smarty.php');
-require_once('../inc/db.php');
-require_once('../inc/datamapper/UserMapper.class.php');
+require_once(__DIR__ . '/../inc/smarty.php');
+require_once(__DIR__ . '/../inc/db.php');
+require_once(__DIR__ . '/../inc/datamapper/UserMapper.class.php');
 
 $errors = array();
 

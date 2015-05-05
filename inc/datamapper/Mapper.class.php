@@ -1,6 +1,6 @@
 <?php
 
-include_once('../inc/db.php');
+include_once(__DIR__ . '/../db.php');
 
 class Mapper {
 	
