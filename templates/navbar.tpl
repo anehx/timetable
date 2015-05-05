@@ -12,7 +12,9 @@
 
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav">
+				<li><a href="/">Overview</a></li>
 				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/user/">Users</a></li>{/if}
+				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/course/">Courses</a></li>{/if}
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
