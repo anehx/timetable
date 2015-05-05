@@ -97,4 +97,10 @@ class UserMapper extends Mapper {
 			$user->id = $this->db->insert_id;
 		}
 	}
+
+	public function delete($id) {
+		$query = sprintf("DELETE FROM `user` WHERE `user`.`id` = %d", $this->db->real_escape_string($id));
+
+		$result = $this->db->query($query);
+	}
 }
