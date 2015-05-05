@@ -48,12 +48,12 @@ class User extends Model {
 		$instance = new self();
 
 		$data_map = array(
-			'id'            => $data['id'],
-			'username'      => $data['username'],
-			'password_hash' => $data['password_hash'],
-			'password_salt' => $data['password_salt'],
-			'first_name'    => $data['first_name'],
-			'last_name'     => $data['last_name'],
+			'id'            => (int)$data['id'],
+			'username'      => (string)$data['username'],
+			'password_hash' => (string)$data['password_hash'],
+			'password_salt' => (string)$data['password_salt'],
+			'first_name'    => (string)$data['first_name'],
+			'last_name'     => (string)$data['last_name'],
 			'is_superuser'  => (bool)$data['is_superuser']
 		);
 

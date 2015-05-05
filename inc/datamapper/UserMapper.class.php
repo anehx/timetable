@@ -4,7 +4,12 @@ require_once(__DIR__ . '/../model/User.class.php');
 require_once(__DIR__ . '/Mapper.class.php');
 
 class UserMapper extends Mapper {
+	/*
+	 Returns a single user by his id
 
+	 @param int $id
+	 @returns model\User
+	*/
 	public function getUserByID($id) {
 		$query = sprintf('
 			SELECT * FROM `user`
@@ -21,6 +26,12 @@ class UserMapper extends Mapper {
 		return User::fillFromRowData($result);
 	}
 
+	/*
+	 Returns a single user by his username
+
+	 @param string $username
+	 @returns model\User
+	*/
 	public function getUserByUsername($username) {
 		$query = sprintf("
 			SELECT * FROM `user`
@@ -37,6 +48,11 @@ class UserMapper extends Mapper {
 		return User::fillFromRowData($result);
 	}
 
+	/*
+	 Returns an array of all available users
+
+	 @returns array
+	*/
 	public function getUsers() {
 		$query = "SELECT * FROM `user`";
 
@@ -55,10 +71,9 @@ class UserMapper extends Mapper {
 		return $users;
 	}
 
-	public function __construct() {
-		parent::__construct();
-	}
-
+	/*
+	 Updates or creates an user
+	*/
 	public function save($user) {
 		if (!$user->id) {
 			$query = sprintf("
@@ -88,8 +103,8 @@ class UserMapper extends Mapper {
 				$user->last_name,
 				$user->password_hash,
 				$user->password_salt,
-				(int)$user->is_superuser,
-				(int)$user->id
+				$user->is_superuser,
+				$user->id
 			);
 		}
 		$this->db->query($query);
@@ -98,6 +113,9 @@ class UserMapper extends Mapper {
 		}
 	}
 
+	/*
+	 Deletes an user
+	*/
 	public function delete($id) {
 		$query = sprintf("DELETE FROM `user` WHERE `user`.`id` = %d", $this->db->real_escape_string($id));
 
