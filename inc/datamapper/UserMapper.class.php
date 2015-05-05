@@ -1,7 +1,7 @@
 <?php
 
-require_once('../inc/model/User.php');
-require_once('../inc/datamapper/Mapper.php');
+require_once('../inc/model/User.class.php');
+require_once('../inc/datamapper/Mapper.class.php');
 
 class UserMapper extends Mapper {
 

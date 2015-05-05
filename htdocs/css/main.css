@@ -1,0 +1,18 @@
+.fully-center {
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	margin: auto;
+}
+
+.login {
+	width: 250px;
+	height: 400px;
+}
+
+.login button {
+	width: 100%;
+}
+
+.alert {
+	margin-top: 10px;
+}
