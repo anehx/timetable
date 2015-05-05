@@ -36,8 +36,8 @@ class User {
 
 	 @param array $data
 	*/
-	public static function fillFromRowData(array $data) {
-		$instance = new User();
+	public static function fillFromRowData($data) {
+		$instance = new self();
 
 		$data_map = array(
 			'id'            => $data['id'],
