@@ -64,19 +64,33 @@ class User extends Model {
 		return $instance;
 	}
 
+	/*
+	 Checks if the given password validates
+
+	 @param string $input
+	*/
 	public function checkPassword($input) {
 		return (crypt($input, $this->password_salt) == $this->password_hash);
 	}
 
+	/*
+	 Logs the user in
+	*/
 	public function login() {
 		$_SESSION['username'] = $this->username;
 		$_SESSION['is_superuser'] = $this->is_superuser;
 	}
 
+	/*
+	 Generates a new password salt
+	*/
 	public function generateSalt() {
 		$this->password_salt = uniqid(mt_rand(), true);
 	}
 
+	/*
+	 Returns the datamapper
+	*/
 	public function getMapper() {
 		return UserMapper::getInstance();
 	}
