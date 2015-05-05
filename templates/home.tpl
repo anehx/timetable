@@ -1,5 +1,9 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	<h1>Welcome to timetable.</h1>
+	<div id="time"></div>
+{/block}
+
+{block 'scripts'}
+	<script src="/js/time.js"></script>
 {/block}
