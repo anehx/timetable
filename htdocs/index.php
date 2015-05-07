@@ -2,8 +2,6 @@
 
 session_start();
 
-require_once('../inc/smarty.php');
-
-var_export($_SESSION, true);
+require_once(__DIR__ . '/../inc/smarty.php');
 
 $smarty->display('home.tpl');
