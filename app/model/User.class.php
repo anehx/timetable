@@ -22,17 +22,17 @@ class User extends Model {
 	/*
 	 The first name of the user (optional)
 	*/
-	public $first_name = null;
+	public $firstName = null;
 
 	/*
 	 The last name of the user (optional)
 	*/
-	public $last_name = null;
+	public $lastName = null;
 
 	/*
 	 The is the user a superuser?
 	*/
-	public $is_superuser = false;
+	public $isSuperuser = false;
 
 	/*
 	 Fills the user model from a db row
@@ -43,12 +43,12 @@ class User extends Model {
 		$instance = new self();
 
 		$data_map = array(
-			'id'           => (int)$data['id'],
-			'username'     => (string)$data['username'],
-			'password'     => (string)$data['password'],
-			'first_name'   => (string)$data['first_name'],
-			'last_name'    => (string)$data['last_name'],
-			'is_superuser' => (bool)$data['is_superuser']
+			'id'          => (int)$data['id'],
+			'username'    => (string)$data['username'],
+			'password'    => (string)$data['password'],
+			'firstName'   => (string)$data['firstName'],
+			'lastName'    => (string)$data['lastName'],
+			'isSuperuser' => (bool)$data['isSuperuser']
 		);
 
 		foreach ($data_map as $key => $value) {

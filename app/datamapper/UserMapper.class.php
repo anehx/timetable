@@ -61,8 +61,9 @@ class UserMapper extends Mapper {
 
 	 @return array
 	*/
-	public function getUsers() {
-		$stmt = $this->db->prepare("SELECT * FROM `user`");
+	public function getUsers($ignoreSuperusers = false) {
+		$where = $ignoreSuperusers ? 'WHERE `isSuperuser` = 0' : '';
+		$stmt = $this->db->prepare(sprintf("SELECT * FROM `user` %s", $where));
 		$stmt->execute();
 
 		$result = $stmt->get_result();
@@ -85,7 +86,7 @@ class UserMapper extends Mapper {
 	public function save($user) {
 		if (!$user->id) {
 			$stmt = $this->db->prepare("
-				INSERT INTO `user` (`username`, `first_name`, `last_name`, `password`, `is_superuser`) VALUES (
+				INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `isSuperuser`) VALUES (
 					?, ?, ?, ?, ?
 				)
 			");
@@ -93,28 +94,28 @@ class UserMapper extends Mapper {
 			$stmt->bind_param(
 				'ssssi',
 				$user->username,
-				$user->first_name,
-				$user->last_name,
+				$user->firstName,
+				$user->lastName,
 				$user->password,
-				$user->is_superuser
+				$user->isSuperuser
 			);
 		}
 		else {
 			$stmt = $this->db->prepare("
 				UPDATE `user` SET 
-					`first_name`= ?,
-					`last_name` = ?,
+					`firstName`= ?,
+					`lastName` = ?,
 					`password` = ?,
-					`is_superuser` = ?
+					`isSuperuser` = ?
 				WHERE `id` = ?
 				");
 
 			$stmt->bind_param(
 				'sssii',
-				$user->first_name,
-				$user->last_name,
+				$user->firstName,
+				$user->lastName,
 				$user->password,
-				$user->is_superuser,
+				$user->isSuperuser,
 				$user->id
 			);
 		}

@@ -58,7 +58,7 @@ class UserController extends Controller {
 		$errors = array();
 
 		if ($_POST) {
-			$user_id = isset($_POST['user_id']) ? $_POST['user_id'] : null;
+			$user_id = isset($_POST['id']) ? $_POST['id'] : null;
 
 			if ($user_id) {
 				// edit an existing user
@@ -70,12 +70,12 @@ class UserController extends Controller {
 				$user->username = $_POST['username'];
 			}
 
-			if ($_POST['new_password'] !== '' && $_POST['new_password'] == $_POST['confirm_password']) {
-				$user->password = password_hash($_POST['new_password'], PASSWORD_BCRYPT);
+			if ($_POST['password'] !== '' && $_POST['password'] == $_POST['confirmPassword']) {
+				$user->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 			}
 
-			$user->first_name = $_POST['first_name'];
-			$user->last_name  = $_POST['last_name'];
+			$user->firstName = $_POST['firstName'];
+			$user->lastName  = $_POST['lastName'];
 
 			$user->save();
 			header('Location: /?page=user');
