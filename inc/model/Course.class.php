@@ -1,8 +1,11 @@
 <?php
 
-class Course {
+require_once(__DIR__ . '/../model/Model.class.php');
+require_once(__DIR__ . '/../datamapper/CourseMapper.class.php');
+
+class Course extends Model {
 	/*
-	 The id of the course
+	 The ID of the course
 	*/
 	public $id = null;
 
@@ -12,14 +15,15 @@ class Course {
 	public $name = null;
 
 	/*
-	 The teacher id of the course
+	 The teacher ID of the course
 	*/
-	public $teacher_id = null;
+	public $teacherID = null;
 
 	/*
 	 Fills the course model from a db row
 
 	 @param array $data
+	 @return Course
 	*/
 	public static function fillFromRowData($data) {
 		$instance = new self();
