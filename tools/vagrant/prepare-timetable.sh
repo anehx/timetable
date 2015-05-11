@@ -13,6 +13,7 @@ service apache2 restart
 
 echo "Preparing MySQL database..."
 mysql -uroot -pvagrant < /vagrant/tools/vagrant/database.sql
+mysql -uroot -pvagrant timetable < /vagrant/app/sql/timetable.sql
 
 echo "Setting up SSH permissions..."
 su vagrant -c 'yes|ssh-keygen -f ~/.ssh/id_rsa -P ""'

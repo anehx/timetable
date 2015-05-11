@@ -13,15 +13,15 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav">
 				<li><a href="/">Overview</a></li>
-				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/user/">Users</a></li>{/if}
-				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/course/">Courses</a></li>{/if}
+				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/?page=user">Users</a></li>{/if}
+				{if isset($smarty.session.is_superuser) && $smarty.session.is_superuser}<li><a href="/?page=course">Courses</a></li>{/if}
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				{if !isset($smarty.session.username)}<li><a href="/login.php">Login</a></li>
+				{if !isset($smarty.session.username)}<li><a href="?page=user&amp;action=login">Login</a></li>
 				{else}
 				<li><p class="navbar-text">Logged in as {$smarty.session.username}</p></li>
-				<li><a href="/logout.php"><i class="fa fa-power-off fa-lg"></i></a></li>{/if}
+				<li><a href="?page=user&amp;action=logout"><i class="fa fa-power-off fa-lg"></i></a></li>{/if}
 			</ul>
 		</div>
 	</div>

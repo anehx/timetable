@@ -1,7 +1,5 @@
 <?php
 
-include_once(__DIR__ . '/../db.php');
-
 class Mapper {
 	
 	public $db = null;
@@ -17,12 +15,13 @@ class Mapper {
 	}
 
 	public function __construct() {
-		$db_conf = getDbConf();
-		$this->db = new mysqli($db_conf['servername'], $db_conf['username'], $db_conf['password'], $db_conf['dbname']);
+		$this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 		if ($this->db->connect_error) {
 			die('Connection failed: ' . $this->db->connect_error);
 		}
+
+		$this->db->set_charset('utf-8');
 	}
 
 }

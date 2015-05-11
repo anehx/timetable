@@ -9,7 +9,7 @@
 		</ul></div>
 	{/if}
 	{if $user}
-	<form method="post" action="edit.php">
+	<form method="post" action="/?page=user&amp;action=edit">
 		<div class="col-md-6">
 			{if $user->id}
 				<h2>Edit user '{$user->username}'</h2>

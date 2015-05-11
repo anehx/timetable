@@ -2,7 +2,7 @@
 
 {block 'content'}
 	<div class="row">
-		<a href="/user/edit.php" class="btn btn-primary pull-right">Add new user</a>
+		<a href="/?page=user&amp;action=edit" class="btn btn-primary pull-right">Add new user</a>
 	</div>
 	<div class="row">
 		<table class="table table-striped">
@@ -22,8 +22,8 @@
 					<td>{$user->last_name}</td>
 					<td>{if $user->is_superuser}Yes{else}No{/if}</td>
 					<td class="text-right">
-						<a href="/user/edit.php?id={$user->id}" title="Edit user"><i class="fa fa-pencil fa-lg"></i></a>
-						<a href="/user/delete.php?id={$user->id}" title="Delete user"><i class="fa fa-trash fa-lg"></i></a>
+						<a href="/?page=user&amp;action=edit&amp;id={$user->id}" title="Edit user"><i class="fa fa-pencil fa-lg"></i></a>
+						<a href="/?page=user&amp;action=delete&amp;id={$user->id}" title="Delete user"><i class="fa fa-trash fa-lg"></i></a>
 					</td>
 				</tr>
 				{/foreach}

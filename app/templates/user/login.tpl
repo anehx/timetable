@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	<form method="post" action="login.php">
+	<form method="post" action="?page=user&amp;action=login">
 		<div class="login fully-center">
 			<h1>Please log in!</h1>
 			<div class="form-group">
@@ -13,7 +13,7 @@
 				<input class="form-control" name="password" type="password" placeholder="Password" />
 			</div>
 			<button class="btn btn-primary">Login</button>
-			{if $errors}
+			{if isset($errors) && $errors}
 				<div class="alert alert-danger">
 					<ul>
 					{foreach $errors as $error}

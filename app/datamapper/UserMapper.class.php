@@ -1,7 +1,7 @@
 <?php
 
-require_once(__DIR__ . '/../model/User.class.php');
-require_once(__DIR__ . '/Mapper.class.php');
+require_once('/model/User.class.php');
+require_once('datamapper/Mapper.class.php');
 
 class UserMapper extends Mapper {
 	/*
