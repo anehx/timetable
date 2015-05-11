@@ -18,9 +18,9 @@
 				{foreach $users as $user}
 				<tr>
 					<td>{$user->username}</td>
-					<td>{$user->first_name}</td>
-					<td>{$user->last_name}</td>
-					<td>{if $user->is_superuser}Yes{else}No{/if}</td>
+					<td>{$user->firstName}</td>
+					<td>{$user->lastName}</td>
+					<td>{if $user->isSuperuser}Yes{else}No{/if}</td>
 					<td class="text-right">
 						<a href="/?page=user&amp;action=edit&amp;id={$user->id}" title="Edit user"><i class="fa fa-pencil fa-lg"></i></a>
 						<a href="/?page=user&amp;action=delete&amp;id={$user->id}" title="Delete user"><i class="fa fa-trash fa-lg"></i></a>

@@ -59,6 +59,20 @@ class User extends Model {
 	}
 
 	/*
+	 Retruns the display name of the user
+
+	 @return string
+	*/
+	public function getDisplayName() {
+		if (!empty($this->firstName) && !empty($this->lastName)) {
+			return sprintf('%s %s', $this->firstName, $this->lastName);
+		}
+		else {
+			return $this->username;
+		}
+	}
+
+	/*
 	 Returns the datamapper
 	*/
 	public function getMapper() {

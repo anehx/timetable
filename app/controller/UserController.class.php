@@ -135,9 +135,10 @@ class UserController extends Controller {
 				$user = UserMapper::getInstance()->getUserByUsername($username);
 				if (password_verify($password, $user->password)) {
 					// login
-					$_SESSION['user_id']      = $user->id;
-					$_SESSION['username']     = $user->username;
-					$_SESSION['is_superuser'] = $user->is_superuser;
+					$_SESSION['user_id']     = $user->id;
+					$_SESSION['username']    = $user->username;
+					$_SESSION['displayName'] = $user->getDisplayName();
+					$_SESSION['isSuperuser'] = $user->isSuperuser;
 
 					header('Location: /');
 				}

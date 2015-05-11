@@ -23,7 +23,7 @@ class Controller {
 	 Displays access denied page if not allowed
 	*/
 	protected function requireSuperuser() {
-		if (!isset($_SESSION['is_superuser']) || !$_SESSION['is_superuser']) {
+		if (!isset($_SESSION['isSuperuser']) || !$_SESSION['isSuperuser']) {
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}
