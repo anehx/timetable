@@ -22,8 +22,8 @@
 					<td>{$user->last_name}</td>
 					<td>{if $user->is_superuser}Yes{else}No{/if}</td>
 					<td class="text-right">
-						<a href="/user/edit.php?id={$user->id}" title="Edit user"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a href="/user/delete.php?id={$user->id}" title="Delete user"><span class="glyphicon glyphicon-trash"></span></a>
+						<a href="/user/edit.php?id={$user->id}" title="Edit user"><i class="fa fa-pencil fa-lg"></i></a>
+						<a href="/user/delete.php?id={$user->id}" title="Delete user"><i class="fa fa-trash fa-lg"></i></a>
 					</td>
 				</tr>
 				{/foreach}

@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/"><img id="logo" src="/images/logo.png"></img>timetable.</a>
+			<a class="navbar-brand" href="/"><img id="logo" src="/images/logo.png">timetable.</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar">
@@ -21,7 +21,7 @@
 				{if !isset($smarty.session.username)}<li><a href="/login.php">Login</a></li>
 				{else}
 				<li><p class="navbar-text">Logged in as {$smarty.session.username}</p></li>
-				<li><a href="/logout.php"><span class="glyphicon glyphicon-off"></span></a></li>{/if}
+				<li><a href="/logout.php"><i class="fa fa-power-off fa-lg"></i></a></li>{/if}
 			</ul>
 		</div>
 	</div>
