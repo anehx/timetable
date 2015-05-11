@@ -20,9 +20,9 @@ if (isset($_SESSION['is_superuser']) && $_SESSION['is_superuser']) {
 			$user->username = $_POST['username'];
 		}
 
-		if ($_POST['password'] !== '' && $_POST['password'] == $_POST['password_confirm']) {
+		if ($_POST['new_password'] !== '' && $_POST['new_password'] == $_POST['confirm_password']) {
 			$user->generateSalt();
-			$user->password_hash = crypt($_POST['password'], $user->password_salt);
+			$user->password_hash = crypt($_POST['new_password'], $user->password_salt);
 		}
 
 		$user->first_name = $_POST['first_name'];

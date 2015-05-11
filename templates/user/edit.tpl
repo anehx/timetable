@@ -30,12 +30,12 @@
 				<input class="form-control" name="last_name" type="text" value="{$user->last_name}" placeholder="Last Name" />
 			</div>
 			<div class="form-group">
-				<label for="password">New Password</label>
-				<input class="form-control" name="password" type="password" placeholder="Password" />
+				<label for="new_password">New Password</label>
+				<input class="form-control" name="new_password" type="password" placeholder="New Password" />
 			</div>
 			<div class="form-group">
-				<label for="password_confirm">Confirm Password</label>
-				<input class="form-control" name="password_confirm" type="password" placeholder="Confirm Password" />
+				<label for="confirm_password">Confirm Password</label>
+				<input class="form-control" name="confirm_password" type="password" placeholder="Confirm Password" />
 			</div>
 			<input class="btn btn-primary" type="submit" value="Save" />
 		</div>

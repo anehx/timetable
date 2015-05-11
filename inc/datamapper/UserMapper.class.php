@@ -11,19 +11,23 @@ class UserMapper extends Mapper {
 	 @returns model\User
 	*/
 	public function getUserByID($id) {
-		$query = sprintf('
+		$stmt = $this->db->prepare('
 			SELECT * FROM `user`
-			WHERE `user`.`id` = %d
+			WHERE `user`.`id` = ?
 			LIMIT 1
-		', $this->db->real_escape_string($id));
+		');
 
-		$result = $this->db->query($query)->fetch_assoc();
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
 
-		if (!$result) {
-			throw new UnexpectedValueException;
+		$result = $stmt->get_result();
+
+		if (!$result->num_rows) {
+			throw new UnexpectedValueException('No user with this ID found');
+		} else {
+			$data = $result->fetch_assoc();
+			return User::fillFromRowData($data);
 		}
-
-		return User::fillFromRowData($result);
 	}
 
 	/*
@@ -33,19 +37,23 @@ class UserMapper extends Mapper {
 	 @returns model\User
 	*/
 	public function getUserByUsername($username) {
-		$query = sprintf("
+		$stmt = $this->db->prepare("
 			SELECT * FROM `user`
-			WHERE `user`.`username` = '%s'
+			WHERE `user`.`username` = ?
 			LIMIT 1
-		", $this->db->real_escape_string($username));
+		");
 
-		$result = $this->db->query($query)->fetch_assoc();
+		$stmt->bind_param('s', $username);
+		$stmt->execute();
 
-		if (!$result) {
-			throw new UnexpectedValueException;
+		$result = $stmt->get_result();
+
+		if (!$result->num_rows) {
+			throw new UnexpectedValueException('No user with this username found');
+		} else {
+			$data = $result->fetch_assoc();
+			return User::fillFromRowData($data);
 		}
-
-		return User::fillFromRowData($result);
 	}
 
 	/*
@@ -54,18 +62,18 @@ class UserMapper extends Mapper {
 	 @returns array
 	*/
 	public function getUsers() {
-		$query = "SELECT * FROM `user`";
+		$stmt = $this->db->prepare("SELECT * FROM `user`");
+		$stmt->execute();
 
-		$result = $this->db->query($query)->fetch_all(MYSQLI_ASSOC);
-
-		if (!$result) {
-			throw new UnexpectedValueException;
-		}
-
+		$result = $stmt->get_result();
 		$users = array();
 
-		foreach ($result as $row) {
-			$users[] = User::fillFromRowData($row);
+		if ($result->num_rows) {
+			$data = $result->fetch_all(MYSQLI_ASSOC);
+
+			foreach ($data as $row) {
+				$users[] = User::fillFromRowData($row);
+			}
 		}
 
 		return $users;
@@ -76,11 +84,14 @@ class UserMapper extends Mapper {
 	*/
 	public function save($user) {
 		if (!$user->id) {
-			$query = sprintf("
+			$stmt = $this->db->prepare("
 				INSERT INTO `user` (`username`, `first_name`, `last_name`, `password_hash`, `password_salt`, `is_superuser`) VALUES (
-					'%s', '%s', '%s', '%s', '%s', %d
+					?, ?, ?, ?, ?, ?
 				)
-				",
+			");
+
+			$stmt->bind_param(
+				'sssssi',
 				$user->username,
 				$user->first_name,
 				$user->last_name,
@@ -90,15 +101,18 @@ class UserMapper extends Mapper {
 			);
 		}
 		else {
-			$query = sprintf("
+			$stmt = $this->db->prepare("
 				UPDATE `user` SET 
-					`first_name`= '%s',
-					`last_name` = '%s',
-					`password_hash` = '%s',
-					`password_salt` = '%s',
-					`is_superuser` = %d
-				WHERE `user`.`id` = %d
-				",
+					`first_name`= ?,
+					`last_name` = ?,
+					`password_hash` = ?,
+					`password_salt` = ?,
+					`is_superuser` = ?
+				WHERE `user`.`id` = ?
+				");
+
+			$stmt->bind_param(
+				'ssssii',
 				$user->first_name,
 				$user->last_name,
 				$user->password_hash,
@@ -107,7 +121,9 @@ class UserMapper extends Mapper {
 				$user->id
 			);
 		}
-		$this->db->query($query);
+
+		$stmt->execute();
+
 		if (!$user->id) {
 			$user->id = $this->db->insert_id;
 		}
@@ -117,8 +133,8 @@ class UserMapper extends Mapper {
 	 Deletes an user
 	*/
 	public function delete($id) {
-		$query = sprintf("DELETE FROM `user` WHERE `user`.`id` = %d", $this->db->real_escape_string($id));
-
-		$result = $this->db->query($query);
+		$stmt = $this->db->prepare("DELETE FROM `user` WHERE `user`.`id` = ?");
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
 	}
 }
