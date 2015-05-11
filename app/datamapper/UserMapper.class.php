@@ -5,6 +5,22 @@ require_once('datamapper/Mapper.class.php');
 
 class UserMapper extends Mapper {
 	/*
+	 Mapper singleton
+	*/
+	private static $singleton = null;
+
+	/*
+	 Returns an instance of this mapper
+	*/
+	public static function getInstance() {
+		if (self::$singleton === null) {
+			self::$singleton = new static();
+		}
+
+		return self::$singleton;
+	}
+
+	/*
 	 Returns a single user by his id
 
 	 @param int $id
