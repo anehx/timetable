@@ -4,8 +4,7 @@ CREATE TABLE `user` (
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `password_salt` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
