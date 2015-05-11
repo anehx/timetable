@@ -12,13 +12,18 @@
 
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav">
-				<li><a href="/">Overview</a></li>
-				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}<li><a href="/?page=user">Users</a></li>{/if}
-				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}<li><a href="/?page=course">Courses</a></li>{/if}
+				<li {if !isset($smarty.get.page)}class="active"{/if}><a href="/">Overview</a></li>
+				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}
+				<li {if isset($smarty.get.page) && $smarty.get.page == 'user'}class="active"{/if}><a href="/?page=user">Users</a></li>
+				{/if}
+				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}
+				<li {if isset($smarty.get.page) && $smarty.get.page == 'course'}class="active"{/if}><a href="/?page=course">Courses</a></li>
+				{/if}
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				{if !isset($smarty.session.username)}<li><a href="?page=user&amp;action=login">Login</a></li>
+				{if !isset($smarty.session.username)}
+				<li {if isset($smarty.get.page) && $smarty.get.page == 'user' && $smarty.get.action == 'login'}class="active"{/if}><a href="?page=user&amp;action=login">Login</a></li>
 				{else}
 				<li><p class="navbar-text">Logged in as {$smarty.session.displayName}</p></li>
 				<li><a href="?page=user&amp;action=logout"><i class="fa fa-power-off fa-lg"></i></a></li>{/if}
