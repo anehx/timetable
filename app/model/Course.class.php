@@ -1,7 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../model/Model.class.php');
-require_once(__DIR__ . '/../datamapper/CourseMapper.class.php');
+require_once('/model/Model.class.php');
+require_once('/datamapper/CourseMapper.class.php');
+require_once('/datamapper/UserMapper.class.php');
 
 class Course extends Model {
 	/*
@@ -15,9 +16,9 @@ class Course extends Model {
 	public $name = null;
 
 	/*
-	 The teacher ID of the course
+	 The user ID of the course
 	*/
-	public $teacherID = null;
+	public $userID = null;
 
 	/*
 	 Fills the course model from a db row
@@ -29,9 +30,9 @@ class Course extends Model {
 		$instance = new self();
 
 		$data_map = array(
-			'id'         => $data['id'],
-			'name'       => $data['name'],
-			'teacher_id' => $data['teacher_id']
+			'id'     => $data['id'],
+			'name'   => $data['name'],
+			'userID' => $data['userID']
 		);
 
 		foreach ($data_map as $key => $value) {
@@ -39,5 +40,21 @@ class Course extends Model {
 		}
 
 		return $instance;
+	}
+
+	/*
+	 Returns the referring user
+
+	 @return User
+	*/
+	public function getUser() {
+		return UserMapper::getInstance()->getUserByID($this->userID);
+	}
+
+	/*
+	 Returns the datamapper
+	*/
+	public function getMapper() {
+		return CourseMapper::getInstance();
 	}
 }
