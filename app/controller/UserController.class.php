@@ -4,8 +4,14 @@ require_once('controller/Controller.class.php');
 require_once('datamapper/UserMapper.class.php');
 
 class UserController extends Controller {
+	/*
+	 The default template
+	*/
 	protected $tpl = 'user/list.tpl';
 
+	/*
+	 Handles all requests on this page
+	*/
 	public function handle() {
 
 		if (isset($_GET['action'])) {
@@ -34,12 +40,18 @@ class UserController extends Controller {
 		$this->smarty->display($this->tpl);
 	}
 
+	/*
+	 The default page
+	*/
 	private function handleDefault() {
 		$this->requireSuperuser();
 
 		$this->smarty->assign('users', UserMapper::getInstance()->getUsers());
 	}
 
+	/*
+	 The edit page
+	*/
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'user/edit.tpl';
@@ -87,6 +99,9 @@ class UserController extends Controller {
 		$this->smarty->assign('user', $user);
 	}
 
+	/*
+	 The delete page
+	*/
 	private function handleDelete() {
 		$this->requireSuperuser();
 
@@ -101,6 +116,9 @@ class UserController extends Controller {
 		header('Location: /?page=user');
 	}
 
+	/*
+	 The login page
+	*/
 	private function handleLogin() {
 		$this->tpl = 'user/login.tpl';
 
@@ -116,7 +134,11 @@ class UserController extends Controller {
 			try {
 				$user = UserMapper::getInstance()->getUserByUsername($username);
 				if (password_verify($password, $user->password)) {
-					$user->login();
+					// login
+					$_SESSION['user_id']      = $user->id;
+					$_SESSION['username']     = $user->username;
+					$_SESSION['is_superuser'] = $user->is_superuser;
+
 					header('Location: /');
 				}
 				else {
@@ -130,6 +152,9 @@ class UserController extends Controller {
 		}
 	}
 
+	/*
+	 The logout page
+	*/
 	private function handleLogout() {
 		session_destroy();
 		header('Location: /?page=user&action=login');

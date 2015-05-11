@@ -1,6 +1,6 @@
 <?php
 
-require_once('/model/User.class.php');
+require_once('model/User.class.php');
 require_once('datamapper/Mapper.class.php');
 
 class UserMapper extends Mapper {
@@ -8,12 +8,12 @@ class UserMapper extends Mapper {
 	 Returns a single user by his id
 
 	 @param int $id
-	 @returns model\User
+	 @returns User
 	*/
 	public function getUserByID($id) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `user`
-			WHERE `user`.`id` = ?
+			WHERE `id` = ?
 			LIMIT 1
 		');
 
@@ -34,12 +34,12 @@ class UserMapper extends Mapper {
 	 Returns a single user by his username
 
 	 @param string $username
-	 @returns model\User
+	 @return User
 	*/
 	public function getUserByUsername($username) {
 		$stmt = $this->db->prepare("
 			SELECT * FROM `user`
-			WHERE `user`.`username` = ?
+			WHERE `username` = ?
 			LIMIT 1
 		");
 
@@ -59,7 +59,7 @@ class UserMapper extends Mapper {
 	/*
 	 Returns an array of all available users
 
-	 @returns array
+	 @return array
 	*/
 	public function getUsers() {
 		$stmt = $this->db->prepare("SELECT * FROM `user`");
@@ -69,9 +69,7 @@ class UserMapper extends Mapper {
 		$users = array();
 
 		if ($result->num_rows) {
-			$data = $result->fetch_all(MYSQLI_ASSOC);
-
-			foreach ($data as $row) {
+			while ($row = $result->fetch_assoc()) {
 				$users[] = User::fillFromRowData($row);
 			}
 		}
@@ -81,6 +79,8 @@ class UserMapper extends Mapper {
 
 	/*
 	 Updates or creates an user
+
+	 @param User $user
 	*/
 	public function save($user) {
 		if (!$user->id) {
@@ -106,7 +106,7 @@ class UserMapper extends Mapper {
 					`last_name` = ?,
 					`password` = ?,
 					`is_superuser` = ?
-				WHERE `user`.`id` = ?
+				WHERE `id` = ?
 				");
 
 			$stmt->bind_param(
@@ -128,9 +128,11 @@ class UserMapper extends Mapper {
 
 	/*
 	 Deletes an user
+
+	 @param int $id
 	*/
 	public function delete($id) {
-		$stmt = $this->db->prepare("DELETE FROM `user` WHERE `user`.`id` = ?");
+		$stmt = $this->db->prepare("DELETE FROM `user` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 	}

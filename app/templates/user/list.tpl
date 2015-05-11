@@ -4,6 +4,7 @@
 	<div class="row">
 		<a href="/?page=user&amp;action=edit" class="btn btn-primary pull-right">Add new user</a>
 	</div>
+	{if !empty($users)}
 	<div class="row">
 		<table class="table table-striped">
 			<thead>
@@ -14,7 +15,6 @@
 				<th></th>
 			</thead>
 			<tbody>
-			{if !empty($users)}
 				{foreach $users as $user}
 				<tr>
 					<td>{$user->username}</td>
@@ -27,8 +27,8 @@
 					</td>
 				</tr>
 				{/foreach}
-			{/if}
 			</tbody>
 		</table>
 	</div>
+	{/if}
 {/block}

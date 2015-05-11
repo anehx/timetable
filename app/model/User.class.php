@@ -15,7 +15,7 @@ class User extends Model {
 	public $username = null;
 
 	/*
-	 The password hash of the user
+	 The password of the user
 	*/
 	public $password = null;
 
@@ -56,14 +56,6 @@ class User extends Model {
 		}
 
 		return $instance;
-	}
-
-	/*
-	 Logs the user in
-	*/
-	public function login() {
-		$_SESSION['username'] = $this->username;
-		$_SESSION['is_superuser'] = $this->is_superuser;
 	}
 
 	/*
