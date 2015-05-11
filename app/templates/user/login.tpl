@@ -10,7 +10,7 @@
 			</div>
 			<div class="form-group">
 				<label for="password">Password:</label>
-				<input class="form-control" name="password" type="password" placeholder="Password" />
+				<input class="form-control" name="password" type="password" placeholder="Password" required />
 			</div>
 			<button class="btn btn-primary">Login</button>
 			{if isset($errors) && $errors}
