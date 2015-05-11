@@ -126,7 +126,7 @@ class UserController extends Controller {
 			catch (Exception $e) {
 				$errors[] = 'No user with this username found.';
 			}
-			$smarty->assign('errors', $errors);
+			$this->smarty->assign('errors', $errors);
 		}
 	}
 
