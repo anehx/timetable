@@ -21,8 +21,7 @@ if (isset($_SESSION['is_superuser']) && $_SESSION['is_superuser']) {
 		}
 
 		if ($_POST['new_password'] !== '' && $_POST['new_password'] == $_POST['confirm_password']) {
-			$user->generateSalt();
-			$user->password_hash = crypt($_POST['new_password'], $user->password_salt);
+			$user->password = password_hash($_POST['new_password'], PASSWORD_BCRYPT);
 		}
 
 		$user->first_name = $_POST['first_name'];

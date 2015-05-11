@@ -18,7 +18,7 @@ if ($_POST) {
 
 	try {
 		$user = UserMapper::getInstance()->getUserByUsername($username);
-		if ($user->checkPassword($password)) {
+		if (password_verify($password, $user->password)) {
 			$user->login();
 			header('Location: /');
 		}

@@ -85,18 +85,17 @@ class UserMapper extends Mapper {
 	public function save($user) {
 		if (!$user->id) {
 			$stmt = $this->db->prepare("
-				INSERT INTO `user` (`username`, `first_name`, `last_name`, `password_hash`, `password_salt`, `is_superuser`) VALUES (
-					?, ?, ?, ?, ?, ?
+				INSERT INTO `user` (`username`, `first_name`, `last_name`, `password`, `is_superuser`) VALUES (
+					?, ?, ?, ?, ?
 				)
 			");
 
 			$stmt->bind_param(
-				'sssssi',
+				'ssssi',
 				$user->username,
 				$user->first_name,
 				$user->last_name,
-				$user->password_hash,
-				$user->password_salt,
+				$user->password,
 				$user->is_superuser
 			);
 		}
@@ -105,18 +104,16 @@ class UserMapper extends Mapper {
 				UPDATE `user` SET 
 					`first_name`= ?,
 					`last_name` = ?,
-					`password_hash` = ?,
-					`password_salt` = ?,
+					`password` = ?,
 					`is_superuser` = ?
 				WHERE `user`.`id` = ?
 				");
 
 			$stmt->bind_param(
-				'ssssii',
+				'sssii',
 				$user->first_name,
 				$user->last_name,
-				$user->password_hash,
-				$user->password_salt,
+				$user->password,
 				$user->is_superuser,
 				$user->id
 			);
