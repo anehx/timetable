@@ -19,7 +19,7 @@
 			{/if}
 			<div class="form-group">
 				<label for="username">Username</label>
-				<input class="form-control" name="username" type="text" value="{$user->username}" placeholder="Username" {if $user->id}disabled{/if} />
+				<input class="form-control" name="username" type="text" value="{$user->username}" placeholder="Username" required {if $user->id}disabled{/if} />
 			</div>
 			<div class="form-group">
 				<label for="firstName">First Name</label>
@@ -31,11 +31,9 @@
 			</div>
 			<div class="form-group">
 				<label for="new_password">{if $user->id}New {/if}Password</label>
-				<input class="form-control" name="password" type="password" placeholder="{if $user->id}New {/if}Password" />
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password</label>
-				<input class="form-control" name="confirmPassword" type="password" placeholder="Confirm Password" />
 			</div>
 			<input class="btn btn-primary" type="submit" value="Save" />
 		</div>
