@@ -28,7 +28,8 @@ class CourseValidator extends Validator {
 		$fieldValue = $this->model->name;
 
 		$this->checkMutation($fieldValue, $fieldName);
-		$this->checkSpecialCharOrWhitespace($fieldValue, $fieldName);
+		$this->checkSpecialChar($fieldValue, $fieldName);
+		$this->checkWhitespace($fieldValue, $fieldName);
 		$this->checkLength($fieldValue, $fieldName, 1, 50);
 	}
 
