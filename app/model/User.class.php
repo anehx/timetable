@@ -1,7 +1,8 @@
 <?php
 
-require_once('model/Model.class.php');
-require_once('datamapper/UserMapper.class.php');
+require_once('/model/Model.class.php');
+require_once('/datamapper/UserMapper.class.php');
+require_once('/validator/UserValidator.class.php');
 
 class User extends Model {
 	/*
@@ -18,6 +19,11 @@ class User extends Model {
 	 The password of the user
 	*/
 	public $password = null;
+
+	/*
+	 The raw password of the user (only used for creation and pw change)
+	*/
+	public $raw_password = null;
 
 	/*
 	 The first name of the user (optional)
@@ -43,12 +49,12 @@ class User extends Model {
 		$instance = new self();
 
 		$data_map = array(
-			'id'          => (int)$data['id'],
-			'username'    => (string)$data['username'],
-			'password'    => (string)$data['password'],
-			'firstName'   => (string)$data['firstName'],
-			'lastName'    => (string)$data['lastName'],
-			'isSuperuser' => (bool)$data['isSuperuser']
+			'id'           => (int)$data['id'],
+			'username'     => (string)$data['username'],
+			'password'     => (string)$data['password'],
+			'firstName'    => (string)$data['firstName'],
+			'lastName'     => (string)$data['lastName'],
+			'isSuperuser'  => (bool)$data['isSuperuser']
 		);
 
 		foreach ($data_map as $key => $value) {
@@ -77,5 +83,12 @@ class User extends Model {
 	*/
 	public function getMapper() {
 		return UserMapper::getInstance();
+	}
+
+	/*
+	 Returns the validator
+	*/
+	public function getValidator() {
+		return new UserValidator($this);
 	}
 }

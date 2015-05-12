@@ -76,14 +76,23 @@ class UserController extends Controller {
 			}
 
 			if ($_POST['password'] !== '' && $_POST['password'] == $_POST['confirmPassword']) {
-				$user->password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT);
+				$user->raw_password = trim($_POST['password']);
 			}
 
 			$user->firstName = trim($_POST['firstName']);
 			$user->lastName  = trim($_POST['lastName']);
+			$validator = $user->validate();
 
-			$user->save();
-			header('Location: /?page=user');
+			if ($validator->isValid) {
+				if ($user->raw_password) {
+					$user->password = password_hash($user->raw_password, PASSWORD_BCRYPT);
+				}
+				$user->save();
+				header('Location: /?page=user');
+			}
+			else {
+				$errors = array_merge($errors, $validator->errors);
+			}
 		}
 
 		$this->smarty->assign('errors', $errors);
