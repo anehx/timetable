@@ -31,9 +31,11 @@
 			</div>
 			<div class="form-group">
 				<label for="new_password">{if $user->id}New {/if}Password</label>
+				<input class="form-control" name="password" type="password" placeholder="{if $user->id}New {/if}Password" {if !$user->id}required{/if} />
 			</div>
 			<div class="form-group">
 				<label for="confirmPassword">Confirm Password</label>
+				<input class="form-control" name="confirmPassword" type="password" placeholder="Confirm Password" {if !$user->id}required{/if} />
 			</div>
 			<input class="btn btn-primary" type="submit" value="Save" />
 		</div>
