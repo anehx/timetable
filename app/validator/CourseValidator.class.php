@@ -22,12 +22,14 @@ class CourseValidator extends Validator {
 	}
 
 	private function validateUserID() {
-		try {
-			$user = UserMapper::getInstance()->getUserByID($this->model->userID, true);
-		}
-		catch (UnexpectedValueException $e) {
-			$this->errors[] = $e->getMessage();
-			$this->isValid  = false;
+		if ($this->model->userID) {
+			try {
+				$user = UserMapper::getInstance()->getUserByID($this->model->userID, true);
+			}
+			catch (UnexpectedValueException $e) {
+				$this->errors[] = $e->getMessage();
+				$this->isValid  = false;
+			}
 		}
 	}
 }

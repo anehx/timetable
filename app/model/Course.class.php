@@ -31,9 +31,9 @@ class Course extends Model {
 		$instance = new self();
 
 		$data_map = array(
-			'id'     => $data['id'],
-			'name'   => $data['name'],
-			'userID' => $data['userID']
+			'id'     => (int)$data['id'],
+			'name'   => (string)$data['name'],
+			'userID' => (int)$data['userID'] ? (int)$data['userID'] : null
 		);
 
 		foreach ($data_map as $key => $value) {

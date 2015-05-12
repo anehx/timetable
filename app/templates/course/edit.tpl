@@ -23,6 +23,7 @@
 			<div class="form-group">
 				<label class="control-label" for="userID">User</label>
 				<select class="form-control" name="userID" type="text" required>
+					<option value="0">-- Select User --</option>
 					{foreach $users as $user}
 					<option value="{$user->id}">{$user->getDisplayName()}</option>
 					{/foreach}

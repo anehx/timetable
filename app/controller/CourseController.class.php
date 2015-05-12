@@ -66,7 +66,7 @@ class CourseController extends Controller {
 
 		if ($_POST) {
 			$course->name = trim($_POST['name']);
-			$course->userID = (int)$_POST['userID'];
+			$course->userID = (int)$_POST['userID'] ? (int)$_POST['userID'] : null;
 			$validator = $course->validate();
 
 			if ($validator->isValid) {
