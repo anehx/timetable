@@ -17,11 +17,11 @@
 				<h2>Create a new course</h2>
 			{/if}
 			<div class="form-group">
-				<label for="name">Name</label>
+				<label class="control-label" for="name">Name</label>
 				<input class="form-control" name="name" type="text" value="{$course->name}" placeholder="Name" required pattern="[A-Za-z0-9]" />
 			</div>
 			<div class="form-group">
-				<label for="userID">User</label>
+				<label class="control-label" for="userID">User</label>
 				<select class="form-control" name="userID" type="text" required>
 					{foreach $users as $user}
 					<option value="{$user->id}">{$user->getDisplayName()}</option>
