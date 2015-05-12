@@ -3,9 +3,8 @@
 require_once('controller/Controller.class.php');
 
 class BaseController extends Controller {
+	/*
+	 The default template
+	*/
 	protected $tpl = 'home.tpl';
-
-	public function handle() {
-		$this->smarty->display($this->tpl);
-	}
 }

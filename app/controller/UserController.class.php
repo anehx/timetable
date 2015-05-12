@@ -37,7 +37,7 @@ class UserController extends Controller {
 			$this->handleDefault();
 		}
 
-		$this->smarty->display($this->tpl);
+		parent::handle();
 	}
 
 	/*

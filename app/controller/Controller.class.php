@@ -12,13 +12,6 @@ class Controller {
 	protected $smarty = null;
 
 	/*
-	 The class constructor
-	*/
-	public function __construct() {
-		$this->smarty = $GLOBALS['smarty'];
-	}
-
-	/*
 	 Page requires superuser permission
 	 Displays access denied page if not allowed
 	*/
@@ -27,5 +20,19 @@ class Controller {
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}
+	}
+
+	/*
+	 The class constructor
+	*/
+	public function __construct() {
+		$this->smarty = $GLOBALS['smarty'];
+	}
+
+	/*
+	 Handles all requests on this page
+	*/
+	public function handle() {
+		$this->smarty->display($this->tpl);
 	}
 }
