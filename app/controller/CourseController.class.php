@@ -56,7 +56,7 @@ class CourseController extends Controller {
 				$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
 			}
 			catch (UnexpectedValueException $e) {
-				$errors[] = 'No course with this id found';
+				$errors[] = $e->getMessage();
 				$course = null;
 			}
 		}
@@ -67,8 +67,15 @@ class CourseController extends Controller {
 		if ($_POST) {
 			$course->name = trim($_POST['name']);
 			$course->userID = (int)$_POST['userID'];
-			$course->save();
-			header('Location: /?page=course');
+			$validator = $course->validate();
+
+			if ($validator->isValid) {
+				$course->save();
+				header('Location: /?page=course');
+			}
+			else {
+				$errors = array_merge($errors, $validator->errors);
+			}
 		}
 		
 		$this->smarty->assign('errors', $errors);

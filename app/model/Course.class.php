@@ -3,6 +3,7 @@
 require_once('/model/Model.class.php');
 require_once('/datamapper/CourseMapper.class.php');
 require_once('/datamapper/UserMapper.class.php');
+require_once('/validator/CourseValidator.class.php');
 
 class Course extends Model {
 	/*
@@ -56,5 +57,12 @@ class Course extends Model {
 	*/
 	public function getMapper() {
 		return CourseMapper::getInstance();
+	}
+
+	/*
+	 Returns the validator
+	*/
+	public function getValidator() {
+		return new CourseValidator($this);
 	}
 }

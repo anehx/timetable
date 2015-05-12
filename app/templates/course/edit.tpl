@@ -18,7 +18,7 @@
 			{/if}
 			<div class="form-group">
 				<label class="control-label" for="name">Name</label>
-				<input class="form-control" name="name" type="text" value="{$course->name}" placeholder="Name" required pattern="[A-Za-z0-9]" />
+				<input class="form-control" name="name" type="text" value="{$course->name}" placeholder="Name" required />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="userID">User</label>

@@ -62,7 +62,7 @@ class UserController extends Controller {
 				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
 			}
 			catch (UnexpectedValueException $e) {
-				$errors[] = 'No user with this id available!';
+				$errors[] = $e->getMessage();
 				$user = null;
 			}
 		}
@@ -137,8 +137,8 @@ class UserController extends Controller {
 					$errors[] = 'Password is wrong.';
 				}
 			}
-			catch (Exception $e) {
-				$errors[] = 'No user with this username found.';
+			catch (UnexpectedValueException $e) {
+				$errors[] = $e->getMessage();
 			}
 			$this->smarty->assign('errors', $errors);
 		}

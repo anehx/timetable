@@ -26,12 +26,13 @@ class UserMapper extends Mapper {
 	 @param int $id
 	 @returns User
 	*/
-	public function getUserByID($id) {
-		$stmt = $this->db->prepare('
+	public function getUserByID($id, $ignoreSuperusers = false) {
+		$where = $ignoreSuperusers ? 'AND `isSuperuser` = 0' : '';
+		$stmt = $this->db->prepare(sprintf('
 			SELECT * FROM `user`
-			WHERE `id` = ?
+			WHERE `id` = ? %s
 			LIMIT 1
-		');
+		', $where));
 
 		$stmt->bind_param('i', $id);
 		$stmt->execute();

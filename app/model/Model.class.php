@@ -8,4 +8,8 @@ class Model {
 	public function delete() {
 		$this->getMapper()->delete($this->id);
 	}
+
+	public function validate() { 
+		return $this->getValidator()->validate();
+	}
 }
