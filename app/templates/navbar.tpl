@@ -23,10 +23,18 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				{if !isset($smarty.session.username)}
-				<li {if isset($smarty.get.page) && $smarty.get.page == 'user' && $smarty.get.action == 'login'}class="active"{/if}><a href="?page=user&amp;action=login">Login</a></li>
+					<li {if isset($smarty.get.page) && $smarty.get.page == 'user' && $smarty.get.action == 'login'}class="active"{/if}><a href="?page=user&amp;action=login">Login</a></li>
 				{else}
-				<li><p class="navbar-text">Logged in as {$smarty.session.displayName}</p></li>
-				<li><a href="?page=user&amp;action=logout"><i class="fa fa-power-off fa-lg"></i></a></li>{/if}
+					<li><p class="navbar-text login-name">Logged in as</p></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$smarty.session.displayName} <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/?page=user&amp;action=password&amp;id={$smarty.session.userID}"><i class="fa fa-key fa-lg"></i> Change password</a></li>
+							<li class="divider"></li>
+							<li><a href="/?page=user&amp;action=logout"><i class="fa fa-power-off fa-lg"></i> Logout</a></li>
+						</ul>
+					</li>
+				{/if}
 			</ul>
 		</div>
 	</div>
