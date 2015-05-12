@@ -12,6 +12,12 @@
 	<form method="post" action="/?page=user&amp;action=password&amp;id={$user->id}">
 		<div class="col-md-6">
 			<h2>Change password of '{$user->username}'</h2>
+			{if !$smarty.session.isSuperuser}
+			<div class="form-group">
+				<label class="control-label" for="oldPassword">Old Password</label>
+				<input class="form-control" name="oldPassword" type="password" placeholder="Old Password" required />
+			</div>
+			{/if}
 			<div class="form-group">
 				<label class="control-label" for="password">New Password</label>
 				<input class="form-control" name="password" type="password" placeholder="New Password" required />
