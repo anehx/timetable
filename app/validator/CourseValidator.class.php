@@ -28,6 +28,10 @@ class CourseValidator extends Validator {
 			$this->errors[] = 'No special chars allowed';
 			$this->isValid  = false;
 		}
+		if (strlen($this->model->name) > 50 || strlen($this->model->name) < 1) {
+			$this->errors[] = 'Name must be between 1 and 50 chars';
+			$this->isValid  = false;
+		}
 	}
 
 	/*
