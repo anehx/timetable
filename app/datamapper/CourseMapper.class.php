@@ -68,6 +68,48 @@ class CourseMapper extends Mapper {
 	}
 
 	/*
+	 Updates or creates a course
+
+	 @param Course $course
+	*/
+	public function save($course) {
+		if (!$course->id) {
+			$stmt = $this->db->prepare("
+				INSERT INTO `course` (`name`, `userID`) VALUES (
+					?, ?
+				)
+			");
+
+			$stmt->bind_param(
+				'si',
+				$course->name,
+				$course->userID
+			);
+		}
+		else {
+			$stmt = $this->db->prepare("
+				UPDATE `course` SET 
+					`name`= ?,
+					`userID` = ?
+				WHERE `id` = ?
+				");
+
+			$stmt->bind_param(
+				'sii',
+				$course->name,
+				$course->userID,
+				$course->id
+			);
+		}
+
+		$stmt->execute();
+
+		if (!$course->id) {
+			$course->id = $this->db->insert_id;
+		}
+	}
+
+	/*
 	 Deletes a course
 	*/
 	public function delete($id) {

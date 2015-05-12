@@ -9,21 +9,20 @@
 		</ul></div>
 	{/if}
 	{if $course}
-	<form method="post" action="/?page=user&amp;action=edit">
+	<form method="post" action="/?page=course&amp;action=edit{if $course->id}&amp;id={$course->id}{/if}">
 		<div class="col-md-6">
 			{if $course->id}
 				<h2>Edit course '{$course->name}'</h2>
-				<input type="hidden" name="id" value="{$course->id}">
 			{else}
 				<h2>Create a new course</h2>
 			{/if}
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input class="form-control" name="name" type="text" value="{$course->name}" placeholder="Name" />
+				<input class="form-control" name="name" type="text" value="{$course->name}" placeholder="Name" required pattern="[A-Za-z0-9]" />
 			</div>
 			<div class="form-group">
-				<label for="first_name">User</label>
-				<select class="form-control" name="user_id" type="text">
+				<label for="userID">User</label>
+				<select class="form-control" name="userID" type="text" required>
 					{foreach $users as $user}
 					<option value="{$user->id}">{$user->getDisplayName()}</option>
 					{/foreach}

@@ -47,15 +47,32 @@ class CourseController extends Controller {
 	 The edit page
 	*/
 	private function handleEdit() {
-		$this->tpl = 'course/edit.tpl';
 		$this->requireSuperuser();
+		$this->tpl = 'course/edit.tpl';
 		$errors = [];
 
-		$course = new Course();
-		$users = UserMapper::getInstance()->getUsers(true);
+		if (isset($_GET['id'])) {
+			try {
+				$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
+			}
+			catch (UnexpectedValueException $e) {
+				$errors[] = 'No course with this id found';
+				$course = null;
+			}
+		}
+		else {
+			$course = new Course();
+		}
 
+		if ($_POST) {
+			$course->name = trim($_POST['name']);
+			$course->userID = (int)$_POST['userID'];
+			$course->save();
+			header('Location: /?page=course');
+		}
+		
 		$this->smarty->assign('errors', $errors);
-		$this->smarty->assign('users', $users);
+		$this->smarty->assign('users', UserMapper::getInstance()->getUsers(true));
 		$this->smarty->assign('course', $course);
 	}
 
