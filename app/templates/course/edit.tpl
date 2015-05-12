@@ -34,3 +34,7 @@
 	</form>
 	{/if}
 {/block}
+
+{block 'scripts'}
+<script type="text/javascript" src="/js/course_edit.js"></script>
+{/block}

@@ -24,7 +24,7 @@ class CourseValidator extends Validator {
 	 Validates the course name
 	*/
 	private function validateName() {
-		if (preg_match('/[^A-Za-z0-9]+/', $this->model->name)) {
+		if (preg_match('/[^A-Za-z0-9\s]+/', $this->model->name)) {
 			$this->errors[] = 'No special chars allowed';
 			$this->isValid  = false;
 		}
