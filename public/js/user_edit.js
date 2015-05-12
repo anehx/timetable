@@ -65,12 +65,12 @@ jQuery(function($, document) {
 	}
 
 	function validatePassword() {
-		validPassword = !/[^A-Za-z0-9#%&\/()?!$-_]+/.test($password.val()) && $password.val().length >= 6
+		validPassword = !/[^A-Za-z0-9#%&/(/)?!$-_]+/.test($password.val()) && $password.val().length >= 6
 		$password.parent().toggleClass('has-error', !validPassword)
 	}
 
 	function validateConfirmPassword() {
-		validConfirmPassword = !/[^A-Za-z0-9#%&\/()?!$-_]+/.test($confirmPassword.val()) && $confirmPassword.val().length >= 6 && $confirmPassword.val() === $password.val()
+		validConfirmPassword = !/[^A-Za-z0-9#%&/(/)?!$-_]+/.test($confirmPassword.val()) && $confirmPassword.val().length >= 6 && $confirmPassword.val() === $password.val()
 		$confirmPassword.parent().toggleClass('has-error', !validConfirmPassword)
 	}
 })

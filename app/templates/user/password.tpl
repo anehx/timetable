@@ -31,3 +31,7 @@
 	</form>
 	{/if}
 {/block}
+
+{block 'scripts'}
+	<script type="text/javascript" src="/js/password_edit.js"></script>
+{/block}
