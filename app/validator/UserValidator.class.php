@@ -15,9 +15,7 @@ class UserValidator extends Validator {
 	*/
 	public function validate() {
 		$this->validateUsername();
-		if ($this->model->raw_password) {
-			$this->validatePassword();
-		}
+		$this->validatePassword();
 		$this->validateFirstName();
 		$this->validateLastName();
 
@@ -54,19 +52,21 @@ class UserValidator extends Validator {
 	 Validates the password
 	*/
 	private function validatePassword() {
-		$fieldName = 'Password';
-		$fieldValue = $this->model->raw_password;
+		if ($this->model->raw_password) {
+			$fieldName = 'Password';
+			$fieldValue = $this->model->raw_password;
 
-		$this->checkLength($fieldValue, $fieldName, 6, 50);
+			$this->checkLength($fieldValue, $fieldName, 6, 50);
 
-		if (preg_match('/[^A-Za-z0-9#%&\/()?!$-_]+/', $fieldValue)) {
-			$this->errors[] = 'Field "Password" can only contain these characters: A-Za-z0-9#%&/()?!$-_';
-			$this->isValid = false;
-		}
+			if (preg_match('/[^A-Za-z0-9#%&\/()?!$-_]+/', $fieldValue)) {
+				$this->errors[] = 'Field "Password" can only contain these characters: A-Za-z0-9#%&/()?!$-_';
+				$this->isValid = false;
+			}
 
-		if (!preg_match('/[0-9]{1}|[#%&\/()?!$-_]{1}/', $fieldValue)) {
-			$this->errors[] = 'Field "Password" must contain at least one digit or special char';
-			$this->isValid = false;
+			if (!preg_match('/[0-9]{1}|[#%&\/()?!$-_]{1}/', $fieldValue)) {
+				$this->errors[] = 'Field "Password" must contain at least one digit or special char';
+				$this->isValid = false;
+			}
 		}
 	}
 
@@ -74,19 +74,21 @@ class UserValidator extends Validator {
 	 Validates the username
 	*/
 	private function validateUsername() {
-		$fieldName = 'Username';
-		$fieldValue = $this->model->username;
+		if (!$this->model->id) {
+			$fieldName = 'Username';
+			$fieldValue = $this->model->username;
 
-		$this->checkSpecialCharOrWhitespace($fieldValue, $fieldName);
-		$this->checkLength($fieldValue, $fieldName, 1, 50);
+			$this->checkSpecialCharOrWhitespace($fieldValue, $fieldName);
+			$this->checkLength($fieldValue, $fieldName, 1, 50);
 
-		try {
-				$user = UserMapper::getInstance()->getUserByUsername($this->model->username);
-				$this->errors[] = 'User with this username already exists';
-				$this->isValid  = false;
+			try {
+					$user = UserMapper::getInstance()->getUserByUsername($this->model->username);
+					$this->errors[] = 'User with this username already exists';
+					$this->isValid  = false;
+				}
+			catch (UnexpectedValueException $e) {
+				// expected behaviour
 			}
-		catch (UnexpectedValueException $e) {
-			// expected behaviour
 		}
 	}
 }

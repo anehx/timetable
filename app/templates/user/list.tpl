@@ -22,6 +22,7 @@
 					<td>{$user->lastName}</td>
 					<td>{if $user->isSuperuser}Yes{else}No{/if}</td>
 					<td class="text-right">
+						<a href="/?page=user&amp;action=password&amp;id={$user->id}" title="Change password"><i class="fa fa-key fa-lg"></i></a>
 						<a href="/?page=user&amp;action=edit&amp;id={$user->id}" title="Edit user"><i class="fa fa-pencil fa-lg"></i></a>
 						<a href="/?page=user&amp;action=delete&amp;id={$user->id}" title="Delete user"><i class="fa fa-trash fa-lg"></i></a>
 					</td>

@@ -28,6 +28,9 @@ class UserController extends Controller {
 				case 'delete';
 					$this->handleDelete();
 					break;
+				case 'password':
+					$this->handlePassword();
+					break;
 				default:
 					$this->handleDefault();
 					break;
@@ -47,6 +50,49 @@ class UserController extends Controller {
 		$this->requireSuperuser();
 
 		$this->smarty->assign('users', UserMapper::getInstance()->getUsers());
+	}
+
+	/*
+	 The password change page
+	*/
+	private function handlePassword() {
+		$this->tpl = 'user/password.tpl';
+		$errors = array();
+		if (isset($_GET['id'])) {
+			try {
+				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
+				if ((
+						!isset($_SESSION['isSuperuser']) ||
+						!isset($_SESSION['userID'])
+					) || !(
+						$_SESSION['isSuperuser'] ||
+						($_SESSION['userID'] === $user->id)
+				)) {
+					$this->smarty->display('access_denied.tpl');
+					exit;
+				}
+
+				if ($_POST) {
+					$user->raw_password = trim($_POST['password']);
+					$validator = $user->validate();
+
+					if ($validator->isValid) {
+						$user->password = password_hash($user->raw_password, PASSWORD_BCRYPT);
+						$user->save();
+						header('Location: /?page=user');
+					}
+					else {
+						$errors = array_merge($errors, $validator->errors);
+					}
+				}
+			}
+			catch (UnexpectedValueException $e) {
+				$errors[] = $e->getMessage();
+				$user = null;
+			}
+		}
+		$this->smarty->assign('errors', $errors);
+		$this->smarty->assign('user', $user);
 	}
 
 	/*
@@ -73,9 +119,6 @@ class UserController extends Controller {
 		if ($_POST) {
 			if (!$user->id) {
 				$user->username = trim($_POST['username']);
-			}
-
-			if ($_POST['password'] !== '' && $_POST['password'] == $_POST['confirmPassword']) {
 				$user->raw_password = trim($_POST['password']);
 			}
 
@@ -84,7 +127,7 @@ class UserController extends Controller {
 			$validator = $user->validate();
 
 			if ($validator->isValid) {
-				if ($user->raw_password) {
+				if (!$user->id) {
 					$user->password = password_hash($user->raw_password, PASSWORD_BCRYPT);
 				}
 				$user->save();
