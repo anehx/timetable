@@ -3,10 +3,16 @@
 require_once('/validator/Validator.class.php');
 
 class CourseValidator extends Validator {
+	/*
+	 The class constructor
+	*/
 	public function __construct($model) {
 		parent::__construct($model);
 	}
 
+	/*
+	 Validates the whole course model
+	*/
 	public function validate() {
 		$this->validateName();
 		$this->validateUserID();
@@ -14,6 +20,9 @@ class CourseValidator extends Validator {
 		return $this;
 	}
 
+	/*
+	 Validates the course name
+	*/
 	private function validateName() {
 		if (preg_match('/[^A-Za-z0-9]+/', $this->model->name)) {
 			$this->errors[] = 'No special chars allowed';
@@ -21,6 +30,9 @@ class CourseValidator extends Validator {
 		}
 	}
 
+	/*
+	 Validates the course user
+	*/
 	private function validateUserID() {
 		if ($this->model->userID) {
 			try {
