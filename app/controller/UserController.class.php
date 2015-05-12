@@ -57,34 +57,9 @@ class UserController extends Controller {
 		$this->tpl = 'user/edit.tpl';
 		$errors = array();
 
-		if ($_POST) {
-			$user_id = isset($_POST['id']) ? $_POST['id'] : null;
-
-			if ($user_id) {
-				// edit an existing user
-				$user = UserMapper::getInstance()->getUserByID($user_id);
-			}
-			else {
-				// create a new user
-				$user = new User();
-				$user->username = $_POST['username'];
-			}
-
-			if ($_POST['password'] !== '' && $_POST['password'] == $_POST['confirmPassword']) {
-				$user->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-			}
-
-			$user->firstName = $_POST['firstName'];
-			$user->lastName  = $_POST['lastName'];
-
-			$user->save();
-			header('Location: /?page=user');
-		}
-
 		if (isset($_GET['id'])) {
-			$user_id = $_GET['id'];
 			try {
-				$user = UserMapper::getInstance()->getUserByID($user_id);
+				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
 			}
 			catch (UnexpectedValueException $e) {
 				$errors[] = 'No user with this id available!';
@@ -93,6 +68,22 @@ class UserController extends Controller {
 		}
 		else {
 			$user = new User();
+		}
+
+		if ($_POST) {
+			if (!$user->id) {
+				$user->username = trim($_POST['username']);
+			}
+
+			if ($_POST['password'] !== '' && $_POST['password'] == $_POST['confirmPassword']) {
+				$user->password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT);
+			}
+
+			$user->firstName = trim($_POST['firstName']);
+			$user->lastName  = trim($_POST['lastName']);
+
+			$user->save();
+			header('Location: /?page=user');
 		}
 
 		$this->smarty->assign('errors', $errors);
@@ -135,7 +126,7 @@ class UserController extends Controller {
 				$user = UserMapper::getInstance()->getUserByUsername($username);
 				if (password_verify($password, $user->password)) {
 					// login
-					$_SESSION['user_id']     = $user->id;
+					$_SESSION['userID']      = $user->id;
 					$_SESSION['username']    = $user->username;
 					$_SESSION['displayName'] = $user->getDisplayName();
 					$_SESSION['isSuperuser'] = $user->isSuperuser;
@@ -157,7 +148,10 @@ class UserController extends Controller {
 	 The logout page
 	*/
 	private function handleLogout() {
-		session_destroy();
+		unset($_SESSION['userID']);
+		unset($_SESSION['username']);
+		unset($_SESSION['displayName']);
+		unset($_SESSION['isSuperuser']);
 		header('Location: /?page=user&action=login');
 	}
 }
