@@ -1,20 +1,28 @@
-jQuery(function($, document) {
+jQuery(function() {
 	'use strict'
 
 	var $nameField = $('input[name="name"]')
 	var $submit = $('input[type="submit"]')
+	var validName = false;
 
-	$nameField.on('change blur', function() {
+	$nameField.on('change input blur', function(e) {
 		validate()
 	})
 
+	$(document).keypress(function(e) {
+		if (e.which == 13 && !validName) {
+			e.preventDefault()
+		}
+	})
+
 	function validate() {
-		var validName = validateName()
-		$nameField.parent().toggleClass('has-error', validName)
-		$submit.toggleClass('disabled', validName)
+		validateName()
+
+		$nameField.parent().toggleClass('has-error', !validName)
+		$submit.toggleClass('disabled', !validName)
 	}
 
 	function validateName() {
-		return /[^A-Za-z0-9\s]+/.test($nameField.val()) || $nameField.val().length > 50 || $nameField.val().length < 1
+		validName = !/[^A-Za-z0-9\s]+/.test($nameField.val()) && $nameField.val().length < 50 && $nameField.val().length > 1
 	}
 })

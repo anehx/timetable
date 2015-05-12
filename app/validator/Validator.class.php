@@ -22,4 +22,45 @@ class Validator {
 	public function __construct($model) {
 		$this->model = $model;
 	}
+
+	/*
+	 Checks if a string contains special chars or whitespaces
+
+	 @param string $str
+	 @param string $fieldName
+	*/
+	protected function checkSpecialCharOrWhitespace($str, $fieldName) {
+		if (preg_match('/[^A-Za-z0-9]+/', $str)) {
+			$this->errors[] = sprintf('No special chars or whitespaces allowed for field "%s"', $fieldName);
+			$this->isValid  = false;
+		}
+	}
+
+	/*
+	 Checks if a string contains special chars
+
+	 @param string $str
+	 @param string $fieldName
+	*/
+	protected function checkSpecialChar($str, $fieldName) {
+		if (preg_match('/[^A-Za-z0-9\s]+/', $str)) {
+			$this->errors[] = sprintf('No special chars allowed for field "%s"', $fieldName);
+			$this->isValid  = false;
+		}
+	}
+
+	/*
+	 Checks if a string length is between $min and $max
+
+	 @param string $str
+	 @param string $fieldName
+	 @param int $min
+	 @param int $max
+	*/
+	protected function checkLength($str, $fieldName, $min, $max) {
+		if (strlen($str) > $max || strlen($str) < $min) {
+			$this->errors[] = sprintf('"%s" must be between %i and %i chars', $fieldName, $min, $max);
+			$this->isValid  = false;
+		}
+	}
 }
