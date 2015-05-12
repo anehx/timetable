@@ -16,6 +16,9 @@ class Validator {
 	*/
 	public $errors = [];
 
+	/*
+	 The class constructor
+	*/
 	public function __construct($model) {
 		$this->model = $model;
 	}
