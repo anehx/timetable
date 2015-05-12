@@ -24,6 +24,20 @@ class Validator {
 	}
 
 	/*
+	 Checks if a string contains mutations
+
+	 @param string $str
+	 @param string $fieldName
+	*/
+	protected function checkMutation($str, $fieldName) {
+		if (preg_match('/[^ÄÖÜäöüß]+/', $str)) {
+			$this->errors[] = sprintf('Field "%s" must not contain mutations', $fieldName);
+			$this->isValid  = false;
+		}
+	}
+
+
+	/*
 	 Checks if a string contains special chars or whitespaces
 
 	 @param string $str
@@ -31,7 +45,7 @@ class Validator {
 	*/
 	protected function checkSpecialCharOrWhitespace($str, $fieldName) {
 		if (preg_match('/[^A-Za-z0-9]+/', $str)) {
-			$this->errors[] = sprintf('No special chars or whitespaces allowed for field "%s"', $fieldName);
+			$this->errors[] = sprintf('Field "%s" must not contain mutations special chars or whitespaces', $fieldName);
 			$this->isValid  = false;
 		}
 	}
@@ -44,7 +58,7 @@ class Validator {
 	*/
 	protected function checkSpecialChar($str, $fieldName) {
 		if (preg_match('/[^A-Za-z0-9\s]+/', $str)) {
-			$this->errors[] = sprintf('No special chars allowed for field "%s"', $fieldName);
+			$this->errors[] = sprintf('Field "%s" must not contain special chars', $fieldName);
 			$this->isValid  = false;
 		}
 	}

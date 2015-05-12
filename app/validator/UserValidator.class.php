@@ -78,6 +78,7 @@ class UserValidator extends Validator {
 			$fieldName = 'Username';
 			$fieldValue = $this->model->username;
 
+			$this->checkMutation($fieldValue, $fieldName);
 			$this->checkSpecialCharOrWhitespace($fieldValue, $fieldName);
 			$this->checkLength($fieldValue, $fieldName, 1, 50);
 
