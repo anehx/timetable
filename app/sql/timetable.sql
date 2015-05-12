@@ -18,11 +18,19 @@ CREATE TABLE `course` (
 CREATE TABLE  `lection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `startTime` datetime,
-  `endTime` datetime,
-  `courseID` int(11) DEFAULT NULL,
+  `weekday` tinyint(1) NOT NULL,
+  `lectionTimeID` int(11) NOT NULL, 
+  `courseID` int(11) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE  `lectiontime` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `startTime` TIME NOT NULL,
+  `endTime` TIME NOT NULL
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `course` ADD CONSTRAINT `course_user` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 ALTER TABLE `lection` ADD CONSTRAINT `lection_course` FOREIGN KEY (`courseID`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `lection` ADD CONSTRAINT `lection_lectiontime` FOREIGN KEY (`lectionTimeID`) REFERENCES `lecitontime` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
