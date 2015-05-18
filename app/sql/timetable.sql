@@ -27,7 +27,7 @@ CREATE TABLE  `lesson` (
 CREATE TABLE  `lessontime` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `startTime` TIME NOT NULL,
-  `endTime` TIME NOT NULL
+  `endTime` TIME NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

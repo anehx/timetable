@@ -19,6 +19,9 @@
 				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}
 				<li {if isset($smarty.get.page) && $smarty.get.page == 'course'}class="active"{/if}><a href="/?page=course">Courses</a></li>
 				{/if}
+				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}
+				<li {if isset($smarty.get.page) && $smarty.get.page == 'lessonTime'}class="active"{/if}><a href="/?page=lessonTime">Lesson Times</a></li>
+				{/if}
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

@@ -77,4 +77,17 @@ class Validator {
 			$this->isValid  = false;
 		}
 	}
+
+	/*
+	 Checks if a time is a datetime object
+
+	 @param datetime $dt
+	 @param string $fieldName
+	*/
+	protected function checkTime($dt, $fieldName) {
+		if (!is_a($dt, 'DateTime')) {
+			$this->errors[] = sprintf('Field "%s" must be a datetime', $fieldName);
+			$this->isValid  = false;
+		}
+	}
 }

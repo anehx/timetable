@@ -67,3 +67,7 @@ $.fn.checkLength = function(min, max) {
 $.fn.checkPassword = function() {
 	return !/[^A-Za-z0-9#%&\/()?!$-_]+/.test(this.val()) && /[0-9]{1}|[#%&\/()?!$-_]{1}/.test(this.val()) && this.checkLength(6, 50)
 }
+
+$.fn.checkTime = function() {
+	return /^[\d]{1,2}:[\d]{2}$/.test(this.val()) && this.checkLength(4, 5)
+}

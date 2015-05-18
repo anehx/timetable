@@ -1,6 +1,8 @@
 <?php
 
 require_once('/model/Model.class.php');
+require_once('/datamapper/LessonTimeMapper.class.php');
+require_once('/validator/LessonTimeValidator.class.php');
 
 class LessonTime extends Model {
 	/*
@@ -31,5 +33,19 @@ class LessonTime extends Model {
 		);
 
 		return parent::fill($dataMap);
+	}
+
+	/*
+	 Returns the datamapper
+	*/
+	public function getMapper() {
+		return LessonTimeMapper::getInstance();
+	}
+
+	/*
+	 Returns the validator
+	*/
+	public function getValidator() {
+		return new LessonTimeValidator($this);
 	}
 }
