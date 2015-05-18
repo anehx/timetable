@@ -1,9 +1,9 @@
 <?php
 
 require_once('/datamapper/Mapper.class.php');
-require_once('/model/Lection.class.php');
+require_once('/model/LessonTime.class.php');
 
-class LectionMapper extends Mapper {
+class LessonTimeMapper extends Mapper {
 	/*
 	 Mapper singleton
 	*/
@@ -21,14 +21,14 @@ class LectionMapper extends Mapper {
 	}
 
 	/*
-	 Returns a single lection by its id
+	 Returns a single lesson time by its id
 
 	 @param int $id
-	 @returns Lection
+	 @returns LessonTime
 	*/
-	public function getLectionByID($id) {
+	public function getLessonTimeByID($id) {
 		$stmt = $this->db->prepare('
-			SELECT * FROM `lection`
+			SELECT * FROM `lessontime`
 			WHERE `id` = ?
 			LIMIT 1
 		');
@@ -39,10 +39,10 @@ class LectionMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No lection with this ID found');
+			throw new UnexpectedValueException('No lesson time with this ID found');
 		} else {
 			$data = $result->fetch_assoc();
-			return Lection::fillFromRowData($data);
+			return LessonTime::fillFromRowData($data);
 		}
 	}
 }

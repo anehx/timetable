@@ -2,24 +2,24 @@
 
 require_once('/model/Model.class.php');
 
-class LectionTime extends Model {
+class LessonTime extends Model {
 	/*
-	 The id of the lection
+	 The id of the lesson
 	*/
 	public $id = null;
 
 	/*
-	 The start time of the lection time
+	 The start time of the lesson time
 	*/
 	public $startTime = null;
 
 	/*
-	 The end time of the lection time
+	 The end time of the lesson time
 	*/
 	public $endTime = null;
 
 	/*
-	 Fills the lection model from a db row
+	 Fills the lessiontime model from a db row
 
 	 @param array $data
 	*/
