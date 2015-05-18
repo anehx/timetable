@@ -7,18 +7,7 @@ class LessonTimeMapper extends Mapper {
 	/*
 	 Mapper singleton
 	*/
-	private static $singleton = null;
-
-	/*
-	 Returns an instance of this mapper
-	*/
-	public static function getInstance() {
-		if (self::$singleton === null) {
-			self::$singleton = new static();
-		}
-
-		return self::$singleton;
-	}
+	protected static $singleton = null;
 
 	/*
 	 Returns a single lesson time by its id

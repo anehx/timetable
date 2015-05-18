@@ -28,19 +28,13 @@ class Course extends Model {
 	 @return Course
 	*/
 	public static function fillFromRowData($data) {
-		$instance = new self();
-
-		$data_map = array(
+		$dataMap = array(
 			'id'     => (int)$data['id'],
 			'name'   => (string)$data['name'],
 			'userID' => (int)$data['userID'] ? (int)$data['userID'] : null
 		);
 
-		foreach ($data_map as $key => $value) {
-			$instance->{$key} = $value;
-		}
-
-		return $instance;
+		return parent::fill($dataMap);
 	}
 
 	/*

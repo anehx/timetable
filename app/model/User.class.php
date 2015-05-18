@@ -44,11 +44,10 @@ class User extends Model {
 	 Fills the user model from a db row
 
 	 @param array $data
+	 @return User
 	*/
 	public static function fillFromRowData($data) {
-		$instance = new self();
-
-		$data_map = array(
+		$dataMap = array(
 			'id'           => (int)$data['id'],
 			'username'     => (string)$data['username'],
 			'password'     => (string)$data['password'],
@@ -57,11 +56,7 @@ class User extends Model {
 			'isSuperuser'  => (bool)$data['isSuperuser']
 		);
 
-		foreach ($data_map as $key => $value) {
-			$instance->{$key} = $value;
-		}
-
-		return $instance;
+		return parent::fill($dataMap);
 	}
 
 	/*
