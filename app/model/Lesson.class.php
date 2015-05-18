@@ -32,11 +32,10 @@ class Lesson extends Model {
 	 Fills the lesson model from a db row
 
 	 @param array $data
+	 @return Lesson
 	*/
 	public static function fillFromRowData($data) {
-		$instance = new self();
-
-		$data_map = array(
+		$dataMap = array(
 			'id'           => (int)$data['id'],
 			'name'         => (string)$data['name'],
 			'weekday'      => (int)$data['weekday'],
@@ -44,10 +43,6 @@ class Lesson extends Model {
 			'courseID'     => (int)$data['courseID']
 		);
 
-		foreach ($data_map as $key => $value) {
-			$instance->{$key} = $value;
-		}
-
-		return $instance;
+		return parent::fill($dataMap);
 	}
 }
