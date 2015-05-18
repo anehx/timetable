@@ -72,7 +72,7 @@ class Validator {
 	 @param int $max
 	*/
 	protected function checkLength($str, $fieldName, $min, $max) {
-		if (strlen($str) >= $max || strlen($str) <= $min) {
+		if (strlen($str) > $max || strlen($str) < $min) {
 			$this->errors[] = sprintf('Field "%s" must be between %d and %d chars', $fieldName, $min, $max);
 			$this->isValid  = false;
 		}
