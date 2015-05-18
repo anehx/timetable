@@ -24,7 +24,7 @@ class LessonTimeController extends Controller {
 					$this->handleDelete();
 					break;
 				default:
-					//$this->handleDefault();
+					$this->handleDefault();
 					break;
 			}
 		}
