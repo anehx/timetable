@@ -1,11 +1,8 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	<div class="row">
-		<a href="/?page=lessonTime&amp;action=edit" class="btn btn-primary pull-right">Add new lesson time</a>
-	</div>
+	<a href="/?page=lessonTime&amp;action=edit" class="btn btn-primary pull-right">Add new lesson time</a>
 	{if !empty($lessonTimes)}
-	<div class="row">
 		<table class="table table-striped">
 			<thead>
 				<th>From</th>
@@ -25,6 +22,5 @@
 				{/foreach}
 			</tbody>
 		</table>
-	</div>
 	{/if}
 {/block}

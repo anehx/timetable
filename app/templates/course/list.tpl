@@ -1,11 +1,8 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	<div class="row">
-		<a href="/?page=course&amp;action=edit" class="btn btn-primary pull-right">Add new course</a>
-	</div>
+	<a href="/?page=course&amp;action=edit" class="btn btn-primary pull-right">Add new course</a>
 	{if !empty($courses)}
-	<div class="row">
 		<table class="table table-striped">
 			<thead>
 				<th>Name</th>
@@ -25,6 +22,5 @@
 				{/foreach}
 			</tbody>
 		</table>
-	</div>
 	{/if}
 {/block}

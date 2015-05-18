@@ -28,7 +28,7 @@
 				{if !isset($smarty.session.username)}
 					<li {if isset($smarty.get.page) && $smarty.get.page == 'user' && $smarty.get.action == 'login'}class="active"{/if}><a href="?page=user&amp;action=login">Login</a></li>
 				{else}
-					<li><p class="navbar-text login-name">Logged in as</p></li>
+					<li class="hidden-xs"><p class="navbar-text login-name">Logged in as</p></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{$smarty.session.displayName} <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
