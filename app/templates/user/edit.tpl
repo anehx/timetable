@@ -46,5 +46,6 @@
 {/block}
 
 {block 'scripts'}
-	<script type="text/javascript" src="/js/user_edit.js"></script>
+	<script type="text/javascript" src="/js/validator.js"></script>
+	<script type="text/javascript" src="/js/user/edit.js"></script>
 {/block}

@@ -30,7 +30,7 @@ class Validator {
 	 @param string $fieldName
 	*/
 	protected function checkMutation($str, $fieldName) {
-		if (preg_match('/ÄÖÜäöüß+/', $str)) {
+		if (preg_match('/ÄÖÜäöüßéàè+/', $str)) {
 			$this->errors[] = sprintf('Field "%s" must not contain mutations', $fieldName);
 			$this->isValid  = false;
 		}
@@ -57,7 +57,7 @@ class Validator {
 	 @param string $fieldName
 	*/
 	protected function checkSpecialChar($str, $fieldName) {
-		if (preg_match('/[^A-Za-z0-9ÄÖÜäöüß\s]+/', $str)) {
+		if (preg_match('/[^A-Za-z0-9ÄÖÜäöüßéàè\s]+/', $str)) {
 			$this->errors[] = sprintf('Field "%s" must not contain special chars', $fieldName);
 			$this->isValid  = false;
 		}
@@ -72,7 +72,7 @@ class Validator {
 	 @param int $max
 	*/
 	protected function checkLength($str, $fieldName, $min, $max) {
-		if (strlen($str) > $max || strlen($str) < $min) {
+		if (strlen($str) >= $max || strlen($str) <= $min) {
 			$this->errors[] = sprintf('Field "%s" must be between %d and %d chars', $fieldName, $min, $max);
 			$this->isValid  = false;
 		}

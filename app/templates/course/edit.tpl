@@ -36,5 +36,6 @@
 {/block}
 
 {block 'scripts'}
-<script type="text/javascript" src="/js/course_edit.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/course/edit.js"></script>
 {/block}
