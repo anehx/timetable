@@ -1,1 +1,0 @@
-INSERT INTO `user` (`username`, `firstName`, `lastName`, `isSuperuser`, `password`) VALUES ('admin', NULL, NULL, 1, '$2y$10$a3mnGnSYsrEwJXt267sM9OUy9EHbg2R7yqr/HjBB0WUhks0oETxJC');
