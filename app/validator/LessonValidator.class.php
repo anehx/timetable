@@ -85,7 +85,7 @@ class LessonValidator extends Validator {
 		}
 
 		try {
-			$lessonTime = LessonMapper::getInstance()->getLessonByTimeAndCourse($this->model->lessonTimeID, $this->model->courseID);
+			$lessonTime = LessonMapper::getInstance()->getLessonByTimeAndCourse($this->model->lessonTimeID, $this->model->weekday, $this->model->courseID);
 			$this->errors[] = 'Lesson with this lesson time already exists';
 			$this->isValid = false;
 		}

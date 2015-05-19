@@ -70,14 +70,14 @@ class LessonMapper extends Mapper {
 	 @param int $courseID
 	 @returns Lesson
 	*/
-	public function getLessonByTimeAndCourse($lessonTimeID, $courseID) {
+	public function getLessonByTimeAndCourse($lessonTimeID, $weekday, $courseID) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `lesson`
-			WHERE `courseID` = ? AND `lessonTimeID` = ?
+			WHERE `courseID` = ? AND `lessonTimeID` = ? AND `weekday` = ?
 			LIMIT 1
 		');
 
-		$stmt->bind_param('ii', $courseID, $lessonTimeID);
+		$stmt->bind_param('iii', $courseID, $lessonTimeID, $weekday);
 		$stmt->execute();
 
 		$result = $stmt->get_result();

@@ -108,6 +108,8 @@ class LessonController extends Controller {
 			}
 		}
 
+		$this->requireCourseOwnage($course);
+
 		if ($_POST) {
 			$lesson->name = trim($_POST['name']);
 			$lesson->weekday = (int)$_POST['weekday'];
