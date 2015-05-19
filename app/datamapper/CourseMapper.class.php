@@ -41,7 +41,7 @@ class CourseMapper extends Mapper {
 	 @returns array
 	*/
 	public function getCourses() {
-		$stmt = $this->db->prepare("SELECT * FROM `course`");
+		$stmt = $this->db->prepare("SELECT * FROM `course` ORDER BY `name`");
 		$stmt->execute();
 
 		$result = $stmt->get_result();
