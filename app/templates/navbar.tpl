@@ -13,6 +13,9 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="nav navbar-nav">
 				<li {if !isset($smarty.get.page)}class="active"{/if}><a href="/">Overview</a></li>
+				{if isset($smarty.session.isSuperuser) && !$smarty.session.isSuperuser}
+				<li {if isset($smarty.get.page) && $smarty.get.page == 'lesson'}class="active"{/if}><a href="/?page=lesson">Lessons</a></li>
+				{/if}
 				{if isset($smarty.session.isSuperuser) && $smarty.session.isSuperuser}
 				<li {if isset($smarty.get.page) && $smarty.get.page == 'user'}class="active"{/if}><a href="/?page=user">Users</a></li>
 				{/if}

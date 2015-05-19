@@ -57,6 +57,35 @@ class CourseMapper extends Mapper {
 	}
 
 	/*
+	 Returns an array of all courses of an user
+
+	 @param int $userID
+	 @returns array
+	*/
+	public function getCoursesByUser($userID) {
+		$stmt = $this->db->prepare("
+			SELECT
+				*
+			FROM `course`
+			WHERE `userID` = ?
+		");
+
+		$stmt->bind_param('i', $userID);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$courses = array();
+
+		if ($result->num_rows) {
+			while ($row = $result->fetch_assoc()) {
+				$courses[] = Course::fillFromRowData($row);
+			}
+		}
+
+		return $courses;
+	}
+
+	/*
 	 Updates or creates a course
 
 	 @param Course $course

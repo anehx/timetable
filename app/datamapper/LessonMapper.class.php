@@ -34,4 +34,32 @@ class LessonMapper extends Mapper {
 			return Lesson::fillFromRowData($data);
 		}
 	}
+
+	/*
+	 Returns all lessons of a course
+
+	 @param int $courseID
+	 @returns array
+	*/
+	public function getLessonsByCourse($courseID) {
+		$stmt = $this->db->prepare('
+			SELECT * FROM `lesson`
+			WHERE `courseID` = ?
+			ORDER BY `weekday`
+		');
+
+		$stmt->bind_param('i', $courseID);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		$lessons = array();
+
+		if ($result->num_rows) {
+			while ($row = $result->fetch_assoc()) {
+				$lessons[] = Lesson::fillFromRowData($row);
+			}
+		}
+
+		return $lessons;
+	}
 }

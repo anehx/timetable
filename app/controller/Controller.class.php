@@ -22,6 +22,18 @@ class Controller {
 		}
 	}
 
+
+	/*
+	 Page requires logged in user
+	 Displays access denied page if not allowed
+	*/
+	protected function requireLogin() {
+		if (!isset($_SESSION['username'])) {
+			$this->smarty->display('access_denied.tpl');
+			exit;
+		}
+	}
+
 	/*
 	 The class constructor
 	*/

@@ -17,6 +17,10 @@ switch ($page) {
 		require_once('/controller/LessonTimeController.class.php');
 		$controller = new LessonTimeController();
 		break;
+	case 'lesson':
+		require_once('/controller/LessonController.class.php');
+		$controller = new LessonController();
+		break;
 	default:
 		require_once('/controller/BaseController.class.php');
 		$controller = new BaseController();
