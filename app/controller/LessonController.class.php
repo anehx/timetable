@@ -26,6 +26,9 @@ class LessonController extends Controller {
 				case 'edit':
 					$this->handleEdit();
 					break;
+				case 'delete':
+					$this->handleDelete();
+					break;
 				default:
 					$this->handleDefault();
 					break;
@@ -123,5 +126,19 @@ class LessonController extends Controller {
 		$this->smarty->assign('errors', $errors);
 		$this->smarty->assign('course', $course);
 		$this->smarty->assign('lesson', $lesson);
+	}
+
+	/*
+	 The delete page
+	*/
+	private function handleDelete() {
+		if (isset($_GET['id'])) {
+			$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);
+			$course = $lesson->getCourse();
+		}
+		$this->requireCourseOwnage($course);
+		$lesson->delete();
+
+		header(sprintf('Location: /?page=lesson&action=list&courseID=%d', $course->id));
 	}
 }

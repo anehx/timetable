@@ -36,3 +36,8 @@
 	</form>
 	{/if}
 {/block}
+
+{block 'scripts'}
+	<script type="text/javascript" src="/js/validator.js"></script>
+	<script type="text/javascript" src="/js/lesson/edit.js"></script>
+{/block}
