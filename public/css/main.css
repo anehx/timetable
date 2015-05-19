@@ -42,19 +42,28 @@
 
 .col-inner {
 	background: url("../images/container-pattern.png") repeat #f03e05;
-	line-height: 200px;
+	height: 200px;
 	text-align: center;
+	font-size: 38px;
+	font-family: 'Raleway';
+	color: #fff;
+	text-decoration: none;
 	border-radius: 10px;
 	transition: all 0.3s;
 }
 
-.col-inner a {
-	display: inline-block;
+.col-inner h2 {
+	padding-top: 80px;
+	margin-bottom: -10px;
+	font-size: 38px;
+	font-family: 'Raleway';
+	color: #fff;	
+}
+
+.col-inner i {
+	font-size: 15px;
+	clear: both;
 	width: 100%;
-	height: 100%;
-	font-size: 28px;
-	color: #fff;
-	text-decoration: none;
 }
 
 .col-inner-edit {
@@ -62,6 +71,12 @@
 }
 
 .col-inner:hover {
-	transform: scale(1.02);
+	transform: scale(1.04);
+	text-decoration: none;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
 }
+
+a:hover {
+	text-decoration: none;
+}
+
