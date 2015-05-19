@@ -1,19 +1,30 @@
 <?php
 
+/**
+ * This is the lesson time mapper
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+**/
+
 require_once('/datamapper/Mapper.class.php');
 require_once('/model/LessonTime.class.php');
 
 class LessonTimeMapper extends Mapper {
-	/*
-	 Mapper singleton
-	*/
+	/**
+	 * Mapper singleton
+	**/
 	protected static $singleton = null;
 
-	/*
-	 Returns a single lesson time by its id
-
-	 @param int $id
-	 @returns LessonTime
+	/**
+	 * Returns a single lesson time by its identifier
+	 *
+	 * @param int $id
+	 * @throws UnexpectedValueException
+	 * @return LessonTime
 	*/
 	public function getLessonTimeByID($id) {
 		$stmt = $this->db->prepare('
@@ -35,11 +46,11 @@ class LessonTimeMapper extends Mapper {
 		}
 	}
 
-	/*
-	 Returns an array of all lesson times
-
-	 @returns array
-	*/
+	/**
+	 * Returns an array of all lesson times
+	 *
+	 * @return array
+	**/
 	public function getLessonTimes() {
 		$stmt = $this->db->prepare("SELECT * FROM `lessontime` ORDER BY `startTime`");
 		$stmt->execute();
@@ -56,11 +67,11 @@ class LessonTimeMapper extends Mapper {
 		return $lessonTimes;
 	}
 
-	/*
-	 Updates or creates a lesson time
-
-	 @param LessonTime $lessonTime
-	*/
+	/**
+	 * Updates or creates a lesson time
+	 *
+	 * @param LessonTime $lessonTime
+	**/
 	public function save($lessonTime) {
 		if (!$lessonTime->id) {
 			$stmt = $this->db->prepare("
@@ -98,11 +109,11 @@ class LessonTimeMapper extends Mapper {
 		}
 	}
 
-	/*
-	 Deletes a lesson time
-
-	 @param int $id
-	*/
+	/**
+	 * Deletes a lesson time
+	 *
+	 * @param int $id
+	**/
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `lessontime` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);

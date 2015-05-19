@@ -1,40 +1,28 @@
 <?php
 
-require_once('/model/Model.class.php');
+/**
+ * This is the lesson model
+ *
+ * Lessons are displayed in the overview and are separated
+ * by courses
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+**/
+
+require_once('/datamapper/CourseMapper.class.php');
 require_once('/datamapper/LessonMapper.class.php');
 require_once('/datamapper/LessonTimeMapper.class.php');
-require_once('/datamapper/CourseMapper.class.php');
+require_once('/model/Model.class.php');
 require_once('/validator/LessonValidator.class.php');
 
 class Lesson extends Model {
-	/*
-	 The id of the lesson
-	*/
-	public $id = null;
-
-	/*
-	 The name of the lesson
-	*/
-	public $name = null;
-
-	/*
-	 The weekday of the lesson
-	*/
-	public $weekday = null;
-
-	/*
-	 The time of the lesson
-	*/
-	public $lessonTimeID = null;
-
-	/*
-	 The courseID of the lesson
-	*/
-	public $courseID = null;
-
-	/*
-	 Weekday integer to string map
-	*/
+	/**
+	 * Weekday integer to string map
+	**/
 	const WEEKDAY_MAP = array(
 		1 => 'Monday',
 		2 => 'Tuesday',
@@ -45,12 +33,37 @@ class Lesson extends Model {
 		7 => 'Sunday'
 	);
 
-	/*
-	 Fills the lesson model from a db row
+	/**
+	 * The identifier of the lesson
+	**/
+	public $id = null;
 
-	 @param array $data
-	 @return Lesson
-	*/
+	/**
+	 * The name of the lesson
+	**/
+	public $name = null;
+
+	/**
+	 * The weekday on which the lesson is hold
+	**/
+	public $weekday = null;
+
+	/**
+	 * The time range of the lesson
+	**/
+	public $lessonTimeID = null;
+
+	/**
+	 * The courseID of the lesson
+	**/
+	public $courseID = null;
+
+	/**
+	 *Fills the lesson model from a db row
+	 *
+	 * @param array $data
+	 * @return Lesson
+	**/
 	public static function fillFromRowData($data) {
 		$dataMap = array(
 			'id'           => (int)$data['id'],
@@ -63,37 +76,47 @@ class Lesson extends Model {
 		return parent::fill($dataMap);
 	}
 
-	/*
-	 Gets the weekday as a string
-	*/
+	/**
+	 * Returns the weekday as a string
+	 *
+	 * @return string
+	**/
 	public function getWeekday() {
 		return self::WEEKDAY_MAP[$this->weekday];
 	}
 
-	/*
-	 Gets related lesson time
+	/**
+	 * Returns the related lesson time
+	 *
+	 * @return LessonTime
 	*/
 	public function getLessonTime() {
 		return LessonTimeMapper::getInstance()->getLessonTimeByID($this->lessonTimeID);
 	}
 
-	/*
-	 Gets related course
-	*/
+	/**
+	 * Returns the related course
+	 *
+	 * @return Course
+	**/
 	public function getCourse() {
 		return CourseMapper::getInstance()->getCourseByID($this->courseID);
 	}
 
-	/*
-	 Returns the datamapper
-	*/
+	/**
+	 * Returns the lesson datamapper
+	 *
+	 * @return LessonMapper
+	**/
 	public function getMapper() {
 		return LessonMapper::getInstance();
 	}
 
-	/*
-	 Returns the validator
-	*/
+	/**
+	 * Returns the lesson validator
+	 *
+	 * @return LessonValidator
+	**/
 	public function getValidator() {
 		return new LessonValidator($this);
 	}

@@ -1,20 +1,31 @@
 <?php
 
+/**
+ * This is the course mapper
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+**/
+
 require_once('datamapper/Mapper.class.php');
 require_once('model/Course.class.php');
 
 class CourseMapper extends Mapper {
-	/*
-	 Mapper singleton
-	*/
+	/**
+	 * Mapper singleton
+	**/
 	protected static $singleton = null;
 
-	/*
-	 Returns a single course by its id
-
-	 @param int $id
-	 @returns Course
-	*/
+	/**
+	 * Returns a single course by its identifier
+	 *
+	 * @param int $id
+	 * @throws UnexpectedValueException
+	 * @return Course
+	**/
 	public function getCourseByID($id) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `course`
@@ -35,11 +46,11 @@ class CourseMapper extends Mapper {
 		}
 	}
 	
-	/*
-	 Returns an array of all courses
-
-	 @returns array
-	*/
+	/**
+	 * Returns an array of all courses
+	 *
+	 * @return array
+	**/
 	public function getCourses() {
 		$stmt = $this->db->prepare("SELECT * FROM `course` ORDER BY `name`");
 		$stmt->execute();
@@ -56,12 +67,12 @@ class CourseMapper extends Mapper {
 		return $courses;
 	}
 
-	/*
-	 Returns an array of all courses of an user
-
-	 @param int $userID
-	 @returns array
-	*/
+	/**
+	 * Returns an array of all courses of an user
+	 *
+	 * @param int $userID
+	 * @return array
+	**/
 	public function getCoursesByUser($userID) {
 		$stmt = $this->db->prepare("
 			SELECT
@@ -85,12 +96,12 @@ class CourseMapper extends Mapper {
 		return $courses;
 	}
 
-	/*
-	 Updates or creates a course
-
-	 @param Course $course
-	*/
-	public function save($course) {
+	/**
+	 * Updates or creates a course
+	 *
+	 * @param Course $course
+	**/
+	public function save(Course $course) {
 		if (!$course->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `course` (`name`, `userID`) VALUES (
@@ -127,9 +138,11 @@ class CourseMapper extends Mapper {
 		}
 	}
 
-	/*
-	 Deletes a course
-	*/
+	/**
+	 * Deletes a course
+	 *
+	 * @param int $id
+	**/
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `course` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);

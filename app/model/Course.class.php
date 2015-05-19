@@ -1,32 +1,45 @@
 <?php
 
-require_once('/model/Model.class.php');
+/**
+ * This is the course model
+ *
+ * A course is a group of students which are supervised by an
+ * user (teacher)
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+**/
+
 require_once('/datamapper/CourseMapper.class.php');
 require_once('/datamapper/UserMapper.class.php');
+require_once('/model/Model.class.php');
 require_once('/validator/CourseValidator.class.php');
 
 class Course extends Model {
-	/*
-	 The ID of the course
-	*/
+	/**
+	 * The identifier of the course
+	**/
 	public $id = null;
 
-	/*
-	 The name of the course
-	*/
+	/**
+	 * The name of the course
+	**/
 	public $name = null;
 
-	/*
-	 The user ID of the course
-	*/
+	/**
+	 * The user of the course
+	**/
 	public $userID = null;
 
-	/*
-	 Fills the course model from a db row
-
-	 @param array $data
-	 @return Course
-	*/
+	/**
+	 * Fills the course model from a db row
+	 *
+	 * @param array $data
+	 * @return Course
+	**/
 	public static function fillFromRowData($data) {
 		$dataMap = array(
 			'id'     => (int)$data['id'],
@@ -37,34 +50,38 @@ class Course extends Model {
 		return parent::fill($dataMap);
 	}
 
-	/*
-	 Returns the referring user
-
-	 @return User
-	*/
+	/**
+	 * Returns the referring user
+	 *
+	 * @return User
+	**/
 	public function getUser() {
 		return UserMapper::getInstance()->getUserByID($this->userID);
 	}
 
-	/*
-	 Returns all referring lessons
-
-	 @return array
-	*/
+	/**
+	 * Returns all lessons of the course
+	 *
+	 * @return array
+	**/
 	public function getLessons() {
 		return LessonMapper::getInstance()->getLessonsByCourse($this->id);
 	}
 
-	/*
-	 Returns the datamapper
-	*/
+	/**
+	 * Returns the course datamapper
+	 *
+	 * @return CourseMapper
+	**/
 	public function getMapper() {
 		return CourseMapper::getInstance();
 	}
 
-	/*
-	 Returns the validator
-	*/
+	/**
+	 * Returns the course validator
+	 *
+	 * @return CourseValidator
+	**/
 	public function getValidator() {
 		return new CourseValidator($this);
 	}

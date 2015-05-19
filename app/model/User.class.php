@@ -1,51 +1,62 @@
 <?php
 
-require_once('/model/Model.class.php');
+/**
+ * This is user model
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+**/
+
 require_once('/datamapper/UserMapper.class.php');
+require_once('/model/Model.class.php');
 require_once('/validator/UserValidator.class.php');
 
 class User extends Model {
-	/*
-	 The id of the user
-	*/
+	/**
+	 * The identifier of the user
+	**/
 	public $id = null;
 
-	/*
-	 The username of the user (unique)
-	*/
+	/**
+	 * The unique username of the user
+	**/
 	public $username = null;
 
-	/*
-	 The password of the user
-	*/
+	/**
+	 * The password hash of the user
+	**/
 	public $password = null;
 
-	/*
-	 The raw password of the user (only used for creation and pw change)
-	*/
+	/**
+	 * The plain password of the user
+	 * This is only used for creation and password change
+	**/
 	public $rawPassword = null;
 
-	/*
-	 The first name of the user (optional)
-	*/
+	/**
+	 * The first name of the user (optional)
+	**/
 	public $firstName = null;
 
-	/*
-	 The last name of the user (optional)
-	*/
+	/**
+	 * The last name of the user (optional)
+	**/
 	public $lastName = null;
 
-	/*
-	 The is the user a superuser?
-	*/
+	/**
+	 * Is this user a superuser?
+	**/
 	public $isSuperuser = false;
 
-	/*
-	 Fills the user model from a db row
-
-	 @param array $data
-	 @return User
-	*/
+	/**
+	 * Fills the user model from a db row
+	 *
+	 * @param array $data
+	 * @return User
+	**/
 	public static function fillFromRowData($data) {
 		$dataMap = array(
 			'id'           => (int)$data['id'],
@@ -59,11 +70,11 @@ class User extends Model {
 		return parent::fill($dataMap);
 	}
 
-	/*
-	 Retruns the display name of the user
-
-	 @return string
-	*/
+	/**
+	 * Returns the display name of the user
+	 *
+	 * @return string
+	**/
 	public function getDisplayName() {
 		if (!empty($this->firstName) && !empty($this->lastName)) {
 			return sprintf('%s %s', $this->firstName, $this->lastName);
@@ -73,16 +84,20 @@ class User extends Model {
 		}
 	}
 
-	/*
-	 Returns the datamapper
-	*/
+	/**
+	 * Returns the user datamapper
+	 *
+	 * @return UserMapper
+	**/
 	public function getMapper() {
 		return UserMapper::getInstance();
 	}
 
-	/*
-	 Returns the validator
-	*/
+	/**
+	 * Returns the user validator
+	 *
+	 * @return UserValidator
+	**/
 	public function getValidator() {
 		return new UserValidator($this);
 	}

@@ -1,19 +1,34 @@
 <?php
 
+/**
+ * This is the basic class of all mapper
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+**/
+
 class Mapper {
-	/*
-	 Mapper singleton
-	*/
+	/**
+	 * Mapper singleton
+	 *
+	 * This needs to be in every children of this
+	 * class too, to use getInstance()
+	**/
 	protected static $singleton = null;
 
-	/*
-	 The db connection
-	*/
+	/**
+	 * The DB connection
+	**/
 	protected $db = null;
 
-	/*
-	 Returns an instance of this mapper
-	*/
+	/**
+	 * Returns an instance of the called mapper
+	 *
+	 * @return static
+	**/
 	public static function getInstance() {
 		if (static::$singleton === null) {
 			static::$singleton = new static();
@@ -22,9 +37,9 @@ class Mapper {
 		return static::$singleton;
 	}
 
-	/*
-	 The class constructor
-	*/
+	/**
+	 * The class constructor
+	**/
 	public function __construct() {
 		$this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -34,5 +49,4 @@ class Mapper {
 
 		$this->db->set_charset('utf-8');
 	}
-
 }
