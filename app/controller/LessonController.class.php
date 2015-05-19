@@ -117,8 +117,15 @@ class LessonController extends Controller {
 				$lesson->courseID = $course->id;
 			}
 
-			$lesson->save();
-			header(sprintf('Location: /?page=lesson&action=list&courseID=%d', $course->id));
+			$validator = $lesson->validate();
+
+			if ($validator->isValid) {
+				$lesson->save();
+				header(sprintf('Location: /?page=lesson&action=list&courseID=%d', $course->id));
+			}
+			else {
+				$errors = array_merge($errors, $validator->errors);
+			}			
 		}
 
 		$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());

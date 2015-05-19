@@ -64,6 +64,33 @@ class LessonMapper extends Mapper {
 	}
 
 	/*
+	 Returns a lesson of a course on a specific time
+
+	 @param int $lessonTimeID
+	 @param int $courseID
+	 @returns Lesson
+	*/
+	public function getLessonByTimeAndCourse($lessonTimeID, $courseID) {
+		$stmt = $this->db->prepare('
+			SELECT * FROM `lesson`
+			WHERE `courseID` = ? AND `lessonTimeID` = ?
+			LIMIT 1
+		');
+
+		$stmt->bind_param('ii', $courseID, $lessonTimeID);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+
+		if (!$result->num_rows) {
+			throw new UnexpectedValueException('No lesson with this time and course found');
+		} else {
+			$data = $result->fetch_assoc();
+			return Lesson::fillFromRowData($data);
+		}
+	}
+
+	/*
 	 Updates or creates a lesson
 
 	 @param Lesson $lesson
