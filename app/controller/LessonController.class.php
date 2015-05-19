@@ -84,6 +84,7 @@ class LessonController extends Controller {
 		if (isset($_GET['id'])) {
 			try {
 				$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);
+				$course = $lesson->getCourse();
 			}
 			catch (UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
@@ -102,6 +103,19 @@ class LessonController extends Controller {
 			else {
 				$errors[] = 'No course id given';
 			}
+		}
+
+		if ($_POST) {
+			$lesson->name = trim($_POST['name']);
+			$lesson->weekday = (int)$_POST['weekday'];
+			$lesson->lessonTimeID = (int)$_POST['lessonTimeID'];
+
+			if (!$lesson->id) {
+				$lesson->courseID = $course->id;
+			}
+
+			$lesson->save();
+			header(sprintf('Location: /?page=lesson&action=list&courseID=%d', $course->id));
 		}
 
 		$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());

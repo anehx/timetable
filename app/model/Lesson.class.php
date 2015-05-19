@@ -3,6 +3,7 @@
 require_once('/model/Model.class.php');
 require_once('/datamapper/LessonMapper.class.php');
 require_once('/datamapper/LessonTimeMapper.class.php');
+require_once('/datamapper/CourseMapper.class.php');
 require_once('/validator/LessonValidator.class.php');
 
 class Lesson extends Model {
@@ -74,6 +75,13 @@ class Lesson extends Model {
 	*/
 	public function getLessonTime() {
 		return LessonTimeMapper::getInstance()->getLessonTimeByID($this->lessonTimeID);
+	}
+
+	/*
+	 Gets related course
+	*/
+	public function getCourse() {
+		return CourseMapper::getInstance()->getCourseByID($this->courseID);
 	}
 
 	/*

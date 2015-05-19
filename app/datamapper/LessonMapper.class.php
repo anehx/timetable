@@ -62,4 +62,61 @@ class LessonMapper extends Mapper {
 
 		return $lessons;
 	}
+
+	/*
+	 Updates or creates a lesson
+
+	 @param Lesson $lesson
+	*/
+	public function save($lesson) {
+		if (!$lesson->id) {
+			$stmt = $this->db->prepare("
+				INSERT INTO `lesson` (`name`, `weekday`, `lessonTimeID`, `courseID`) VALUES (
+					?, ?, ?, ?
+				)
+			");
+
+			$stmt->bind_param(
+				'siii',
+				$lesson->name,
+				$lesson->weekday,
+				$lesson->lessonTimeID,
+				$lesson->courseID
+			);
+		}
+		else {
+			$stmt = $this->db->prepare("
+				UPDATE `lesson` SET 
+					`name`= ?,
+					`weekday` = ?,
+					`lessonTimeID` = ?
+				WHERE `id` = ?
+				");
+
+			$stmt->bind_param(
+				'siii',
+				$lesson->name,
+				$lesson->weekday,
+				$lesson->lessonTimeID,
+				$lesson->id
+			);
+		}
+
+		$stmt->execute();
+
+		if (!$lesson->id) {
+			$lesson->id = $this->db->insert_id;
+		}
+	}
+
+	/*
+	 Deletes a lesson
+
+	 @param int $id
+	*/
+	public function delete($id) {
+		$stmt = $this->db->prepare("DELETE FROM `lesson` WHERE `id` = ?");
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+	}
 }
