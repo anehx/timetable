@@ -25,7 +25,7 @@
 				<select class="form-control" name="userID" type="text" required>
 					<option value="0">-- Select User --</option>
 					{foreach $users as $user}
-					<option value="{$user->id}">{$user->getDisplayName()}</option>
+					<option value="{$user->id}" {if $user->id === $course->userID}selected{/if}>{$user->getDisplayName()}</option>
 					{/foreach}
 				</select>
 			</div>
