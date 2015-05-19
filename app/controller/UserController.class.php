@@ -74,11 +74,11 @@ class UserController extends Controller {
 
 				if ($_POST) {
 					if ($_SESSION['isSuperuser'] || password_verify($_POST['oldPassword'], $user->password)) {
-						$user->raw_password = trim($_POST['password']);
+						$user->rawPassword = trim($_POST['password']);
 						$validator = $user->validate();
 
 						if ($validator->isValid) {
-							$user->password = password_hash($user->raw_password, PASSWORD_BCRYPT);
+							$user->password = password_hash($user->rawPassword, PASSWORD_BCRYPT);
 							$user->save();
 							if (isset($_SESSION['isSuperuser']) && $_SESSION['isSuperuser']) {
 								header('Location: /?page=user');
@@ -129,7 +129,7 @@ class UserController extends Controller {
 		if ($_POST) {
 			if (!$user->id) {
 				$user->username = trim($_POST['username']);
-				$user->raw_password = $_POST['password'];
+				$user->rawPassword = $_POST['password'];
 			}
 
 			$user->firstName = trim($_POST['firstName']);
@@ -138,7 +138,7 @@ class UserController extends Controller {
 
 			if ($validator->isValid) {
 				if (!$user->id) {
-					$user->password = password_hash($user->raw_password, PASSWORD_BCRYPT);
+					$user->password = password_hash($user->rawPassword, PASSWORD_BCRYPT);
 				}
 				$user->save();
 				header('Location: /?page=user');

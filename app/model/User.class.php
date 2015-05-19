@@ -23,7 +23,7 @@ class User extends Model {
 	/*
 	 The raw password of the user (only used for creation and pw change)
 	*/
-	public $raw_password = null;
+	public $rawPassword = null;
 
 	/*
 	 The first name of the user (optional)

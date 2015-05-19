@@ -52,9 +52,9 @@ class UserValidator extends Validator {
 	 Validates the password
 	*/
 	private function validatePassword() {
-		if ($this->model->raw_password) {
+		if ($this->model->rawPassword) {
 			$fieldName = 'Password';
-			$fieldValue = $this->model->raw_password;
+			$fieldValue = $this->model->rawPassword;
 
 			$this->checkLength($fieldValue, $fieldName, 6, 50);
 
