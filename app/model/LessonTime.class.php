@@ -36,6 +36,13 @@ class LessonTime extends Model {
 	}
 
 	/*
+	 Returns the display name
+	*/
+	public function getDisplayName() {
+		return sprintf('%s - %s', $this->startTime->format('H:i'), $this->endTime->format('H:i'));
+	}
+
+	/*
 	 Returns the datamapper
 	*/
 	public function getMapper() {

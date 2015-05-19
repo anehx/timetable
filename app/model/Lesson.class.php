@@ -34,7 +34,7 @@ class Lesson extends Model {
 	/*
 	 Weekday integer to string map
 	*/
-	public $weekdayMap = array(
+	const WEEKDAY_MAP = array(
 		1 => 'Monday',
 		2 => 'Tuesday',
 		3 => 'Wednesday',
@@ -66,7 +66,7 @@ class Lesson extends Model {
 	 Gets the weekday as a string
 	*/
 	public function getWeekday() {
-		return $this->weekdayMap[$this->weekday];
+		return self::WEEKDAY_MAP[$this->weekday];
 	}
 
 	/*
