@@ -1,13 +1,6 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	{if $errors}
-		<div class="alert alert-danger"><ul>
-		{foreach $errors as $error}
-			<li>{$error}</li>
-		{/foreach}
-		</ul></div>
-	{/if}
 	{if $user}
 	<form method="post" action="/?page=user&amp;action=password&amp;id={$user->id}">
 		<div class="col-md-6">

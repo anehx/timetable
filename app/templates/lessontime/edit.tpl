@@ -1,18 +1,11 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	{if $errors}
-		<div class="alert alert-danger"><ul>
-		{foreach $errors as $error}
-			<li>{$error}</li>
-		{/foreach}
-		</ul></div>
-	{/if}
 	{if $lessonTime}
 	<form method="post" action="/?page=lessonTime&amp;action=edit{if $lessonTime->id}&amp;id={$lessonTime->id}{/if}">
 		<div class="col-md-6">
 			{if $lessonTime->id}
-				<h2>Edit lesson time '{$lessonTime->startTime|date_format:'%H:%M'} - {$lessonTime->endTime|date_format:'%H:%M'}'</h2>
+				<h2>Edit lesson time '{$lessonTime->getDisplayName()}'</h2>
 			{else}
 				<h2>Create a new lesson time</h2>
 			{/if}

@@ -3,6 +3,8 @@
 require_once('/controller/Controller.class.php');
 require_once('/datamapper/LessonMapper.class.php');
 require_once('/datamapper/CourseMapper.class.php');
+require_once('/datamapper/LessonTimeMapper.class.php');
+require_once('/model/Lesson.class.php');
 
 class LessonController extends Controller {
 	/*
@@ -20,6 +22,9 @@ class LessonController extends Controller {
 			switch ($_GET['action']) {
 				case 'list':
 					$this->handleList();
+					break;
+				case 'edit':
+					$this->handleEdit();
 					break;
 				default:
 					$this->handleDefault();
@@ -40,6 +45,9 @@ class LessonController extends Controller {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCoursesByUser($_SESSION['userID']));
 	}
 
+	/*
+	 The list page
+	*/
 	private function handleList() {
 		$this->tpl = 'lesson/list.tpl';
 		$errors = [];
@@ -64,4 +72,42 @@ class LessonController extends Controller {
 		$this->smarty->assign('lessons', $course ? $course->getLessons() : null);
 	}
 
+	/*
+	 The list page
+	*/
+	private function handleEdit() {
+		$this->tpl = 'lesson/edit.tpl';
+		$errors = [];
+		$lesson = null;
+		$course = null;
+		
+		if (isset($_GET['id'])) {
+			try {
+				$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);
+			}
+			catch (UnexpectedValueException $e) {
+				$errors[] = $e->getMessage();
+			}
+		}
+		else {
+			if (isset($_GET['courseID'])) {
+				try {
+					$course = CourseMapper::getInstance()->getCourseByID($_GET['courseID']);
+					$lesson = new Lesson();
+				}
+				catch (UnexpectedValueException $e) {
+					$errors[] = $e->getMessage();
+				}
+			}
+			else {
+				$errors[] = 'No course id given';
+			}
+		}
+
+		$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());
+		$this->smarty->assign('weekdays', Lesson::WEEKDAY_MAP);
+		$this->smarty->assign('errors', $errors);
+		$this->smarty->assign('course', $course);
+		$this->smarty->assign('lesson', $lesson);
+	}
 }
