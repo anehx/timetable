@@ -7,22 +7,18 @@
 		<table class="table table-striped">
 			<thead>
 				<th></th>
-				<th>Monday</th>
-				<th>Tuesday</th>
-				<th>Wednesday</th>
-				<th>Thursday</th>
-				<th>Friday</th>
+				{foreach $weekdays as $d}
+					<th>{$d}</th>
+				{/foreach}
 			</thead>
 			<tbody>
 				{foreach $lessonTimes as $lt}				
-				<tr>
-					<td>{$lt->startTime|date_format:'%H:%M'} - {$lt->endTime|date_format:'%H:%M'}</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+					<tr>
+						<td>{$lt->getDisplayName()}</td>
+						{foreach $weekdays as $k => $v}
+							<td>{foreach $lessons as $lesson}{if $k === $lesson->weekday && $lesson->lessonTimeID === $lt->id}{$lesson->name}{/if}{/foreach}</td>
+						{/foreach}
+					</tr>
 				{/foreach}
 			</tbody>
 		</table>		

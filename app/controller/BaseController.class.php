@@ -4,6 +4,8 @@ require_once('controller/Controller.class.php');
 require_once('datamapper/CourseMapper.class.php');
 require_once('datamapper/UserMapper.class.php');
 require_once('datamapper/LessonTimeMapper.class.php');
+require_once('datamapper/LessonMapper.class.php');
+require_once('/model/Lesson.class.php');
 
 class BaseController extends Controller {
 	/*
@@ -50,6 +52,8 @@ class BaseController extends Controller {
 			$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
 			$this->smarty->assign('course', $course);
 			$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());
+			$this->smarty->assign('weekdays', Lesson::WEEKDAY_MAP);
+			$this->smarty->assign('lessons', LessonMapper::getInstance()->getLessonsByCourse($_GET['id']));
 		}
 	}
 }
