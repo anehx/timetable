@@ -8,7 +8,6 @@
 			<a href="/?page=lesson&amp;action=list&amp;courseID={$course->id}" title="course">
 				<div class="col-inner col-inner-edit">
 					<h2>{$course->name}</h2>
-					<i>{if $course->userID}{$course->getUser()->getDisplayName()}{else}{/if}</i>
 				</div>
 			</a>
 		</div>
