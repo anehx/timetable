@@ -43,19 +43,25 @@ class LessonController extends Controller {
 	private function handleList() {
 		$this->tpl = 'lesson/list.tpl';
 		$errors = [];
-		$courseID = isset($_GET['courseID']) ? (int)$_GET['courseID'] : null;
-
-		if (!$courseID) {
-			$errors[] = 'No course id given';
-			$lessons = null;
+		
+		if (isset($_GET['courseID'])) {
+			try {
+				$course = CourseMapper::getInstance()->getCourseByID($_GET['courseID']);
+				$this->requireCourseOwnage($course);
+			}
+			catch (UnexpectedValueException $e) {
+				$errors[] = $e->getMessage();
+				$course = null;
+			}
 		}
 		else {
-			$lessons = LessonMapper::getInstance()->getLessonsByCourse($courseID);
+			$errors[] = 'No course id given';
+			$course = null;
 		}
 
 		$this->smarty->assign('errors', $errors);
-		$this->smarty->assign('courseID', $courseID);
-		$this->smarty->assign('lessons', $lessons);
+		$this->smarty->assign('course', $course);
+		$this->smarty->assign('lessons', $course ? $course->getLessons() : null);
 	}
 
 }

@@ -22,6 +22,18 @@ class Controller {
 		}
 	}
 
+	/*
+	 Page requires ownage of given course
+	 Displays access denied page if not allowed
+
+	 @param Course $course
+	*/
+	protected function requireCourseOwnage($course) {
+		if ($_SESSION['userID'] !== $course->userID) {
+			$this->smarty->display('access_denied.tpl');
+			exit;
+		}
+	}
 
 	/*
 	 Page requires logged in user

@@ -47,6 +47,15 @@ class Course extends Model {
 	}
 
 	/*
+	 Returns all referring lessons
+
+	 @return array
+	*/
+	public function getLessons() {
+		return LessonMapper::getInstance()->getLessonsByCourse($this->id);
+	}
+
+	/*
 	 Returns the datamapper
 	*/
 	public function getMapper() {

@@ -11,6 +11,13 @@
 	<body>
 		{include 'navbar.tpl'}
 		<div class="container">
+			{if isset($errors) && !empty($errors)}
+				<div class="alert alert-danger"><ul>
+				{foreach $errors as $error}
+					<li>{$error}</li>
+				{/foreach}
+				</ul></div>
+			{/if}
 			{block 'content'}{/block}
 		</div>
 		<script src="/js/jquery.min.js"></script>
