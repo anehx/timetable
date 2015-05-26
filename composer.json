@@ -1,0 +1,21 @@
+{
+    "name": "anehx/timetable",
+    "description": "A php app for teachers and students to see their timetable online",
+    "require": {
+        "smarty/smarty": "^3.1"
+    },
+    "autoload": {
+        "classmap": [ "app/" ]
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Metzener",
+            "email": "jonasmetzener@gmail.com"
+        },
+        {
+            "name": "Fabian Jäiser",
+            "email": "fabian.jaeiser@bluewin.ch"
+        }
+    ]
+}

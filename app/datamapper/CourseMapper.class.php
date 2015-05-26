@@ -10,8 +10,10 @@
  * @license    MIT
 **/
 
-require_once('datamapper/Mapper.class.php');
-require_once('model/Course.class.php');
+namespace datamapper;
+
+use datamapper\Mapper;
+use model\Course;
 
 class CourseMapper extends Mapper {
 	/**

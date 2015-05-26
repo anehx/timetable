@@ -10,6 +10,8 @@
  * @license    MIT
 **/
 
+namespace datamapper;
+
 class Mapper {
 	/**
 	 * Mapper singleton

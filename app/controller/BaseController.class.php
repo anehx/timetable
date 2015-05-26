@@ -1,5 +1,7 @@
 <?php
 
+namespace controller;
+
 require_once('controller/Controller.class.php');
 require_once('datamapper/CourseMapper.class.php');
 require_once('datamapper/UserMapper.class.php');
