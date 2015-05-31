@@ -11,12 +11,14 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
-**/
+ **/
 
-require_once('/datamapper/CourseMapper.class.php');
-require_once('/datamapper/UserMapper.class.php');
-require_once('/model/Model.class.php');
-require_once('/validator/CourseValidator.class.php');
+namespace model;
+
+use datamapper\CourseMapper;
+use datamapper\UserMapper;
+use model\Model;
+use validator\CourseValidator;
 
 class Course extends Model {
 	/**

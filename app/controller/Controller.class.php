@@ -1,5 +1,9 @@
 <?php
 
+namespace controller;
+
+use Smarty;
+
 class Controller {
 	/*
 	 The default template
@@ -50,7 +54,7 @@ class Controller {
 	 The class constructor
 	*/
 	public function __construct() {
-		$this->smarty = $GLOBALS['smarty'];
+		$this->smarty = new Smarty;
 	}
 
 	/*

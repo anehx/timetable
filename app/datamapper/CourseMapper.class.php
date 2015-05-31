@@ -26,7 +26,7 @@ class CourseMapper extends Mapper {
 	 *
 	 * @param int $id
 	 * @throws UnexpectedValueException
-	 * @return Course
+	 * @return model\Course
 	**/
 	public function getCourseByID($id) {
 		$stmt = $this->db->prepare('
@@ -55,7 +55,7 @@ class CourseMapper extends Mapper {
 	**/
 	public function getCourses() {
 		$stmt = $this->db->prepare("SELECT * FROM `course` ORDER BY `name`");
-		$stmt->execute();
+        $stmt->execute();
 
 		$result = $stmt->get_result();
 		$courses = array();
@@ -103,7 +103,7 @@ class CourseMapper extends Mapper {
 	 *
 	 * @param Course $course
 	**/
-	public function save(Course $course) {
+	public function save(model\Course $course) {
 		if (!$course->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `course` (`name`, `userID`) VALUES (

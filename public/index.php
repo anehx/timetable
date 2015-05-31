@@ -1,6 +1,10 @@
 <?php
 
+//require __DIR__ . '/../vendor/autoload.php';
+
 session_start();
+
+use controller\BaseController;
 
 $page = isset($_GET['page']) ? $_GET['page'] : null;
 
@@ -22,7 +26,6 @@ switch ($page) {
 		$controller = new LessonController();
 		break;
 	default:
-		require_once('/controller/BaseController.class.php');
 		$controller = new BaseController();
 		break;
 }

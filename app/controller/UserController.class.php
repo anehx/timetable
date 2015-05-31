@@ -1,7 +1,9 @@
 <?php
 
-require_once('controller/Controller.class.php');
-require_once('datamapper/UserMapper.class.php');
+namespace controller;
+
+use controller\Controller;
+use datamapper\UserMapper;
 
 class UserController extends Controller {
 	/*

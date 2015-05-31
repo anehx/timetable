@@ -1,10 +1,12 @@
 <?php
 
-require_once('/controller/Controller.class.php');
-require_once('/datamapper/LessonMapper.class.php');
-require_once('/datamapper/CourseMapper.class.php');
-require_once('/datamapper/LessonTimeMapper.class.php');
-require_once('/model/Lesson.class.php');
+namespace controller;
+
+use controller\Controller;
+use datamapper\LessonMapper;
+use datamapper\CourseMapper;
+use datamapper\LessonTimeMapper;
+use model\Lesson;
 
 class LessonController extends Controller {
 	/*
