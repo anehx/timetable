@@ -21,6 +21,7 @@
 			{/if}
 			{block 'content'}{/block}
 		</div>
+		{include 'footer.tpl'}
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		{block 'scripts'}{/block}
