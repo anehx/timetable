@@ -11,8 +11,8 @@
 
 namespace controller;
 
-use Smarty;
 use util\ConfManager;
+use Smarty;
 
 class Controller {
 	/**

@@ -12,17 +12,17 @@
 namespace util;
 
 class ConfManager {
-    /**
-     * The path of the config ini file
-     */
-    const CONFIG_PATH = __DIR__ . '/../config/config.ini';
+	/**
+	 * The path of the config ini file
+	 */
+	const CONFIG_PATH = '/../config/config.ini';
 
-    /**
-     * Returns the config as an array
-     *
-     * @return array
-     */
-    public static function getConf() {
-        return parse_ini_file(self::CONFIG_PATH);
-    }
+	/**
+	 * Returns the config as an array
+	 *
+	 * @return array
+	 */
+	public static function getConf() {
+		return parse_ini_file(__DIR__ . self::CONFIG_PATH);
+	}
 }
