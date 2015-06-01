@@ -90,7 +90,7 @@ class LessonTimeMapper extends Mapper {
 			);
 		}
 		else {
-			$stmt = $this->db->prepare("DbManager
+			$stmt = $this->db->prepare("
 				UPDATE `lessontime` SET 
 					`startTime`= ?,
 					`endTime` = ?
