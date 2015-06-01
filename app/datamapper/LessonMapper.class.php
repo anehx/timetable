@@ -8,15 +8,15 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
-**/
+ **/
 
-require_once('/datamapper/Mapper.class.php');
-require_once('/model/Lesson.class.php');
+use datamapper\Mapper;
+use model\Lesson;
 
 class LessonMapper extends Mapper {
 	/**
 	 * Mapper singleton
-	**/
+	 **/
 	protected static $singleton = null;
 
 	/**
@@ -24,8 +24,8 @@ class LessonMapper extends Mapper {
 	 *
 	 * @param int $id
 	 * @throws UnexpectedValueException
-	 * @return Lesson
-	**/
+	 * @return model\Lesson
+	 **/
 	public function getLessonByID($id) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `lesson`
@@ -51,7 +51,7 @@ class LessonMapper extends Mapper {
 	 *
 	 * @param int $courseID
 	 * @return array
-	**/
+	 **/
 	public function getLessonsByCourse($courseID) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `lesson`
@@ -81,8 +81,8 @@ class LessonMapper extends Mapper {
 	 * @param int $weekday
 	 * @param int $courseID
 	 * @throws UnexpectedValueException
-	 * @return Lesson
-	**/
+	 * @return model\Lesson
+	 **/
 	public function getLessonByTimeAndCourse($lessonTimeID, $weekday, $courseID) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `lesson`
@@ -106,9 +106,9 @@ class LessonMapper extends Mapper {
 	/**
 	 * Updates or creates a lesson
 	 *
-	 * @param Lesson $lesson
-	**/
-	public function save(Lesson $lesson) {
+	 * @param model\Lesson $lesson
+	 **/
+	public function save(model\Lesson $lesson) {
 		if (!$lesson->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `lesson` (`name`, `weekday`, `lessonTimeID`, `courseID`) VALUES (
@@ -153,7 +153,7 @@ class LessonMapper extends Mapper {
 	 * Deletes a lesson
 	 *
 	 * @param int $id
-	**/
+	 **/
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `lesson` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);

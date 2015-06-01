@@ -11,18 +11,18 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
-**/
+ **/
 
-require_once('/datamapper/CourseMapper.class.php');
-require_once('/datamapper/LessonMapper.class.php');
-require_once('/datamapper/LessonTimeMapper.class.php');
-require_once('/model/Model.class.php');
-require_once('/validator/LessonValidator.class.php');
+use datamapper\CourseMapper;
+use datamapper\LessonMapper;
+use datamapper\LessonTimeMapper;
+use model\Model;
+use validator\LessonValidator;
 
 class Lesson extends Model {
 	/**
 	 * Weekday integer to string map
-	**/
+	 **/
 	const WEEKDAY_MAP = array(
 		1 => 'Monday',
 		2 => 'Tuesday',
@@ -35,35 +35,35 @@ class Lesson extends Model {
 
 	/**
 	 * The identifier of the lesson
-	**/
+	 **/
 	public $id = null;
 
 	/**
 	 * The name of the lesson
-	**/
+	 **/
 	public $name = null;
 
 	/**
 	 * The weekday on which the lesson is hold
-	**/
+	 **/
 	public $weekday = null;
 
 	/**
 	 * The time range of the lesson
-	**/
+	 **/
 	public $lessonTimeID = null;
 
 	/**
 	 * The courseID of the lesson
-	**/
+	 **/
 	public $courseID = null;
 
 	/**
-	 *Fills the lesson model from a db row
+	 * Fills the lesson model from a db row
 	 *
 	 * @param array $data
-	 * @return Lesson
-	**/
+	 * @return model\Lesson
+	 **/
 	public static function fillFromRowData($data) {
 		$dataMap = array(
 			'id'           => (int)$data['id'],
@@ -80,7 +80,7 @@ class Lesson extends Model {
 	 * Returns the weekday as a string
 	 *
 	 * @return string
-	**/
+	 **/
 	public function getWeekday() {
 		return self::WEEKDAY_MAP[$this->weekday];
 	}
@@ -88,8 +88,8 @@ class Lesson extends Model {
 	/**
 	 * Returns the related lesson time
 	 *
-	 * @return LessonTime
-	*/
+	 * @return model\LessonTime
+	 **/
 	public function getLessonTime() {
 		return LessonTimeMapper::getInstance()->getLessonTimeByID($this->lessonTimeID);
 	}
@@ -97,8 +97,8 @@ class Lesson extends Model {
 	/**
 	 * Returns the related course
 	 *
-	 * @return Course
-	**/
+	 * @return model\Course
+	 **/
 	public function getCourse() {
 		return CourseMapper::getInstance()->getCourseByID($this->courseID);
 	}
@@ -106,8 +106,8 @@ class Lesson extends Model {
 	/**
 	 * Returns the lesson datamapper
 	 *
-	 * @return LessonMapper
-	**/
+	 * @return datamapper\LessonMapper
+	 **/
 	public function getMapper() {
 		return LessonMapper::getInstance();
 	}
@@ -115,8 +115,8 @@ class Lesson extends Model {
 	/**
 	 * Returns the lesson validator
 	 *
-	 * @return LessonValidator
-	**/
+	 * @return validator\LessonValidator
+	 **/
 	public function getValidator() {
 		return new LessonValidator($this);
 	}

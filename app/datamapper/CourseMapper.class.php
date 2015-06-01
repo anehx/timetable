@@ -8,7 +8,7 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
-**/
+ **/
 
 namespace datamapper;
 
@@ -18,7 +18,7 @@ use model\Course;
 class CourseMapper extends Mapper {
 	/**
 	 * Mapper singleton
-	**/
+	 **/
 	protected static $singleton = null;
 
 	/**
@@ -27,7 +27,7 @@ class CourseMapper extends Mapper {
 	 * @param int $id
 	 * @throws UnexpectedValueException
 	 * @return model\Course
-	**/
+	 **/
 	public function getCourseByID($id) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `course`
@@ -52,7 +52,7 @@ class CourseMapper extends Mapper {
 	 * Returns an array of all courses
 	 *
 	 * @return array
-	**/
+	 **/
 	public function getCourses() {
 		$stmt = $this->db->prepare("SELECT * FROM `course` ORDER BY `name`");
         $stmt->execute();
@@ -74,7 +74,7 @@ class CourseMapper extends Mapper {
 	 *
 	 * @param int $userID
 	 * @return array
-	**/
+	 **/
 	public function getCoursesByUser($userID) {
 		$stmt = $this->db->prepare("
 			SELECT
@@ -102,7 +102,7 @@ class CourseMapper extends Mapper {
 	 * Updates or creates a course
 	 *
 	 * @param Course $course
-	**/
+	 **/
 	public function save(model\Course $course) {
 		if (!$course->id) {
 			$stmt = $this->db->prepare("
@@ -144,7 +144,7 @@ class CourseMapper extends Mapper {
 	 * Deletes a course
 	 *
 	 * @param int $id
-	**/
+	 **/
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `course` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);

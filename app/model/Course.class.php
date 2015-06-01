@@ -23,25 +23,25 @@ use validator\CourseValidator;
 class Course extends Model {
 	/**
 	 * The identifier of the course
-	**/
+	 **/
 	public $id = null;
 
 	/**
 	 * The name of the course
-	**/
+	 **/
 	public $name = null;
 
 	/**
 	 * The user of the course
-	**/
+	 **/
 	public $userID = null;
 
 	/**
 	 * Fills the course model from a db row
 	 *
 	 * @param array $data
-	 * @return Course
-	**/
+	 * @return model\Course
+	 **/
 	public static function fillFromRowData($data) {
 		$dataMap = array(
 			'id'     => (int)$data['id'],
@@ -55,8 +55,8 @@ class Course extends Model {
 	/**
 	 * Returns the referring user
 	 *
-	 * @return User
-	**/
+	 * @return model\User
+	 **/
 	public function getUser() {
 		return UserMapper::getInstance()->getUserByID($this->userID);
 	}
@@ -65,7 +65,7 @@ class Course extends Model {
 	 * Returns all lessons of the course
 	 *
 	 * @return array
-	**/
+	 **/
 	public function getLessons() {
 		return LessonMapper::getInstance()->getLessonsByCourse($this->id);
 	}
@@ -73,8 +73,8 @@ class Course extends Model {
 	/**
 	 * Returns the course datamapper
 	 *
-	 * @return CourseMapper
-	**/
+	 * @return datamapper\CourseMapper
+	 **/
 	public function getMapper() {
 		return CourseMapper::getInstance();
 	}
@@ -82,8 +82,8 @@ class Course extends Model {
 	/**
 	 * Returns the course validator
 	 *
-	 * @return CourseValidator
-	**/
+	 * @return validator\CourseValidator
+	 **/
 	public function getValidator() {
 		return new CourseValidator($this);
 	}
