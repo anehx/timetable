@@ -1,9 +1,9 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	<div id="time"></div>
+	<div id="time" class="center-text"></div>
 	{if $course}
-		<h2>course '{$course->name}'</h2>
+		<h1 class="center-text">{$course->name}</h1>
 		<table class="table table-striped">
 			<thead>
 				<th></th>
