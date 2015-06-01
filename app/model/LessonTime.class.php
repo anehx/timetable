@@ -13,6 +13,8 @@
  * @license    MIT
  **/
 
+namespace model;
+
 use datamapper\LessonTimeMapper;
 use model\Model;
 use validator\LessonTimeValidator;

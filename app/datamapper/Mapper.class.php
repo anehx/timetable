@@ -12,7 +12,6 @@
 
 namespace datamapper;
 
-use mysqli;
 use util\DbManager;
 
 class Mapper {

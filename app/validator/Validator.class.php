@@ -1,5 +1,7 @@
 <?php
 
+namespace validator;
+
 class Validator {
 	/*
 	 The model to validate

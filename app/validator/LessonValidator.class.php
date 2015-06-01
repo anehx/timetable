@@ -1,22 +1,24 @@
 <?php
 
-require_once('/validator/Validator.class.php');
-require_once('/model/Lesson.class.php');
-require_once('/datamapper/CourseMapper.class.php');
-require_once('/datamapper/LessonMapper.class.php');
-require_once('/datamapper/LessonTimeMapper.class.php');
+namespace validator;
+
+use datamapper\CourseMapper;
+use datamapper\LessonMapper;
+use datamapper\LessonTimeMapper;
+use model\Lesson;
+use validator\Validator;
 
 class LessonValidator extends Validator {
-	/*
+	/**
 	 The class constructor
-	*/
+	 **/
 	public function __construct($model) {
 		parent::__construct($model);
 	}
 
-	/*
+	/**
 	 Validates the whole lesson time model
-	*/
+	 **/
 	public function validate() {
 		$this->validateName();
 		$this->validateWeekday();
@@ -26,9 +28,9 @@ class LessonValidator extends Validator {
 		return $this;
 	}
 
-	/*
+	/**
 	 Validates the lesson name
-	*/
+	 **/
 	private function validateName() {
 		$fieldName = 'Name';
 		$fieldValue = $this->model->name;
@@ -37,9 +39,9 @@ class LessonValidator extends Validator {
 		$this->checkLength($fieldValue, $fieldName, 1, 50);
 	}
 
-	/*
+	/**
 	 Validates the weekday
-	*/
+	 **/
 	private function validateWeekday() {
 		if (!array_key_exists($this->model->weekday, Lesson::WEEKDAY_MAP)) {
 			$this->errors[] = 'Invalid weekday';
@@ -47,9 +49,9 @@ class LessonValidator extends Validator {
 		}
 	}
 
-	/*
+	/**
 	 Validates the course
-	*/
+	 **/
 	private function validateCourseID() {
 		if ($this->model->courseID) {
 			try {
@@ -66,9 +68,9 @@ class LessonValidator extends Validator {
 		}
 	}
 
-	/*
+	/**
 	 Validates the lesson time
-	*/
+	 **/
 	private function validateLessonTimeID() {
 		if ($this->model->lessonTimeID) {
 			try {

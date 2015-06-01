@@ -1,6 +1,8 @@
 <?php
 
-require_once('/validator/Validator.class.php');
+namespace validator;
+
+use validator\Validator;
 
 class LessonTimeValidator extends Validator {
 	/*

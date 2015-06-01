@@ -10,6 +10,8 @@
  * @license    MIT
  **/
 
+namespace datamapper;
+
 use datamapper\Mapper;
 use model\User;
 

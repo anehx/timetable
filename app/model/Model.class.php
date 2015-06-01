@@ -10,6 +10,8 @@
  * @license    MIT
  **/
 
+namespace model;
+
 class Model {
 	/**
 	 * Returns the datamapper

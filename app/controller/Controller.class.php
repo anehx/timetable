@@ -3,6 +3,7 @@
 namespace controller;
 
 use Smarty;
+use util\ConfManager;
 
 class Controller {
 	/*
@@ -54,7 +55,12 @@ class Controller {
 	 The class constructor
 	*/
 	public function __construct() {
+		$conf = ConfManager::getConf();
 		$this->smarty = new Smarty;
+		$this->smarty->setTemplateDir($conf['PROJECT_PATH'] . '/app/templates');
+		$this->smarty->setCompileDir($conf['PROJECT_PATH'] . '/tmp');
+		$this->smarty->setCacheDir($conf['PROJECT_PATH'] . '/cache');
+		$this->smarty->setConfigDir($conf['PROJECT_PATH'] . '/configs');
 	}
 
 	/*

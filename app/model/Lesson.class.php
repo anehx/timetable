@@ -13,6 +13,8 @@
  * @license    MIT
  **/
 
+namespace model;
+
 use datamapper\CourseMapper;
 use datamapper\LessonMapper;
 use datamapper\LessonTimeMapper;
