@@ -6,7 +6,6 @@
  * A course is a group of students which are supervised by an
  * user (teacher)
  *
- * @package    timetable
  * @author     Jonas Metzener <jonasmetzener@gmail.com>
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable

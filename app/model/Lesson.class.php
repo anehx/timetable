@@ -6,7 +6,6 @@
  * Lessons are displayed in the overview and are separated
  * by courses
  *
- * @package    timetable
  * @author     Jonas Metzener <jonasmetzener@gmail.com>
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable

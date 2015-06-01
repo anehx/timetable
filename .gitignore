@@ -5,3 +5,4 @@
 /vendor
 config.ini
 .vagrant
+public/doc

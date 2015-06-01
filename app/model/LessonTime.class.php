@@ -6,7 +6,6 @@
  * Lesson times are used to define time ranges in which
  * lessons can be hold
  *
- * @package    timetable
  * @author     Jonas Metzener <jonasmetzener@gmail.com>
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable

@@ -18,7 +18,7 @@ switch ($page) {
 		$controller = new controller\LessonController();
 		break;
 	default:
-		$controller = new controller\BaseController();
+		$controller = new controller\DefaultController();
 		break;
 }
 

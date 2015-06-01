@@ -3,7 +3,6 @@
 /**
  * This is the user controller
  *
- * @package    timetable
  * @author     Jonas Metzener <jonasmetzener@gmail.com>
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
