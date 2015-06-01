@@ -16,6 +16,7 @@ namespace model;
 
 use datamapper\CourseMapper;
 use datamapper\UserMapper;
+use datamapper\LessonMapper;
 use validator\CourseValidator;
 
 class Course extends Model {

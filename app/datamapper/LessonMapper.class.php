@@ -57,8 +57,9 @@ class LessonMapper extends Mapper {
 	public function getLessonsByCourse($courseID) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `lesson`
+			JOIN `lessontime` as `lt` ON (`lesson`.`lessonTimeID` = `lt`.`id`)
 			WHERE `courseID` = ?
-			ORDER BY `weekday`
+			ORDER BY `weekday`, `lt`.`startTime`
 		');
 
 		$stmt->bind_param('i', $courseID);
