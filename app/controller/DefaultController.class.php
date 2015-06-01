@@ -1,23 +1,32 @@
 <?php
 
+/**
+ * This is the default controller
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace controller;
 
-use controller\Controller;
 use datamapper\CourseMapper;
 use datamapper\UserMapper;
 use datamapper\LessonTimeMapper;
 use datamapper\LessonMapper;
 use model\Lesson;
 
-class BaseController extends Controller {
-	/*
-	 The default template
-	*/
+class DefaultController extends Controller {
+	/**
+	 * The default template
+	 */
 	protected $tpl = 'home.tpl';
 
-	/*
-	 Handles all requests on this page
-	*/
+	/**
+	 * Handles all requests on this page
+	 */
 	public function handle() {
 
 		if (isset($_GET['action'])) {
@@ -37,16 +46,16 @@ class BaseController extends Controller {
 		parent::handle();
 	}
 
-	/*
-	 The default page
-	*/
+	/**
+	 * Displays the default page
+	 */
 	private function handleDefault() {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCourses());
 	}
 
-	/*
-	 The lessons
-	*/
+	/**
+	 * Displays a overview of all courses
+	 */
 	private function handleOverview() {
 		$this->tpl = 'list.tpl';
 

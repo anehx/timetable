@@ -1,20 +1,30 @@
 <?php
 
+/**
+ * This is the course controller
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace controller;
 
-use controller\Controller;
+use model\Course;
 use datamapper\CourseMapper;
 use datamapper\UserMapper;
 
 class CourseController extends Controller {
-	/*
-	 The default template
-	*/
+	/**
+	 * The default template
+	 */
 	protected $tpl = 'course/list.tpl';
 
-	/*
-	 Handles all requests on this page
-	*/
+	/**
+	 * Handles all requests on this page
+	 */
 	public function handle() {
 		$this->requireSuperuser();
 
@@ -38,16 +48,16 @@ class CourseController extends Controller {
 		parent::handle();
 	}
 
-	/*
-	 The default page
-	*/
+	/**
+	 * Displays a list of all courses
+	 */
 	private function handleDefault() {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCourses());
 	}
 
-	/*
-	 The edit page
-	*/
+	/**
+	 * Displays an edit page and handles its POST requests
+	 */
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'course/edit.tpl';
@@ -57,7 +67,7 @@ class CourseController extends Controller {
 			try {
 				$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
 				$course = null;
 			}
@@ -85,9 +95,9 @@ class CourseController extends Controller {
 		$this->smarty->assign('course', $course);
 	}
 
-	/*
-	 The delete page
-	*/
+	/**
+	 * Handles the delete requests
+	 */
 	private function handleDelete() {
 		$this->requireSuperuser();
 

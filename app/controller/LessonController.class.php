@@ -1,22 +1,31 @@
 <?php
 
+/**
+ * This is the lesson controller
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace controller;
 
-use controller\Controller;
 use datamapper\LessonMapper;
 use datamapper\CourseMapper;
 use datamapper\LessonTimeMapper;
 use model\Lesson;
 
 class LessonController extends Controller {
-	/*
-	 The default template
-	*/
+	/**
+	 * The default template
+	 */
 	protected $tpl = 'lesson/courseList.tpl';
 
-	/*
-	 Handles all requests on this page
-	*/
+	/**
+	 * Handles all requests on this page
+	 */
 	public function handle() {
 		$this->requireLogin();
 
@@ -43,16 +52,16 @@ class LessonController extends Controller {
 		parent::handle();
 	}
 
-	/*
-	 The default page
-	*/
+	/**
+	 * Displays an overview of all courses of an user
+	 */
 	private function handleDefault() {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCoursesByUser($_SESSION['userID']));
 	}
 
-	/*
-	 The list page
-	*/
+	/**
+	 * Displays a list of lessons for a given course
+	 */
 	private function handleList() {
 		$this->tpl = 'lesson/list.tpl';
 		$errors = [];
@@ -62,7 +71,7 @@ class LessonController extends Controller {
 				$course = CourseMapper::getInstance()->getCourseByID($_GET['courseID']);
 				$this->requireCourseOwnage($course);
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
 				$course = null;
 			}
@@ -77,9 +86,9 @@ class LessonController extends Controller {
 		$this->smarty->assign('lessons', $course ? $course->getLessons() : null);
 	}
 
-	/*
-	 The list page
-	*/
+	/**
+	 * Displays an edit page and handles its POST requests
+	 */
 	private function handleEdit() {
 		$this->tpl = 'lesson/edit.tpl';
 		$errors = [];
@@ -91,7 +100,7 @@ class LessonController extends Controller {
 				$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);
 				$course = $lesson->getCourse();
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
 			}
 		}
@@ -101,7 +110,7 @@ class LessonController extends Controller {
 					$course = CourseMapper::getInstance()->getCourseByID($_GET['courseID']);
 					$lesson = new Lesson();
 				}
-				catch (UnexpectedValueException $e) {
+				catch (\UnexpectedValueException $e) {
 					$errors[] = $e->getMessage();
 				}
 			}
@@ -139,9 +148,9 @@ class LessonController extends Controller {
 		$this->smarty->assign('lesson', $lesson);
 	}
 
-	/*
-	 The delete page
-	*/
+	/**
+	 * Handles all delete requests
+	 */
 	private function handleDelete() {
 		if (isset($_GET['id'])) {
 			$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);

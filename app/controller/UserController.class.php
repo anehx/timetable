@@ -1,19 +1,29 @@
 <?php
 
+/**
+ * This is the user controller
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace controller;
 
-use controller\Controller;
 use datamapper\UserMapper;
+use model\User;
 
 class UserController extends Controller {
-	/*
-	 The default template
-	*/
+	/**
+	 * The default template
+	 */
 	protected $tpl = 'user/list.tpl';
 
-	/*
-	 Handles all requests on this page
-	*/
+	/**
+	 * Handles all requests on this page
+	 */
 	public function handle() {
 
 		if (isset($_GET['action'])) {
@@ -45,18 +55,18 @@ class UserController extends Controller {
 		parent::handle();
 	}
 
-	/*
-	 The default page
-	*/
+	/**
+	 * Displays an overview of all courses
+	 */
 	private function handleDefault() {
 		$this->requireSuperuser();
 
 		$this->smarty->assign('users', UserMapper::getInstance()->getUsers());
 	}
 
-	/*
-	 The password change page
-	*/
+	/**
+	 * Displays a page to change an users password
+	 */
 	private function handlePassword() {
 		$this->tpl = 'user/password.tpl';
 		$errors = array();
@@ -107,9 +117,9 @@ class UserController extends Controller {
 		$this->smarty->assign('user', $user);
 	}
 
-	/*
-	 The edit page
-	*/
+	/**
+	 * Displays an edit page and handles its POST requests
+	 */
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'user/edit.tpl';
@@ -119,7 +129,7 @@ class UserController extends Controller {
 			try {
 				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
 				$user = null;
 			}
@@ -154,9 +164,9 @@ class UserController extends Controller {
 		$this->smarty->assign('user', $user);
 	}
 
-	/*
-	 The delete page
-	*/
+	/**
+	 * Handles all delete requests
+	 */
 	private function handleDelete() {
 		$this->requireSuperuser();
 
@@ -171,9 +181,9 @@ class UserController extends Controller {
 		header('Location: /?page=user');
 	}
 
-	/*
-	 The login page
-	*/
+	/**
+	 * Displays a login page and validates the login form
+	 */
 	private function handleLogin() {
 		$this->tpl = 'user/login.tpl';
 
@@ -201,16 +211,16 @@ class UserController extends Controller {
 					$errors[] = 'Password is wrong.';
 				}
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
 			}
 			$this->smarty->assign('errors', $errors);
 		}
 	}
 
-	/*
-	 The logout page
-	*/
+	/**
+	 * Handles all logout requests
+	 */
 	private function handleLogout() {
 		unset($_SESSION['userID']);
 		unset($_SESSION['username']);

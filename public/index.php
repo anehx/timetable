@@ -1,32 +1,24 @@
 <?php
 
-//require __DIR__ . '/../vendor/autoload.php';
-
 session_start();
-
-use controller\BaseController;
 
 $page = isset($_GET['page']) ? $_GET['page'] : null;
 
 switch ($page) {
 	case 'user':
-		require_once('/controller/UserController.class.php');
-		$controller = new UserController();
+		$controller = new controller\UserController();
 		break;
 	case 'course':
-		require_once('/controller/CourseController.class.php');
-		$controller = new CourseController();
+		$controller = new controller\CourseController();
 		break;
 	case 'lessonTime':
-		require_once('/controller/LessonTimeController.class.php');
-		$controller = new LessonTimeController();
+		$controller = new controller\LessonTimeController();
 		break;
 	case 'lesson':
-		require_once('/controller/LessonController.class.php');
-		$controller = new LessonController();
+		$controller = new controller\LessonController();
 		break;
 	default:
-		$controller = new BaseController();
+		$controller = new controller\BaseController();
 		break;
 }
 

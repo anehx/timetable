@@ -8,34 +8,40 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
- **/
+ */
 
 namespace util;
 
-use util\ConfManager;
-use mysqli;
-
 class DbManager {
+	/**
+	 * The static db connection
+	 */
+	private static $db = null;
+
 	/**
 	 * Returns a db connection
 	 *
-	 * @return mysqli
-	 **/
+	 * @return \mysqli
+	 */
 	public static function getConnection() {
-		$conf   = ConfManager::getConf();
-		$mysqli = new mysqli(
-			$conf['DB_HOST'],
-			$conf['DB_USER'],
-			$conf['DB_PASS'],
-			$conf['DB_NAME']
-		);
+		if (self::$db === null) {
+			$conf   = ConfManager::getConf();
+			$mysqli = new \mysqli(
+				$conf['DB_HOST'],
+				$conf['DB_USER'],
+				$conf['DB_PASS'],
+				$conf['DB_NAME']
+			);
 
-		if ($mysqli->connect_error) {
-			die('Connection failed: ' . $mysqli->connect_error);
+			if ($mysqli->connect_error) {
+				die('Connection failed: ' . $mysqli->connect_error);
+			}
+
+			$mysqli->set_charset('utf-8');
+
+			self::$db = $mysqli;
 		}
 
-		$mysqli->set_charset('utf-8');
-
-		return $mysqli;
+		return self::$db;
 	}
 }

@@ -8,7 +8,7 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
- **/
+ */
 
 namespace datamapper;
 
@@ -17,7 +17,7 @@ use model\User;
 class UserMapper extends Mapper {
 	/**
 	 * Mapper singleton
-	 **/
+	 */
 	protected static $singleton = null;
 
 	/**
@@ -25,9 +25,9 @@ class UserMapper extends Mapper {
 	 *
 	 * @param int $id
 	 * @param bool $ignoreSuperusers (optional) 
-	 * @throws UnexpectedValueException
-	 * @return model\User
-	 **/
+	 * @throws \UnexpectedValueException
+	 * @return \model\User
+	 */
 	public function getUserByID($id, $ignoreSuperusers = false) {
 		$where = $ignoreSuperusers ? 'AND `isSuperuser` = 0' : '';
 		$stmt = $this->db->prepare(sprintf('
@@ -53,9 +53,9 @@ class UserMapper extends Mapper {
 	 * Returns a single user by his username
 	 *
 	 * @param string $username
-	 * @throws UnexpectedValueException
-	 * @return model\User
-	 **/
+	 * @throws \UnexpectedValueException
+	 * @return \model\User
+	 */
 	public function getUserByUsername($username) {
 		$stmt = $this->db->prepare("
 			SELECT * FROM `user`
@@ -81,7 +81,7 @@ class UserMapper extends Mapper {
 	 *
 	 * @param bool $ignoreSuperusers (optional)
 	 * @return array
-	 **/
+	 */
 	public function getUsers($ignoreSuperusers = false) {
 		$where = $ignoreSuperusers ? 'WHERE `isSuperuser` = 0' : '';
 		$stmt = $this->db->prepare(sprintf("SELECT * FROM `user` %s", $where));
@@ -102,9 +102,9 @@ class UserMapper extends Mapper {
 	/**
 	 * Updates or creates an user
 	 *
-	 * @param model\User $user
-	 **/
-	public function save(User $user) {
+	 * @param \model\User $user
+	 */
+	public function save(\model\User $user) {
 		if (!$user->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `isSuperuser`) VALUES (
@@ -152,7 +152,7 @@ class UserMapper extends Mapper {
 	 * Deletes an user
 	 *
 	 * @param int $id
-	 **/
+	 */
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `user` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);

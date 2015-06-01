@@ -1,25 +1,35 @@
 <?php
 
+/**
+ * This is the basic controller
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace controller;
 
 use Smarty;
 use util\ConfManager;
 
 class Controller {
-	/*
-	 The default template
-	*/
+	/**
+	 * The default template
+	 */
 	protected $tpl = 'index.tpl';
 
-	/*
-	 Global smarty object
-	*/
+	/**
+	 * Global smarty object
+	 */
 	protected $smarty = null;
 
-	/*
-	 Page requires superuser permission
-	 Displays access denied page if not allowed
-	*/
+	/**
+	 * Page requires superuser permission
+	 * Displays access denied page if not allowed
+	 */
 	protected function requireSuperuser() {
 		if (!isset($_SESSION['isSuperuser']) || !$_SESSION['isSuperuser']) {
 			$this->smarty->display('access_denied.tpl');
@@ -27,23 +37,23 @@ class Controller {
 		}
 	}
 
-	/*
-	 Page requires ownage of given course
-	 Displays access denied page if not allowed
-
-	 @param Course $course
-	*/
-	protected function requireCourseOwnage($course) {
+	/**
+	 * Page requires ownage of given course
+	 * Displays access denied page if not allowed
+	 *
+	 * @param \model\Course $course
+	 */
+	protected function requireCourseOwnage(\model\Course $course) {
 		if ($_SESSION['userID'] !== $course->userID) {
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}
 	}
 
-	/*
-	 Page requires logged in user
-	 Displays access denied page if not allowed
-	*/
+	/**
+	 * Page requires logged in user
+	 * Displays access denied page if not allowed
+	 */
 	protected function requireLogin() {
 		if (!isset($_SESSION['username'])) {
 			$this->smarty->display('access_denied.tpl');
@@ -51,9 +61,9 @@ class Controller {
 		}
 	}
 
-	/*
-	 The class constructor
-	*/
+	/**
+	 * The class constructor
+	 */
 	public function __construct() {
 		$conf = ConfManager::getConf();
 		$this->smarty = new Smarty;
@@ -63,9 +73,9 @@ class Controller {
 		$this->smarty->setConfigDir($conf['PROJECT_PATH'] . '/configs');
 	}
 
-	/*
-	 Handles all requests on this page
-	*/
+	/**
+	 * Handles all requests on this page
+	 */
 	public function handle() {
 		$this->smarty->display($this->tpl);
 	}

@@ -1,24 +1,35 @@
 <?php
 
+/**
+ * This is the lesson validator
+ *
+ * It validates every field of the lesson model
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace validator;
 
 use datamapper\CourseMapper;
 use datamapper\LessonMapper;
 use datamapper\LessonTimeMapper;
 use model\Lesson;
-use validator\Validator;
 
 class LessonValidator extends Validator {
 	/**
-	 The class constructor
-	 **/
+	 * The class constructor
+	 */
 	public function __construct($model) {
 		parent::__construct($model);
 	}
 
 	/**
-	 Validates the whole lesson time model
-	 **/
+	 * Validates the whole lesson time model
+	 */
 	public function validate() {
 		$this->validateName();
 		$this->validateWeekday();
@@ -29,8 +40,8 @@ class LessonValidator extends Validator {
 	}
 
 	/**
-	 Validates the lesson name
-	 **/
+	 * Validates the lesson name
+	 */
 	private function validateName() {
 		$fieldName = 'Name';
 		$fieldValue = $this->model->name;
@@ -40,8 +51,8 @@ class LessonValidator extends Validator {
 	}
 
 	/**
-	 Validates the weekday
-	 **/
+	 * Validates the weekday
+	 */
 	private function validateWeekday() {
 		if (!array_key_exists($this->model->weekday, Lesson::WEEKDAY_MAP)) {
 			$this->errors[] = 'Invalid weekday';
@@ -50,14 +61,14 @@ class LessonValidator extends Validator {
 	}
 
 	/**
-	 Validates the course
-	 **/
+	 * Validates the course
+	 */
 	private function validateCourseID() {
 		if ($this->model->courseID) {
 			try {
 				$course = CourseMapper::getInstance()->getCourseByID($this->model->courseID);
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$this->errors[] = $e->getMessage();
 				$this->isValid  = false;
 			}
@@ -69,14 +80,14 @@ class LessonValidator extends Validator {
 	}
 
 	/**
-	 Validates the lesson time
-	 **/
+	 * Validates the lesson time
+	 */
 	private function validateLessonTimeID() {
 		if ($this->model->lessonTimeID) {
 			try {
 				$lessonTime = LessonTimeMapper::getInstance()->getLessonTimeByID($this->model->lessonTimeID);
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$this->errors[] = $e->getMessage();
 				$this->isValid  = false;
 			}
@@ -93,7 +104,7 @@ class LessonValidator extends Validator {
 				$this->isValid = false;
 			}
 		}
-		catch (UnexpectedValueException $e) {
+		catch (\UnexpectedValueException $e) {
 			// expected behaviour
 		}
 	}

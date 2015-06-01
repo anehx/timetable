@@ -4,6 +4,9 @@
     "require": {
         "smarty/smarty": "^3.1"
     },
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "2.*"
+    },
     "autoload": {
         "classmap": [ "app/" ]
     },

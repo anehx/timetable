@@ -1,19 +1,29 @@
 <?php
 
+/**
+ * This is the lesson time controller
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace controller;
 
-use controller\Controller;
 use datamapper\LessonTimeMapper;
+use model\LessonTime;
 
 class LessonTimeController extends Controller {
-	/*
-	 The default template
-	*/
+	/**
+	 * The default template
+	 */
 	protected $tpl = 'lessontime/list.tpl';
 
-	/*
-	 Handles all requests on this page
-	*/
+	/**
+	 * Handles all requests on this page
+	 */
 	public function handle() {
 		$this->requireSuperuser();
 
@@ -37,17 +47,17 @@ class LessonTimeController extends Controller {
 		parent::handle();
 	}
 
-	/*
-	 The default page
-	*/
+	/**
+	 * Displays a list of all lesson times
+	 */
 	private function handleDefault() {
 		$this->requireSuperuser();
 		$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());
 	}
 
-	/*
-	 The edit page
-	*/
+	/**
+	 * Displays an edit page and handles its POST requests
+	 */
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'lessontime/edit.tpl';
@@ -57,7 +67,7 @@ class LessonTimeController extends Controller {
 			try {
 				$lessonTime = LessonTimeMapper::getInstance()->getLessonTimeByID($_GET['id']);
 			}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				$errors[] = $e->getMessage();
 				$lessonTime = null;
 			}
@@ -67,8 +77,8 @@ class LessonTimeController extends Controller {
 		}
 
 		if ($_POST) {
-			$lessonTime->startTime = new DateTime(date('H:i:s', strtotime($_POST['startTime'])));
-			$lessonTime->endTime = new DateTime(date('H:i:s', strtotime($_POST['endTime'])));
+			$lessonTime->startTime = new \DateTime(date('H:i:s', strtotime($_POST['startTime'])));
+			$lessonTime->endTime = new \DateTime(date('H:i:s', strtotime($_POST['endTime'])));
 
 			$validator = $lessonTime->validate();
 
@@ -85,9 +95,9 @@ class LessonTimeController extends Controller {
 		$this->smarty->assign('lessonTime', $lessonTime);
 	}
 
-	/*
-	 The delete page
-	*/
+	/**
+	 * Handles all delete requests
+	 */
 	private function handleDelete() {
 		$this->requireSuperuser();
 

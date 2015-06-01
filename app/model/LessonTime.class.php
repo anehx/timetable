@@ -11,41 +11,40 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
- **/
+ */
 
 namespace model;
 
 use datamapper\LessonTimeMapper;
-use model\Model;
 use validator\LessonTimeValidator;
 
 class LessonTime extends Model {
 	/**
 	 * The identifier of the lesson time
-	 **/
+	 */
 	public $id = null;
 
 	/**
 	 * The start time of the lesson time
-	 **/
+	 */
 	public $startTime = null;
 
 	/**
 	 * The end time of the lesson time
-	 **/
+	 */
 	public $endTime = null;
 
 	/**
 	 * Fills the lession time model from a db row
 	 *
 	 * @param array $data
-	 * @return model\LessonTime
-	 **/
+	 * @return \model\LessonTime
+	 */
 	public static function fillFromRowData($data) {
 		$dataMap = array(
 			'id'        => (int)$data['id'],
-			'startTime' => new DateTime(date('H:i:s', strtotime($data['startTime']))),
-			'endTime'   => new DateTime(date('H:i:s', strtotime($data['endTime'])))
+			'startTime' => new \DateTime(date('H:i:s', strtotime($data['startTime']))),
+			'endTime'   => new \DateTime(date('H:i:s', strtotime($data['endTime'])))
 		);
 
 		return parent::fill($dataMap);
@@ -55,7 +54,7 @@ class LessonTime extends Model {
 	 * Returns the display name
 	 *
 	 * @return string
-	 **/
+	 */
 	public function getDisplayName() {
 		return sprintf('%s - %s', $this->startTime->format('H:i'), $this->endTime->format('H:i'));
 	}
@@ -63,8 +62,8 @@ class LessonTime extends Model {
 	/**
 	 * Returns the lesson time datamapper
 	 *
-	 * @return datamapper\LessonTimeMapper
-	 **/
+	 * @return \datamapper\LessonTimeMapper
+	 */
 	public function getMapper() {
 		return LessonTimeMapper::getInstance();
 	}
@@ -72,8 +71,8 @@ class LessonTime extends Model {
 	/**
 	 * Returns the lesson time validator
 	 *
-	 * @return validator\LessonTimeValidator
-	 **/
+	 * @return \validator\LessonTimeValidator
+	 */
 	public function getValidator() {
 		return new LessonTimeValidator($this);
 	}

@@ -8,7 +8,7 @@
  * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
  * @copyright  2015 timetable
  * @license    MIT
- **/
+ */
 
 namespace datamapper;
 
@@ -17,16 +17,16 @@ use model\LessonTime;
 class LessonTimeMapper extends Mapper {
 	/**
 	 * Mapper singleton
-	 **/
+	 */
 	protected static $singleton = null;
 
 	/**
 	 * Returns a single lesson time by its identifier
 	 *
 	 * @param int $id
-	 * @throws UnexpectedValueException
-	 * @return model\LessonTime
-	 **/
+	 * @throws \UnexpectedValueException
+	 * @return \model\LessonTime
+	 */
 	public function getLessonTimeByID($id) {
 		$stmt = $this->db->prepare('
 			SELECT * FROM `lessontime`
@@ -51,7 +51,7 @@ class LessonTimeMapper extends Mapper {
 	 * Returns an array of all lesson times
 	 *
 	 * @return array
-	 **/
+	 */
 	public function getLessonTimes() {
 		$stmt = $this->db->prepare("SELECT * FROM `lessontime` ORDER BY `startTime`");
 		$stmt->execute();
@@ -71,9 +71,9 @@ class LessonTimeMapper extends Mapper {
 	/**
 	 * Updates or creates a lesson time
 	 *
-	 * @param model\LessonTime $lessonTime
-	 **/
-	public function save(LessonTime $lessonTime) {
+	 * @param \model\LessonTime $lessonTime
+	 */
+	public function save(\model\LessonTime $lessonTime) {
 		if (!$lessonTime->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `lessontime` (`startTime`, `endTime`) VALUES (
@@ -114,7 +114,7 @@ class LessonTimeMapper extends Mapper {
 	 * Deletes a lesson time
 	 *
 	 * @param int $id
-	 **/
+	 */
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `lessontime` WHERE `id` = ?");
 		$stmt->bind_param('i', $id);

@@ -1,20 +1,32 @@
 <?php
 
+/**
+ * This is the user validator
+ *
+ * It validates every field of the user model
+ *
+ * @package    timetable
+ * @author     Jonas Metzener <jonasmetzener@gmail.com>
+ * @author     Fabian Jäiser <fabian.jaeiser@bluewin.ch>
+ * @copyright  2015 timetable
+ * @license    MIT
+ */
+
 namespace validator;
 
-use validator\Validator;
+use datamapper\UserMapper;
 
 class UserValidator extends Validator {
-	/*
-	 The class constructor
-	*/
+	/**
+	 * The class constructor
+	 */
 	public function __construct($model) {
 		parent::__construct($model);
 	}
 
-	/*
-	 Validates the whole user model
-	*/
+	/**
+	 * Validates the whole user model
+	 */
 	public function validate() {
 		$this->validateUsername();
 		$this->validatePassword();
@@ -24,9 +36,9 @@ class UserValidator extends Validator {
 		return $this;
 	}
 
-	/*
-	 Validates the first name
-	*/
+	/**
+	 * Validates the first name
+	 */
 	private function validateFirstName() {
 		if ($this->model->firstName) {
 			$fieldName = 'First Name';
@@ -37,9 +49,9 @@ class UserValidator extends Validator {
 		}
 	}
 
-	/*
-	 Validates the last name
-	*/
+	/**
+	 * Validates the last name
+	 */
 	private function validateLastName() {
 		if ($this->model->lastName) {
 			$fieldName = 'Last Name';
@@ -50,9 +62,9 @@ class UserValidator extends Validator {
 		}
 	}
 
-	/*
-	 Validates the password
-	*/
+	/**
+	 * Validates the password
+	 */
 	private function validatePassword() {
 		if ($this->model->rawPassword) {
 			$fieldName = 'Password';
@@ -72,9 +84,9 @@ class UserValidator extends Validator {
 		}
 	}
 
-	/*
-	 Validates the username
-	*/
+	/**
+	 * Validates the username
+	 */
 	private function validateUsername() {
 		if (!$this->model->id) {
 			$fieldName = 'Username';
@@ -90,7 +102,7 @@ class UserValidator extends Validator {
 					$this->errors[] = 'User with this username already exists';
 					$this->isValid  = false;
 				}
-			catch (UnexpectedValueException $e) {
+			catch (\UnexpectedValueException $e) {
 				// expected behaviour
 			}
 		}
