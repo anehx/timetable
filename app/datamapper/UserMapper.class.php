@@ -12,7 +12,6 @@
 
 namespace datamapper;
 
-use datamapper\Mapper;
 use model\User;
 
 class UserMapper extends Mapper {
@@ -43,7 +42,7 @@ class UserMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No user with this ID found');
+			throw new \UnexpectedValueException('No user with this ID found');
 		} else {
 			$data = $result->fetch_assoc();
 			return User::fillFromRowData($data);
@@ -70,7 +69,7 @@ class UserMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No user with this username found');
+			throw new \UnexpectedValueException('No user with this username found');
 		} else {
 			$data = $result->fetch_assoc();
 			return User::fillFromRowData($data);
@@ -105,7 +104,7 @@ class UserMapper extends Mapper {
 	 *
 	 * @param model\User $user
 	 **/
-	public function save(model\User $user) {
+	public function save(User $user) {
 		if (!$user->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `isSuperuser`) VALUES (

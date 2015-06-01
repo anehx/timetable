@@ -12,7 +12,6 @@
 
 namespace datamapper;
 
-use datamapper\Mapper;
 use model\LessonTime;
 
 class LessonTimeMapper extends Mapper {
@@ -41,7 +40,7 @@ class LessonTimeMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No lesson time with this ID found');
+			throw new \UnexpectedValueException('No lesson time with this ID found');
 		} else {
 			$data = $result->fetch_assoc();
 			return LessonTime::fillFromRowData($data);
@@ -74,7 +73,7 @@ class LessonTimeMapper extends Mapper {
 	 *
 	 * @param model\LessonTime $lessonTime
 	 **/
-	public function save(model\LessonTime $lessonTime) {
+	public function save(LessonTime $lessonTime) {
 		if (!$lessonTime->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `lessontime` (`startTime`, `endTime`) VALUES (

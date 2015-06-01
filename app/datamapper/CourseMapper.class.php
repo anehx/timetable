@@ -12,7 +12,6 @@
 
 namespace datamapper;
 
-use datamapper\Mapper;
 use model\Course;
 
 class CourseMapper extends Mapper {
@@ -41,7 +40,7 @@ class CourseMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No course with this ID found');
+			throw new \UnexpectedValueException('No course with this ID found');
 		} else {
 			$data = $result->fetch_assoc();
 			return Course::fillFromRowData($data);
@@ -103,7 +102,7 @@ class CourseMapper extends Mapper {
 	 *
 	 * @param Course $course
 	 **/
-	public function save(model\Course $course) {
+	public function save(Course $course) {
 		if (!$course->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `course` (`name`, `userID`) VALUES (

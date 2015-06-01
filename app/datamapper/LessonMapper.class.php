@@ -12,7 +12,6 @@
 
 namespace datamapper;
 
-use datamapper\Mapper;
 use model\Lesson;
 
 class LessonMapper extends Mapper {
@@ -41,7 +40,7 @@ class LessonMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No lesson with this ID found');
+			throw new \UnexpectedValueException('No lesson with this ID found');
 		} else {
 			$data = $result->fetch_assoc();
 			return Lesson::fillFromRowData($data);
@@ -98,7 +97,7 @@ class LessonMapper extends Mapper {
 		$result = $stmt->get_result();
 
 		if (!$result->num_rows) {
-			throw new UnexpectedValueException('No lesson with this time and course found');
+			throw new \UnexpectedValueException('No lesson with this time and course found');
 		} else {
 			$data = $result->fetch_assoc();
 			return Lesson::fillFromRowData($data);
@@ -110,7 +109,7 @@ class LessonMapper extends Mapper {
 	 *
 	 * @param model\Lesson $lesson
 	 **/
-	public function save(model\Lesson $lesson) {
+	public function save(Lesson $lesson) {
 		if (!$lesson->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `lesson` (`name`, `weekday`, `lessonTimeID`, `courseID`) VALUES (
