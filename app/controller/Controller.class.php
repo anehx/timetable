@@ -17,17 +17,23 @@ use Smarty;
 class Controller {
 	/**
 	 * The default template
+	 *
+	 * @var string
 	 */
 	protected $tpl = 'index.tpl';
 
 	/**
 	 * Global smarty object
+	 *
+	 * @var Smarty
 	 */
 	protected $smarty = null;
 
 	/**
 	 * Page requires superuser permission
 	 * Displays access denied page if not allowed
+	 *
+	 * @return void
 	 */
 	protected function requireSuperuser() {
 		if (!isset($_SESSION['isSuperuser']) || !$_SESSION['isSuperuser']) {
@@ -41,6 +47,7 @@ class Controller {
 	 * Displays access denied page if not allowed
 	 *
 	 * @param \model\Course $course
+	 * @return void
 	 */
 	protected function requireCourseOwnage(\model\Course $course) {
 		if ($_SESSION['userID'] !== $course->userID) {
@@ -52,6 +59,8 @@ class Controller {
 	/**
 	 * Page requires logged in user
 	 * Displays access denied page if not allowed
+	 *
+	 * @return void
 	 */
 	protected function requireLogin() {
 		if (!isset($_SESSION['username'])) {
@@ -62,6 +71,8 @@ class Controller {
 
 	/**
 	 * The class constructor
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		$conf = ConfManager::getConf();
@@ -74,6 +85,8 @@ class Controller {
 
 	/**
 	 * Handles all requests on this page
+	 *
+	 * @return void
 	 */
 	public function handle() {
 		$this->smarty->display($this->tpl);

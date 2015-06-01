@@ -19,11 +19,15 @@ use model\Lesson;
 class LessonController extends Controller {
 	/**
 	 * The default template
+	 *
+	 * @var string
 	 */
 	protected $tpl = 'lesson/courseList.tpl';
 
 	/**
 	 * Handles all requests on this page
+	 *
+	 * @return void
 	 */
 	public function handle() {
 		$this->requireLogin();
@@ -53,6 +57,8 @@ class LessonController extends Controller {
 
 	/**
 	 * Displays an overview of all courses of an user
+	 *
+	 * @return void
 	 */
 	private function handleDefault() {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCoursesByUser($_SESSION['userID']));
@@ -60,6 +66,8 @@ class LessonController extends Controller {
 
 	/**
 	 * Displays a list of lessons for a given course
+	 *
+	 * @return void
 	 */
 	private function handleList() {
 		$this->tpl = 'lesson/list.tpl';
@@ -87,6 +95,8 @@ class LessonController extends Controller {
 
 	/**
 	 * Displays an edit page and handles its POST requests
+	 *
+	 * @return void
 	 */
 	private function handleEdit() {
 		$this->tpl = 'lesson/edit.tpl';
@@ -149,6 +159,8 @@ class LessonController extends Controller {
 
 	/**
 	 * Handles all delete requests
+	 *
+	 * @return void
 	 */
 	private function handleDelete() {
 		if (isset($_GET['id'])) {

@@ -14,6 +14,8 @@ namespace util;
 class DbManager {
 	/**
 	 * The static db connection
+	 *
+	 * @var \mysqli
 	 */
 	private static $db = null;
 

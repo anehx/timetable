@@ -16,6 +16,8 @@ use model\User;
 class UserMapper extends Mapper {
 	/**
 	 * Mapper singleton
+	 *
+	 * @var \datamapper\UserMapper
 	 */
 	protected static $singleton = null;
 
@@ -102,6 +104,7 @@ class UserMapper extends Mapper {
 	 * Updates or creates an user
 	 *
 	 * @param \model\User $user
+	 * @return void
 	 */
 	public function save(\model\User $user) {
 		if (!$user->id) {
@@ -151,6 +154,7 @@ class UserMapper extends Mapper {
 	 * Deletes an user
 	 *
 	 * @param int $id
+	 * @return void
 	 */
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `user` WHERE `id` = ?");

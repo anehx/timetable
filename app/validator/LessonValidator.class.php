@@ -21,13 +21,18 @@ use model\Lesson;
 class LessonValidator extends Validator {
 	/**
 	 * The class constructor
+	 *
+	 * @param \model\Lesson
+	 * @return void
 	 */
-	public function __construct($model) {
+	public function __construct(\model\Lesson $model) {
 		parent::__construct($model);
 	}
 
 	/**
 	 * Validates the whole lesson time model
+	 *
+	 * @return void
 	 */
 	public function validate() {
 		$this->validateName();
@@ -40,6 +45,8 @@ class LessonValidator extends Validator {
 
 	/**
 	 * Validates the lesson name
+	 *
+	 * @return void
 	 */
 	private function validateName() {
 		$fieldName = 'Name';
@@ -51,6 +58,8 @@ class LessonValidator extends Validator {
 
 	/**
 	 * Validates the weekday
+	 *
+	 * @return void
 	 */
 	private function validateWeekday() {
 		if (!array_key_exists($this->model->weekday, Lesson::WEEKDAY_MAP)) {
@@ -61,6 +70,8 @@ class LessonValidator extends Validator {
 
 	/**
 	 * Validates the course
+	 *
+	 * @return void
 	 */
 	private function validateCourseID() {
 		if ($this->model->courseID) {
@@ -80,6 +91,8 @@ class LessonValidator extends Validator {
 
 	/**
 	 * Validates the lesson time
+	 *
+	 * @return void
 	 */
 	private function validateLessonTimeID() {
 		if ($this->model->lessonTimeID) {

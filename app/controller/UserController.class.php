@@ -17,11 +17,15 @@ use model\User;
 class UserController extends Controller {
 	/**
 	 * The default template
+	 *
+	 * @var string
 	 */
 	protected $tpl = 'user/list.tpl';
 
 	/**
 	 * Handles all requests on this page
+	 *
+	 * @return void
 	 */
 	public function handle() {
 
@@ -56,6 +60,8 @@ class UserController extends Controller {
 
 	/**
 	 * Displays an overview of all courses
+	 *
+	 * @return void
 	 */
 	private function handleDefault() {
 		$this->requireSuperuser();
@@ -65,6 +71,8 @@ class UserController extends Controller {
 
 	/**
 	 * Displays a page to change an users password
+	 *
+	 * @return void
 	 */
 	private function handlePassword() {
 		$this->tpl = 'user/password.tpl';
@@ -118,6 +126,8 @@ class UserController extends Controller {
 
 	/**
 	 * Displays an edit page and handles its POST requests
+	 *
+	 * @return void
 	 */
 	private function handleEdit() {
 		$this->requireSuperuser();
@@ -165,6 +175,8 @@ class UserController extends Controller {
 
 	/**
 	 * Handles all delete requests
+	 *
+	 * @return void
 	 */
 	private function handleDelete() {
 		$this->requireSuperuser();
@@ -182,6 +194,8 @@ class UserController extends Controller {
 
 	/**
 	 * Displays a login page and validates the login form
+	 *
+	 * @return void
 	 */
 	private function handleLogin() {
 		$this->tpl = 'user/login.tpl';
@@ -219,6 +233,8 @@ class UserController extends Controller {
 
 	/**
 	 * Handles all logout requests
+	 *
+	 * @return void
 	 */
 	private function handleLogout() {
 		unset($_SESSION['userID']);

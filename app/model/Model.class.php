@@ -16,6 +16,7 @@ class Model {
 	 * Returns the datamapper
 	 *
 	 * @throws UnexpectedValueException
+	 * @return void
 	 */
 	public function getMapper() {
 		throw new \UnexpectedValueException(sprintf('You need to define a getMapper function on the %s model', get_called_class()));
@@ -25,6 +26,7 @@ class Model {
 	 * Returns the validator
 	 *
 	 * @throws UnexpectedValueException
+	 * @return void
 	 **/
 	public function getValidator() {
 		throw new \UnexpectedValueException(sprintf('You need to define a getValidator function on the %s model', get_called_class()));
@@ -32,6 +34,8 @@ class Model {
 
 	/**
 	 * Saves this object to the DB
+	 *
+	 * @return void
 	 */
 	public function save() {
 		$this->getMapper()->save($this);
@@ -39,6 +43,8 @@ class Model {
 
 	/**
 	 * Deletes this object from the DB
+	 *
+	 * @return void
 	 */
 	public function delete() {
 		$this->getMapper()->delete($this->id);

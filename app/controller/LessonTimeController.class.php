@@ -17,11 +17,15 @@ use model\LessonTime;
 class LessonTimeController extends Controller {
 	/**
 	 * The default template
+	 *
+	 * @var string
 	 */
 	protected $tpl = 'lessontime/list.tpl';
 
 	/**
 	 * Handles all requests on this page
+	 *
+	 * @return void
 	 */
 	public function handle() {
 		$this->requireSuperuser();
@@ -48,6 +52,8 @@ class LessonTimeController extends Controller {
 
 	/**
 	 * Displays a list of all lesson times
+	 *
+	 * @return void
 	 */
 	private function handleDefault() {
 		$this->requireSuperuser();
@@ -56,6 +62,8 @@ class LessonTimeController extends Controller {
 
 	/**
 	 * Displays an edit page and handles its POST requests
+	 *
+	 * @return void
 	 */
 	private function handleEdit() {
 		$this->requireSuperuser();
@@ -96,6 +104,8 @@ class LessonTimeController extends Controller {
 
 	/**
 	 * Handles all delete requests
+	 *
+	 * @return void
 	 */
 	private function handleDelete() {
 		$this->requireSuperuser();

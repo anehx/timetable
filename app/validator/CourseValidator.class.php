@@ -18,13 +18,18 @@ use datamapper\UserMapper;
 class CourseValidator extends Validator {
 	/**
 	 * The class constructor
+	 *
+	 * @param \model\Course $model
+	 * @return void
 	 */
-	public function __construct($model) {
+	public function __construct(\model\Course $model) {
 		parent::__construct($model);
 	}
 
 	/**
 	 * Validates the whole course model
+	 *
+	 * @return void
 	 */
 	public function validate() {
 		$this->validateName();
@@ -35,6 +40,8 @@ class CourseValidator extends Validator {
 
 	/**
 	 * Validates the course name
+	 *
+	 * @return void
 	 */
 	private function validateName() {
 		$fieldName = 'Name';
@@ -48,6 +55,8 @@ class CourseValidator extends Validator {
 
 	/**
 	 * Validates the course user
+	 *
+	 * @return void
 	 */
 	private function validateUserID() {
 		if ($this->model->userID) {

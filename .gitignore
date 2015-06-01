@@ -6,4 +6,3 @@
 config.ini
 composer.lock
 .vagrant
-public/doc

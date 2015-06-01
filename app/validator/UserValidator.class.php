@@ -18,13 +18,18 @@ use datamapper\UserMapper;
 class UserValidator extends Validator {
 	/**
 	 * The class constructor
+	 *
+	 * @param \model\User
+	 * @return void
 	 */
-	public function __construct($model) {
+	public function __construct(\model\User $model) {
 		parent::__construct($model);
 	}
 
 	/**
 	 * Validates the whole user model
+	 *
+	 * @return void
 	 */
 	public function validate() {
 		$this->validateUsername();
@@ -37,6 +42,8 @@ class UserValidator extends Validator {
 
 	/**
 	 * Validates the first name
+	 *
+	 * @return void
 	 */
 	private function validateFirstName() {
 		if ($this->model->firstName) {
@@ -50,6 +57,8 @@ class UserValidator extends Validator {
 
 	/**
 	 * Validates the last name
+	 *
+	 * @return void
 	 */
 	private function validateLastName() {
 		if ($this->model->lastName) {
@@ -63,6 +72,8 @@ class UserValidator extends Validator {
 
 	/**
 	 * Validates the password
+	 *
+	 * @return void
 	 */
 	private function validatePassword() {
 		if ($this->model->rawPassword) {
@@ -85,6 +96,8 @@ class UserValidator extends Validator {
 
 	/**
 	 * Validates the username
+	 *
+	 * @return void
 	 */
 	private function validateUsername() {
 		if (!$this->model->id) {

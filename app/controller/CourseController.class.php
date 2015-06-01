@@ -18,11 +18,15 @@ use datamapper\UserMapper;
 class CourseController extends Controller {
 	/**
 	 * The default template
+	 *
+	 * @var string
 	 */
 	protected $tpl = 'course/list.tpl';
 
 	/**
 	 * Handles all requests on this page
+	 *
+	 * @return void
 	 */
 	public function handle() {
 		$this->requireSuperuser();
@@ -49,6 +53,8 @@ class CourseController extends Controller {
 
 	/**
 	 * Displays a list of all courses
+	 *
+	 * @return void
 	 */
 	private function handleDefault() {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCourses());
@@ -56,6 +62,8 @@ class CourseController extends Controller {
 
 	/**
 	 * Displays an edit page and handles its POST requests
+	 *
+	 * @return void
 	 */
 	private function handleEdit() {
 		$this->requireSuperuser();
@@ -96,6 +104,8 @@ class CourseController extends Controller {
 
 	/**
 	 * Handles the delete requests
+	 *
+	 * @return void
 	 */
 	private function handleDelete() {
 		$this->requireSuperuser();

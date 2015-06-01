@@ -16,13 +16,18 @@ namespace validator;
 class LessonTimeValidator extends Validator {
 	/**
 	 * The class constructor
+	 *
+	 * @param \model\LessonTime $model
+	 * @return void
 	 */
-	public function __construct($model) {
+	public function __construct(\model\LessonTime $model) {
 		parent::__construct($model);
 	}
 
 	/**
 	 * Validates the whole lesson time model
+	 *
+	 * @return void
 	 */
 	public function validate() {
 		$this->validateStartTime();
@@ -33,6 +38,8 @@ class LessonTimeValidator extends Validator {
 
 	/**
 	 * Validates the start time
+	 *
+	 * @return void
 	 */
 	private function validateStartTime() {
 		$fieldName = 'Start Time';
@@ -43,6 +50,8 @@ class LessonTimeValidator extends Validator {
 
 	/**
 	 * Validates the end time
+	 *
+	 * @return void
 	 */
 	private function validateEndTime() {
 		$fieldName = 'End Time';

@@ -14,23 +14,32 @@ namespace validator;
 class Validator {
 	/**
 	 * The model to validate
+	 *
+	 * @var \model\Model
 	 */
 	protected $model = null;
 
 	/**
 	 * Is the model valid?
+	 *
+	 * @var boolean
 	 */
 	public $isValid = true;
 
 	/**
 	 * The validation errors
+	 *
+	 * @var array
 	 */
 	public $errors = [];
 
 	/**
 	 * The class constructor
+	 *
+	 * @param \model\Model
+	 * @return void
 	 */
-	public function __construct($model) {
+	public function __construct(\model\Model $model) {
 		$this->model = $model;
 	}
 
@@ -39,6 +48,7 @@ class Validator {
 	 *
 	 * @param string $str
 	 * @param string $fieldName
+	 * @return void
 	 */
 	protected function checkMutation($str, $fieldName) {
 		if (preg_match('/ÄÖÜäöüßéàè+/', $str)) {
@@ -53,6 +63,7 @@ class Validator {
 	 *
 	 * @param string $str
 	 * @param string $fieldName
+	 * @return void
 	 */
 	protected function checkWhitespace($str, $fieldName) {
 		if (preg_match('/\s+/', $str)) {
@@ -66,6 +77,7 @@ class Validator {
 	 *
 	 * @param string $str
 	 * @param string $fieldName
+	 * @return void
 	 */
 	protected function checkSpecialChar($str, $fieldName) {
 		if (preg_match('/[^A-Za-z0-9ÄÖÜäöüßéàè\s]+/', $str)) {
@@ -81,6 +93,7 @@ class Validator {
 	 * @param string $fieldName
 	 * @param int $min
 	 * @param int $max
+	 * @return void
 	 */
 	protected function checkLength($str, $fieldName, $min, $max) {
 		if (strlen($str) > $max || strlen($str) < $min) {
@@ -94,6 +107,7 @@ class Validator {
 	 *
 	 * @param datetime $dt
 	 * @param string $fieldName
+	 * @return void
 	 */
 	protected function checkTime($dt, $fieldName) {
 		if (!is_a($dt, 'DateTime')) {

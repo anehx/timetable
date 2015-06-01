@@ -22,6 +22,8 @@ use validator\LessonValidator;
 class Lesson extends Model {
 	/**
 	 * Weekday integer to string map
+	 *
+	 * @var array
 	 */
 	const WEEKDAY_MAP = array(
 		1 => 'Monday',
@@ -35,26 +37,36 @@ class Lesson extends Model {
 
 	/**
 	 * The identifier of the lesson
+	 *
+	 * @var int
 	 */
 	public $id = null;
 
 	/**
 	 * The name of the lesson
+	 *
+	 * @var string
 	 */
 	public $name = null;
 
 	/**
 	 * The weekday on which the lesson is hold
+	 *
+	 * @var int
 	 */
 	public $weekday = null;
 
 	/**
 	 * The time range of the lesson
+	 *
+	 * @var int
 	 */
 	public $lessonTimeID = null;
 
 	/**
 	 * The courseID of the lesson
+	 *
+	 * @var int
 	 */
 	public $courseID = null;
 

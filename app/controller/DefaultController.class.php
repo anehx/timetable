@@ -20,11 +20,15 @@ use model\Lesson;
 class DefaultController extends Controller {
 	/**
 	 * The default template
+	 *
+	 * @var string
 	 */
 	protected $tpl = 'home.tpl';
 
 	/**
 	 * Handles all requests on this page
+	 *
+	 * @return void
 	 */
 	public function handle() {
 
@@ -47,6 +51,8 @@ class DefaultController extends Controller {
 
 	/**
 	 * Displays the default page
+	 *
+	 * @return void
 	 */
 	private function handleDefault() {
 		$this->smarty->assign('courses', CourseMapper::getInstance()->getCourses());
@@ -54,6 +60,8 @@ class DefaultController extends Controller {
 
 	/**
 	 * Displays a overview of all courses
+	 *
+	 * @return void
 	 */
 	private function handleOverview() {
 		$this->tpl = 'list.tpl';

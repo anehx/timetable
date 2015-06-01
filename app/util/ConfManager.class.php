@@ -14,6 +14,8 @@ namespace util;
 class ConfManager {
 	/**
 	 * The path of the config ini file
+	 *
+	 * @var string
 	 */
 	const CONFIG_PATH = '/../config/config.ini';
 

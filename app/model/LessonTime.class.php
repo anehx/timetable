@@ -20,16 +20,22 @@ use validator\LessonTimeValidator;
 class LessonTime extends Model {
 	/**
 	 * The identifier of the lesson time
+	 *
+	 * @var int
 	 */
 	public $id = null;
 
 	/**
 	 * The start time of the lesson time
+	 *
+	 * @var \DateTime
 	 */
 	public $startTime = null;
 
 	/**
 	 * The end time of the lesson time
+	 *
+	 * @var \DateTime
 	 */
 	public $endTime = null;
 

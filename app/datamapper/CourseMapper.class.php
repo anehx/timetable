@@ -16,6 +16,8 @@ use model\Course;
 class CourseMapper extends Mapper {
 	/**
 	 * Mapper singleton
+	 *
+	 * @var \datamapper\CourseMapper
 	 */
 	protected static $singleton = null;
 
@@ -100,6 +102,7 @@ class CourseMapper extends Mapper {
 	 * Updates or creates a course
 	 *
 	 * @param \model\Course $course
+	 * @return void
 	 */
 	public function save(\model\Course $course) {
 		if (!$course->id) {
@@ -142,6 +145,7 @@ class CourseMapper extends Mapper {
 	 * Deletes a course
 	 *
 	 * @param int $id
+	 * @return void
 	 */
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `course` WHERE `id` = ?");

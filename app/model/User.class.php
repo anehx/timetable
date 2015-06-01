@@ -17,37 +17,51 @@ use validator\UserValidator;
 class User extends Model {
 	/**
 	 * The identifier of the user
+	 *
+	 * @var int
 	 */
 	public $id = null;
 
 	/**
 	 * The unique username of the user
+	 *
+	 * @var string
 	 */
 	public $username = null;
 
 	/**
 	 * The password hash of the user
+	 *
+	 * @var string
 	 */
 	public $password = null;
 
 	/**
 	 * The plain password of the user
 	 * This is only used for creation and password change
+	 *
+	 * @var string
 	 */
 	public $rawPassword = null;
 
 	/**
 	 * The first name of the user (optional)
+	 *
+	 * @var string
 	 */
 	public $firstName = null;
 
 	/**
 	 * The last name of the user (optional)
+	 *
+	 * @var string
 	 */
 	public $lastName = null;
 
 	/**
 	 * Is this user a superuser?
+	 *
+	 * @var boolean
 	 */
 	public $isSuperuser = false;
 

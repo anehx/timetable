@@ -16,6 +16,8 @@ use model\Lesson;
 class LessonMapper extends Mapper {
 	/**
 	 * Mapper singleton
+	 *
+	 * @var \datamapper\LessonMapper
 	 */
 	protected static $singleton = null;
 
@@ -107,6 +109,7 @@ class LessonMapper extends Mapper {
 	 * Updates or creates a lesson
 	 *
 	 * @param \model\Lesson $lesson
+	 * @return void
 	 */
 	public function save(\model\Lesson $lesson) {
 		if (!$lesson->id) {
@@ -153,6 +156,7 @@ class LessonMapper extends Mapper {
 	 * Deletes a lesson
 	 *
 	 * @param int $id
+	 * @return void
 	 */
 	public function delete($id) {
 		$stmt = $this->db->prepare("DELETE FROM `lesson` WHERE `id` = ?");

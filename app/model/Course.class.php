@@ -21,16 +21,22 @@ use validator\CourseValidator;
 class Course extends Model {
 	/**
 	 * The identifier of the course
+	 *
+	 * @var int
 	 */
 	public $id = null;
 
 	/**
 	 * The name of the course
+	 *
+	 * @var string
 	 */
 	public $name = null;
 
 	/**
 	 * The user of the course
+	 *
+	 * @var int
 	 */
 	public $userID = null;
 
