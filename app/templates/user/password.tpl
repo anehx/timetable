@@ -26,5 +26,6 @@
 {/block}
 
 {block 'scripts'}
-	<script type="text/javascript" src="/js/password_edit.js"></script>
+	<script type="text/javascript" src="/js/user/password.js"></script>
+	<script type="text/javascript" src="/js/validator.js"></script>
 {/block}

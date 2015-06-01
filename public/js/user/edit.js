@@ -16,7 +16,7 @@ jQuery(function($, document) {
 			selector: 'input[name="firstName"]'
 		,	callback: function(selector) {
 				if ($(selector).val()) {
-					return $(selector).checkSpecialChar() && $(selector).checkLength(1, 50) && $(selector).checkSpecialChar()
+					return $(selector).checkSpecialChar() && $(selector).checkLength(1, 50) && $(selector).checkDigit()
 				}
 				else {
 					return true
@@ -27,7 +27,7 @@ jQuery(function($, document) {
 			selector: 'input[name="lastName"]'
 		,	callback: function(selector) {
 				if ($(selector).val()) {
-					return $(selector).checkSpecialChar() && $(selector).checkLength(1, 50) && $(selector).checkSpecialChar()
+					return $(selector).checkSpecialChar() && $(selector).checkLength(1, 50) && $(selector).checkDigit()
 				}
 				else {
 					return true

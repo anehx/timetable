@@ -1,15 +1,6 @@
 jQuery(function() {
 	'use strict'
 
-	$('.timepicker').each(function() {
-		$(this).timepicker({
-			minuteStep: 5,
-			showSeconds: false,
-			showMeridian: false,
-			defaultTime: false
-		})
-	})
-
 	var $submit = $('input[type="submit"]')
 	var validator = new Validator($submit)
 
@@ -44,4 +35,16 @@ jQuery(function() {
 
 		return dtTo > dtFrom;
 	}
+
+	/**
+	 * Initialize the timepicker
+	 */
+	$('.timepicker').each(function() {
+		$(this).timepicker({
+			minuteStep: 5,
+			showSeconds: false,
+			showMeridian: false,
+			defaultTime: false
+		})
+	})
 })

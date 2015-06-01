@@ -84,6 +84,13 @@ $.fn.checkWhitespace = function() {
 }
 
 /**
+ * Checks if a string contains digits
+ */
+$.fn.checkDigit = function() {
+	return !/[\d]+/.test(this.val())
+}
+
+/**
  * Checks if a string contains mutation
  */
 $.fn.checkMutation = function() {
