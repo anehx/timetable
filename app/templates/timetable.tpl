@@ -3,7 +3,7 @@
 {block 'content'}
 	{include 'time.tpl'}
 	{if $course}
-		<table class="table table-striped">
+		<table class="table table-striped hidden-xs">
 			<thead>
 				<th>Course {$course->name}</th>
 				{foreach $weekdays as $d}
@@ -21,6 +21,22 @@
 				{/foreach}
 			</tbody>
 		</table>		
+		{foreach $weekdays as $k => $v}
+			<table class="table table-striped visible-xs">
+				<thead>
+					<th>Course {$course->name}</th>
+					<th>{$v}</th>
+				</thead>
+				<tbody>
+					{foreach $lessonTimes as $lt}				
+						<tr>
+							<td>{$lt->getDisplayName()}</td>
+							<td>{foreach $lessons as $lesson}{if $k === $lesson->weekday && $lesson->lessonTimeID === $lt->id}{$lesson->name}{/if}{/foreach}</td>
+						</tr>
+					{/foreach}
+				</tbody>
+			</table>	
+		{/foreach}		
 	{/if}
 {/block}
 
