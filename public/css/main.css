@@ -118,3 +118,68 @@ a:hover {
   text-align: left;
   margin: 0 0 10px 0;
 }
+
+/* Clock */
+
+.time-circle {
+	width: 180px;
+	height: 180px;
+	margin: 50px auto;
+	position: relative;
+	border: 8px solid #fff;
+	border-radius: 50%;
+	box-shadow: 0 1px 8px rgba(34,34,34,0.3),inset 0 1px 8px rgba(34,34,34,0.3);
+	background-color: #DDDDDD;
+}
+
+.time-face {
+	width: 100%;
+	height: 100%;
+}
+
+.time-hour {
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -4px 0 -4px -25%;
+	padding: 4px 0 4px 25%;
+	background: #fff;
+	-webkit-transform-origin: 100% 50%;
+	-ms-transform-origin: 100% 50%;
+	transform-origin: 100% 50%;
+	box-shadow: 0 1px 8px rgba(34, 34, 34, 0.3);
+	border-radius: 4px 0 0 4px;
+}
+
+.time-minute {
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -40% -3px 0;
+	padding: 40% 3px 0;
+	background: #fff;
+	-webkit-transform-origin: 50% 100%;
+	-ms-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	box-shadow: 0 1px 8px rgba(34, 34, 34, 0.3);
+	border-radius: 3px 3px 0 0;
+}
+
+.time-second {
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -40% -1px 0 0;
+	padding: 40% 1px 0;
+	background: #f03e05;
+	box-shadow: 0 1px 8px rgba(34, 34, 34, 0.3);
+	-webkit-transform-origin: 50% 100%;
+	-ms-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+}
