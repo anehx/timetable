@@ -19,10 +19,10 @@ class UserValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *
-	 * @param \model\User
+	 * @param \inc\model\User
 	 * @return void
 	 */
-	public function __construct(\model\User $model) {
+	public function __construct(\inc\model\User $model) {
 		parent::__construct($model);
 	}
 
@@ -51,6 +51,7 @@ class UserValidator extends \lib\Validator {
 			$fieldValue = $this->model->firstName;
 
 			$this->checkSpecialChar($fieldValue, $fieldName);
+			$this->checkDigit($fieldValue, $fieldName);
 			$this->checkLength($fieldValue, $fieldName, 1, 50);
 		}
 	}
@@ -66,6 +67,7 @@ class UserValidator extends \lib\Validator {
 			$fieldValue = $this->model->lastName;
 
 			$this->checkSpecialChar($fieldValue, $fieldName);
+			$this->checkDigit($fieldValue, $fieldName);
 			$this->checkLength($fieldValue, $fieldName, 1, 50);
 		}
 	}

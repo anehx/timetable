@@ -17,7 +17,7 @@ class CourseMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *
-	 * @var \datamapper\CourseMapper
+	 * @var \inc\datamapper\CourseMapper
 	 */
 	protected static $singleton = null;
 
@@ -26,7 +26,7 @@ class CourseMapper extends \lib\Mapper {
 	 *
 	 * @param int $id
 	 * @throws \UnexpectedValueException
-	 * @return \model\Course
+	 * @return \inc\model\Course
 	 */
 	public function getCourseByID($id) {
 		$stmt = $this->db->prepare('
@@ -101,10 +101,10 @@ class CourseMapper extends \lib\Mapper {
 	/**
 	 * Updates or creates a course
 	 *
-	 * @param \model\Course $course
+	 * @param \inc\model\Course $course
 	 * @return void
 	 */
-	public function save(\model\Course $course) {
+	public function save(\inc\model\Course $course) {
 		if (!$course->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `course` (`name`, `userID`) VALUES (

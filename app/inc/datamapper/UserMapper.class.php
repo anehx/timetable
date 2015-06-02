@@ -17,7 +17,7 @@ class UserMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *
-	 * @var \datamapper\UserMapper
+	 * @var \inc\datamapper\UserMapper
 	 */
 	protected static $singleton = null;
 
@@ -27,7 +27,7 @@ class UserMapper extends \lib\Mapper {
 	 * @param int $id
 	 * @param bool $ignoreSuperusers (optional) 
 	 * @throws \UnexpectedValueException
-	 * @return \model\User
+	 * @return \inc\model\User
 	 */
 	public function getUserByID($id, $ignoreSuperusers = false) {
 		$where = $ignoreSuperusers ? 'AND `isSuperuser` = 0' : '';
@@ -55,7 +55,7 @@ class UserMapper extends \lib\Mapper {
 	 *
 	 * @param string $username
 	 * @throws \UnexpectedValueException
-	 * @return \model\User
+	 * @return \inc\model\User
 	 */
 	public function getUserByUsername($username) {
 		$stmt = $this->db->prepare("
@@ -103,10 +103,10 @@ class UserMapper extends \lib\Mapper {
 	/**
 	 * Updates or creates an user
 	 *
-	 * @param \model\User $user
+	 * @param \inc\model\User $user
 	 * @return void
 	 */
-	public function save(\model\User $user) {
+	public function save(\inc\model\User $user) {
 		if (!$user->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `user` (`username`, `firstName`, `lastName`, `password`, `isSuperuser`) VALUES (

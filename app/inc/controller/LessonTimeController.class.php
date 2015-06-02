@@ -111,8 +111,13 @@ class LessonTimeController extends \lib\Controller {
 		$this->requireSuperuser();
 
 		if (isset($_GET['id'])) {
-			$lessonTime = LessonTimeMapper::getInstance()->getLessonTimeByID($_GET['id']);
-			$lessonTime->delete();
+			try {
+				$lessonTime = LessonTimeMapper::getInstance()->getLessonTimeByID($_GET['id']);
+				$lessonTime->delete();
+			}
+			catch (\UnexpectedValueException $e) {
+				$this->addErrorMessage($e->getMessage());
+			}
 		}
 
 		header('Location: /?page=lessonTime');

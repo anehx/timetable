@@ -69,7 +69,7 @@ class User extends \lib\Model {
 	 * Fills the user model from a db row
 	 *
 	 * @param array $data
-	 * @return \model\User
+	 * @return \inc\model\User
 	 */
 	public static function fillFromRowData($data) {
 		$dataMap = array(
@@ -101,7 +101,7 @@ class User extends \lib\Model {
 	/**
 	 * Returns the user datamapper
 	 *
-	 * @return \datamapper\UserMapper
+	 * @return \inc\datamapper\UserMapper
 	 */
 	public function getMapper() {
 		return UserMapper::getInstance();
@@ -110,7 +110,7 @@ class User extends \lib\Model {
 	/**
 	 * Returns the user validator
 	 *
-	 * @return \validator\UserValidator
+	 * @return \inc\validator\UserValidator
 	 */
 	public function getValidator() {
 		return new UserValidator($this);

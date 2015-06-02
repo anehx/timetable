@@ -19,10 +19,10 @@ class CourseValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *
-	 * @param \model\Course $model
+	 * @param \inc\model\Course $model
 	 * @return void
 	 */
-	public function __construct(\model\Course $model) {
+	public function __construct(\inc\model\Course $model) {
 		parent::__construct($model);
 	}
 

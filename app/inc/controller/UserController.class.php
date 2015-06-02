@@ -184,10 +184,15 @@ class UserController extends \lib\Controller {
 		$this->requireSuperuser();
 
 		if (isset($_GET['id'])) {
-			$user = UserMapper::getInstance()->getUserByID($_GET['id']);
+			try {
+				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
 
-			if ($user->username != $_SESSION['username']) {
-				$user->delete();
+				if ($user->username != $_SESSION['username']) {
+					$user->delete();
+				}
+			}
+			catch (\UnexpectedValueException $e) {
+				$this->addErrorMessage($e->getMessage());
 			}
 		}
 

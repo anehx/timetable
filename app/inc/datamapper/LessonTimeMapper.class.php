@@ -17,7 +17,7 @@ class LessonTimeMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *
-	 * @var \datamapper\LessonTimeMapper
+	 * @var \inc\datamapper\LessonTimeMapper
 	 */
 	protected static $singleton = null;
 
@@ -26,7 +26,7 @@ class LessonTimeMapper extends \lib\Mapper {
 	 *
 	 * @param int $id
 	 * @throws \UnexpectedValueException
-	 * @return \model\LessonTime
+	 * @return \inc\model\LessonTime
 	 */
 	public function getLessonTimeByID($id) {
 		$stmt = $this->db->prepare('
@@ -72,10 +72,10 @@ class LessonTimeMapper extends \lib\Mapper {
 	/**
 	 * Updates or creates a lesson time
 	 *
-	 * @param \model\LessonTime $lessonTime
+	 * @param \inc\model\LessonTime $lessonTime
 	 * @return void
 	 */
-	public function save(\model\LessonTime $lessonTime) {
+	public function save(\inc\model\LessonTime $lessonTime) {
 		if (!$lessonTime->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `lessontime` (`startTime`, `endTime`) VALUES (

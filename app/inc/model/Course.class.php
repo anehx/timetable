@@ -45,7 +45,7 @@ class Course extends \lib\Model {
 	 * Fills the course model from a db row
 	 *
 	 * @param array $data
-	 * @return \model\Course
+	 * @return \inc\model\Course
 	 */
 	public static function fillFromRowData($data) {
 		$dataMap = array(
@@ -60,7 +60,7 @@ class Course extends \lib\Model {
 	/**
 	 * Returns the referring user
 	 *
-	 * @return \model\User
+	 * @return \inc\model\User
 	 */
 	public function getUser() {
 		return UserMapper::getInstance()->getUserByID($this->userID);
@@ -78,7 +78,7 @@ class Course extends \lib\Model {
 	/**
 	 * Returns the course datamapper
 	 *
-	 * @return \datamapper\CourseMapper
+	 * @return \inc\datamapper\CourseMapper
 	 */
 	public function getMapper() {
 		return CourseMapper::getInstance();
@@ -87,7 +87,7 @@ class Course extends \lib\Model {
 	/**
 	 * Returns the course validator
 	 *
-	 * @return \validator\CourseValidator
+	 * @return \inc\validator\CourseValidator
 	 */
 	public function getValidator() {
 		return new CourseValidator($this);

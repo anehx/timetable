@@ -15,7 +15,7 @@ class Validator {
 	/**
 	 * The model to validate
 	 *
-	 * @var \model\Model
+	 * @var \lib\Model
 	 */
 	protected $model = null;
 
@@ -36,10 +36,10 @@ class Validator {
 	/**
 	 * The class constructor
 	 *
-	 * @param \model\Model
+	 * @param \lib\Model
 	 * @return void
 	 */
-	public function __construct(\model\Model $model) {
+	public function __construct(\lib\Model $model) {
 		$this->model = $model;
 	}
 
@@ -82,6 +82,20 @@ class Validator {
 	protected function checkSpecialChar($str, $fieldName) {
 		if (preg_match('/[^A-Za-z0-9ÄÖÜäöüßéàè\s]+/', $str)) {
 			$this->errors[] = sprintf('Field "%s" must not contain special chars', $fieldName);
+			$this->isValid  = false;
+		}
+	}
+
+	/**
+	 * Checks if a string contains digits
+	 *
+	 * @param string $str
+	 * @param string $fieldName
+	 * @return void
+	 */
+	protected function checkDigit($str, $fieldName) {
+		if (preg_match('/\d+/', $str)) {
+			$this->errors[] = sprintf('Field "%s" must not contain digits', $fieldName);
 			$this->isValid  = false;
 		}
 	}

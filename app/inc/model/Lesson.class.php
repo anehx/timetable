@@ -74,7 +74,7 @@ class Lesson extends \lib\Model {
 	 * Fills the lesson model from a db row
 	 *
 	 * @param array $data
-	 * @return \model\Lesson
+	 * @return \inc\model\Lesson
 	 */
 	public static function fillFromRowData($data) {
 		$dataMap = array(
@@ -100,7 +100,7 @@ class Lesson extends \lib\Model {
 	/**
 	 * Returns the related lesson time
 	 *
-	 * @return \model\LessonTime
+	 * @return \inc\model\LessonTime
 	 */
 	public function getLessonTime() {
 		return LessonTimeMapper::getInstance()->getLessonTimeByID($this->lessonTimeID);
@@ -109,7 +109,7 @@ class Lesson extends \lib\Model {
 	/**
 	 * Returns the related course
 	 *
-	 * @return \model\Course
+	 * @return \inc\model\Course
 	 */
 	public function getCourse() {
 		return CourseMapper::getInstance()->getCourseByID($this->courseID);
@@ -118,7 +118,7 @@ class Lesson extends \lib\Model {
 	/**
 	 * Returns the lesson datamapper
 	 *
-	 * @return \datamapper\LessonMapper
+	 * @return \inc\datamapper\LessonMapper
 	 */
 	public function getMapper() {
 		return LessonMapper::getInstance();
@@ -127,7 +127,7 @@ class Lesson extends \lib\Model {
 	/**
 	 * Returns the lesson validator
 	 *
-	 * @return \validator\LessonValidator
+	 * @return \inc\validator\LessonValidator
 	 */
 	public function getValidator() {
 		return new LessonValidator($this);

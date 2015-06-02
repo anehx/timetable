@@ -22,10 +22,10 @@ class LessonValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *
-	 * @param \model\Lesson
+	 * @param \inc\model\Lesson
 	 * @return void
 	 */
-	public function __construct(\model\Lesson $model) {
+	public function __construct(\inc\model\Lesson $model) {
 		parent::__construct($model);
 	}
 

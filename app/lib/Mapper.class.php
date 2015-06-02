@@ -20,7 +20,7 @@ class Mapper {
 	 * This needs to be in every children of this
 	 * class too, to use getInstance()
 	 *
-	 * @var \datamapper\Mapper
+	 * @var \lib\Mapper
 	 */
 	protected static $singleton = null;
 

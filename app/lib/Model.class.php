@@ -52,6 +52,8 @@ class Model {
 
 	/**
 	 * Validates the model
+	 *
+	 * @return \lib\Validator
 	 */
 	public function validate() { 
 		return $this->getValidator()->validate();

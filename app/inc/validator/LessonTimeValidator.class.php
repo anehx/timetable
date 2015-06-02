@@ -17,10 +17,10 @@ class LessonTimeValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *
-	 * @param \model\LessonTime $model
+	 * @param \inc\model\LessonTime $model
 	 * @return void
 	 */
-	public function __construct(\model\LessonTime $model) {
+	public function __construct(\inc\model\LessonTime $model) {
 		parent::__construct($model);
 	}
 

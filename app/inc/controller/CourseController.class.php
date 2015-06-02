@@ -111,8 +111,13 @@ class CourseController extends \lib\Controller {
 		$this->requireSuperuser();
 
 		if (isset($_GET['id'])) {
-			$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
-			$course->delete();
+			try {
+				$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
+				$course->delete();
+			}
+			catch (\UnexpectedValueException $e) {
+				$this->addErrorMessage($e->getMessage());
+			}
 		}
 
 		header('Location: /?page=course');

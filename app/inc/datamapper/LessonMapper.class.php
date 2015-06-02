@@ -17,7 +17,7 @@ class LessonMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *
-	 * @var \datamapper\LessonMapper
+	 * @var \inc\datamapper\LessonMapper
 	 */
 	protected static $singleton = null;
 
@@ -26,7 +26,7 @@ class LessonMapper extends \lib\Mapper {
 	 *
 	 * @param int $id
 	 * @throws \UnexpectedValueException
-	 * @return \model\Lesson
+	 * @return \inc\model\Lesson
 	 */
 	public function getLessonByID($id) {
 		$stmt = $this->db->prepare('
@@ -56,7 +56,7 @@ class LessonMapper extends \lib\Mapper {
 	 */
 	public function getLessonsByCourse($courseID) {
 		$stmt = $this->db->prepare('
-			SELECT * FROM `lesson`
+			SELECT `lesson`.* FROM `lesson`
 			JOIN `lessontime` as `lt` ON (`lesson`.`lessonTimeID` = `lt`.`id`)
 			WHERE `courseID` = ?
 			ORDER BY `weekday`, `lt`.`startTime`
@@ -84,7 +84,7 @@ class LessonMapper extends \lib\Mapper {
 	 * @param int $weekday
 	 * @param int $courseID
 	 * @throws \UnexpectedValueException
-	 * @return \model\Lesson
+	 * @return \inc\model\Lesson
 	 */
 	public function getLessonByTimeAndCourse($lessonTimeID, $weekday, $courseID) {
 		$stmt = $this->db->prepare('
@@ -109,10 +109,10 @@ class LessonMapper extends \lib\Mapper {
 	/**
 	 * Updates or creates a lesson
 	 *
-	 * @param \model\Lesson $lesson
+	 * @param \inc\model\Lesson $lesson
 	 * @return void
 	 */
-	public function save(\model\Lesson $lesson) {
+	public function save(\inc\model\Lesson $lesson) {
 		if (!$lesson->id) {
 			$stmt = $this->db->prepare("
 				INSERT INTO `lesson` (`name`, `weekday`, `lessonTimeID`, `courseID`) VALUES (

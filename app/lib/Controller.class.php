@@ -92,10 +92,10 @@ class Controller {
 	 * Page requires ownage of given course
 	 * Displays access denied page if not allowed
 	 *
-	 * @param \model\Course $course
+	 * @param \inc\model\Course $course
 	 * @return void
 	 */
-	protected function requireCourseOwnage(\model\Course $course) {
+	protected function requireCourseOwnage(\inc\model\Course $course) {
 		if ($_SESSION['userID'] !== $course->userID) {
 			$this->smarty->display('access_denied.tpl');
 			exit;

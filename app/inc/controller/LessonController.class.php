@@ -163,11 +163,16 @@ class LessonController extends \lib\Controller {
 	 */
 	private function handleDelete() {
 		if (isset($_GET['id'])) {
-			$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);
-			$course = $lesson->getCourse();
+			try {
+				$lesson = LessonMapper::getInstance()->getLessonByID($_GET['id']);
+				$course = $lesson->getCourse();
+				$this->requireCourseOwnage($course);
+				$lesson->delete();
+			}
+			catch (\UnexpectedValueException $e) {
+				$this->addErrorMessage($e->getMessage());
+			}
 		}
-		$this->requireCourseOwnage($course);
-		$lesson->delete();
 
 		header(sprintf('Location: /?page=lesson&action=list&courseID=%d', $course->id));
 	}
