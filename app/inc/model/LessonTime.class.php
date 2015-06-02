@@ -12,12 +12,12 @@
  * @license    MIT
  */
 
-namespace model;
+namespace inc\model;
 
-use datamapper\LessonTimeMapper;
-use validator\LessonTimeValidator;
+use inc\datamapper\LessonTimeMapper;
+use inc\validator\LessonTimeValidator;
 
-class LessonTime extends Model {
+class LessonTime extends \lib\Model {
 	/**
 	 * The identifier of the lesson time
 	 *

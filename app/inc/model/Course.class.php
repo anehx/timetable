@@ -12,14 +12,14 @@
  * @license    MIT
  */
 
-namespace model;
+namespace inc\model;
 
-use datamapper\CourseMapper;
-use datamapper\UserMapper;
-use datamapper\LessonMapper;
-use validator\CourseValidator;
+use inc\datamapper\CourseMapper;
+use inc\datamapper\UserMapper;
+use inc\datamapper\LessonMapper;
+use inc\validator\CourseValidator;
 
-class Course extends Model {
+class Course extends \lib\Model {
 	/**
 	 * The identifier of the course
 	 *

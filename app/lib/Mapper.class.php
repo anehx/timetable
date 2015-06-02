@@ -9,7 +9,7 @@
  * @license    MIT
  */
 
-namespace datamapper;
+namespace lib;
 
 use util\DbManager;
 

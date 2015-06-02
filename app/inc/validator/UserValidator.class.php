@@ -11,11 +11,11 @@
  * @license    MIT
  */
 
-namespace validator;
+namespace inc\validator;
 
-use datamapper\UserMapper;
+use inc\datamapper\UserMapper;
 
-class UserValidator extends Validator {
+class UserValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *

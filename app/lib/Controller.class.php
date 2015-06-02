@@ -9,7 +9,7 @@
  * @license    MIT
  */
 
-namespace controller;
+namespace lib;
 
 use util\ConfManager;
 use Smarty;

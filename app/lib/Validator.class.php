@@ -9,7 +9,7 @@
  * @license    MIT
  */
 
-namespace validator;
+namespace lib;
 
 class Validator {
 	/**

@@ -9,11 +9,11 @@
  * @license    MIT
  */
 
-namespace datamapper;
+namespace inc\datamapper;
 
-use model\User;
+use inc\model\User;
 
-class UserMapper extends Mapper {
+class UserMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *

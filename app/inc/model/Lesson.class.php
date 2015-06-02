@@ -12,14 +12,14 @@
  * @license    MIT
  */
 
-namespace model;
+namespace inc\model;
 
-use datamapper\CourseMapper;
-use datamapper\LessonMapper;
-use datamapper\LessonTimeMapper;
-use validator\LessonValidator;
+use inc\datamapper\CourseMapper;
+use inc\datamapper\LessonMapper;
+use inc\datamapper\LessonTimeMapper;
+use inc\validator\LessonValidator;
 
-class Lesson extends Model {
+class Lesson extends \lib\Model {
 	/**
 	 * Weekday integer to string map
 	 *

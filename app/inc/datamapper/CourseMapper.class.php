@@ -9,11 +9,11 @@
  * @license    MIT
  */
 
-namespace datamapper;
+namespace inc\datamapper;
 
-use model\Course;
+use inc\model\Course;
 
-class CourseMapper extends Mapper {
+class CourseMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *

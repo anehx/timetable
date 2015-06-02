@@ -9,12 +9,12 @@
  * @license    MIT
  */
 
-namespace controller;
+namespace inc\controller;
 
-use datamapper\UserMapper;
-use model\User;
+use inc\datamapper\UserMapper;
+use inc\model\User;
 
-class UserController extends Controller {
+class UserController extends \lib\Controller {
 	/**
 	 * The default template
 	 *

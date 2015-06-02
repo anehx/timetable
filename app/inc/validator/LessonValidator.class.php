@@ -11,14 +11,14 @@
  * @license    MIT
  */
 
-namespace validator;
+namespace inc\validator;
 
-use datamapper\CourseMapper;
-use datamapper\LessonMapper;
-use datamapper\LessonTimeMapper;
-use model\Lesson;
+use inc\datamapper\CourseMapper;
+use inc\datamapper\LessonMapper;
+use inc\datamapper\LessonTimeMapper;
+use inc\model\Lesson;
 
-class LessonValidator extends Validator {
+class LessonValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *

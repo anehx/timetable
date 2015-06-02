@@ -9,12 +9,12 @@
  * @license    MIT
  */
 
-namespace model;
+namespace inc\model;
 
-use datamapper\UserMapper;
-use validator\UserValidator;
+use inc\datamapper\UserMapper;
+use inc\validator\UserValidator;
 
-class User extends Model {
+class User extends \lib\Model {
 	/**
 	 * The identifier of the user
 	 *

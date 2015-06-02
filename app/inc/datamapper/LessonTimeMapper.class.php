@@ -9,11 +9,11 @@
  * @license    MIT
  */
 
-namespace datamapper;
+namespace inc\datamapper;
 
-use model\LessonTime;
+use inc\model\LessonTime;
 
-class LessonTimeMapper extends Mapper {
+class LessonTimeMapper extends \lib\Mapper {
 	/**
 	 * Mapper singleton
 	 *

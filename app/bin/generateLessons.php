@@ -2,9 +2,9 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use datamapper\LessonTimeMapper;
-use datamapper\CourseMapper;
-use model\Lesson;
+use inc\datamapper\LessonTimeMapper;
+use inc\datamapper\CourseMapper;
+use inc\model\Lesson;
 
 $lessons = array(
 	'Englisch',

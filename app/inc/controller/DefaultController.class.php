@@ -9,15 +9,15 @@
  * @license    MIT
  */
 
-namespace controller;
+namespace inc\controller;
 
-use datamapper\CourseMapper;
-use datamapper\UserMapper;
-use datamapper\LessonTimeMapper;
-use datamapper\LessonMapper;
-use model\Lesson;
+use inc\datamapper\CourseMapper;
+use inc\datamapper\UserMapper;
+use inc\datamapper\LessonTimeMapper;
+use inc\datamapper\LessonMapper;
+use inc\model\Lesson;
 
-class DefaultController extends Controller {
+class DefaultController extends \lib\Controller {
 	/**
 	 * The default template
 	 *

@@ -11,9 +11,9 @@
  * @license    MIT
  */
 
-namespace validator;
+namespace inc\validator;
 
-class LessonTimeValidator extends Validator {
+class LessonTimeValidator extends \lib\Validator {
 	/**
 	 * The class constructor
 	 *

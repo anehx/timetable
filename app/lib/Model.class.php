@@ -9,7 +9,7 @@
  * @license    MIT
  */
 
-namespace model;
+namespace lib;
 
 class Model {
 	/**
