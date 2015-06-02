@@ -71,7 +71,6 @@ class LessonController extends Controller {
 	 */
 	private function handleList() {
 		$this->tpl = 'lesson/list.tpl';
-		$errors = [];
 		
 		if (isset($_GET['courseID'])) {
 			try {
@@ -79,16 +78,15 @@ class LessonController extends Controller {
 				$this->requireCourseOwnage($course);
 			}
 			catch (\UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 				$course = null;
 			}
 		}
 		else {
-			$errors[] = 'No course id given';
+			$this->addErrorMessage('No course id given');
 			$course = null;
 		}
 
-		$this->smarty->assign('errors', $errors);
 		$this->smarty->assign('course', $course);
 		$this->smarty->assign('lessons', $course ? $course->getLessons() : null);
 	}
@@ -110,7 +108,7 @@ class LessonController extends Controller {
 				$course = $lesson->getCourse();
 			}
 			catch (\UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 			}
 		}
 		else {
@@ -120,11 +118,11 @@ class LessonController extends Controller {
 					$lesson = new Lesson();
 				}
 				catch (\UnexpectedValueException $e) {
-					$errors[] = $e->getMessage();
+					$this->addErrorMessage($e->getMessage());
 				}
 			}
 			else {
-				$errors[] = 'No course id given';
+				$this->addErrorMessage('No course id given');
 			}
 		}
 
@@ -146,13 +144,14 @@ class LessonController extends Controller {
 				header(sprintf('Location: /?page=lesson&action=list&courseID=%d', $course->id));
 			}
 			else {
-				$errors = array_merge($errors, $validator->errors);
+				foreach ($validator->errors as $e) {
+					$this->addErrorMessage($e);
+				}
 			}			
 		}
 
 		$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());
 		$this->smarty->assign('weekdays', Lesson::WEEKDAY_MAP);
-		$this->smarty->assign('errors', $errors);
 		$this->smarty->assign('course', $course);
 		$this->smarty->assign('lesson', $lesson);
 	}

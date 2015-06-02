@@ -30,6 +30,13 @@ class Controller {
 	protected $smarty = null;
 
 	/**
+	 * Messages
+	 *
+	 * @var array
+	 */
+	private $messages = null;
+
+	/**
 	 * Page requires superuser permission
 	 * Displays access denied page if not allowed
 	 *
@@ -40,6 +47,45 @@ class Controller {
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}
+	}
+
+	/**
+	 * Adds an error message
+	 *
+	 * @param string $text
+	 * @return void
+	 */
+	protected function addErrorMessage($text) {
+		$this->messages[] = array(
+			'text' => $text,
+			'type' => 'danger'
+		);
+	}
+
+	/**
+	 * Adds a notify message
+	 *
+	 * @param string $text
+	 * @return void
+	 */
+	protected function addNotifyMessage($text) {
+		$this->messages[] = array(
+			'text' => $text,
+			'type' => 'info'
+		);
+	}
+
+	/**
+	 * Adds a success message
+	 *
+	 * @param string $text
+	 * @return void
+	 */
+	protected function addSuccessMessage($text) {
+		$this->messages[] = array(
+			'text' => $text,
+			'type' => 'success'
+		);
 	}
 
 	/**
@@ -89,6 +135,7 @@ class Controller {
 	 * @return void
 	 */
 	public function handle() {
+		$this->smarty->assign('messages', $this->messages);
 		$this->smarty->display($this->tpl);
 	}
 }

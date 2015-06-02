@@ -68,14 +68,13 @@ class CourseController extends Controller {
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'course/edit.tpl';
-		$errors = [];
 
 		if (isset($_GET['id'])) {
 			try {
 				$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
 			}
 			catch (\UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 				$course = null;
 			}
 		}
@@ -93,11 +92,12 @@ class CourseController extends Controller {
 				header('Location: /?page=course');
 			}
 			else {
-				$errors = array_merge($errors, $validator->errors);
+				foreach ($validator->errors as $e) {
+					$this->addErrorMessage($e);
+				}
 			}
 		}
 		
-		$this->smarty->assign('errors', $errors);
 		$this->smarty->assign('users', UserMapper::getInstance()->getUsers(true));
 		$this->smarty->assign('course', $course);
 	}

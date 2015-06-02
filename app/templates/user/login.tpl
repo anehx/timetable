@@ -13,15 +13,6 @@
 				<input class="form-control" name="password" type="password" placeholder="Password" required />
 			</div>
 			<button class="btn btn-primary">Login</button>
-			{if isset($errors) && $errors}
-				<div class="alert alert-danger">
-					<ul>
-					{foreach $errors as $error}
-						<li>{$error}</li>
-					{/foreach}
-					</ul>
-				</div>
-			{/if}
 		</div>
 	</form>
 {/block}

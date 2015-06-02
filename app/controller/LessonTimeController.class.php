@@ -68,14 +68,13 @@ class LessonTimeController extends Controller {
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'lessontime/edit.tpl';
-		$errors = array();
 
 		if (isset($_GET['id'])) {
 			try {
 				$lessonTime = LessonTimeMapper::getInstance()->getLessonTimeByID($_GET['id']);
 			}
 			catch (\UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 				$lessonTime = null;
 			}
 		}
@@ -94,11 +93,12 @@ class LessonTimeController extends Controller {
 				header('Location: /?page=lessonTime');
 			}
 			else {
-				$errors = array_merge($errors, $validator->errors);
+				foreach ($validator->errors as $e) {
+					$this->addErrorMessage($e);
+				}
 			}
 		}
 
-		$this->smarty->assign('errors', $errors);
 		$this->smarty->assign('lessonTime', $lessonTime);
 	}
 

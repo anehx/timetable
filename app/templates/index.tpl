@@ -12,18 +12,20 @@
 	<body>
 		{include 'navbar.tpl'}
 		<div class="container">
-			{if isset($errors) && !empty($errors)}
-				<div class="alert alert-danger"><ul>
-				{foreach $errors as $error}
-					<li>{$error}</li>
+			{if $messages}
+				<div id="messages"><ul>
+				{foreach $messages as $m}
+					<div class="alert alert-{$m['type']} message">{$m['text']}</div>
 				{/foreach}
-				</ul></div>
+				</div>
 			{/if}
 			{block 'content'}{/block}
 		</div>
 		{include 'footer.tpl'}
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/notify.js"></script>
+		<script src="/js/main.js"></script>
 		{block 'scripts'}{/block}
 	</body>
 </html>

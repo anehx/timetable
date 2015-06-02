@@ -76,7 +76,7 @@ class UserController extends Controller {
 	 */
 	private function handlePassword() {
 		$this->tpl = 'user/password.tpl';
-		$errors = array();
+
 		if (isset($_GET['id'])) {
 			try {
 				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
@@ -107,20 +107,22 @@ class UserController extends Controller {
 							}
 						}
 						else {
-							$errors = array_merge($errors, $validator->errors);
+							foreach ($validator->errors as $e) {
+								$this->addErrorMessage($e);
+							}
 						}
 					}
 					else {
-						$errors[] = 'Old password is wrong';
+						$this->addErrorMessage('Old password is wrong');
 					}
 				}
 			}
 			catch (UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 				$user = null;
 			}
 		}
-		$this->smarty->assign('errors', $errors);
+
 		$this->smarty->assign('user', $user);
 	}
 
@@ -132,14 +134,13 @@ class UserController extends Controller {
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'user/edit.tpl';
-		$errors = array();
 
 		if (isset($_GET['id'])) {
 			try {
 				$user = UserMapper::getInstance()->getUserByID($_GET['id']);
 			}
 			catch (\UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 				$user = null;
 			}
 		}
@@ -165,11 +166,12 @@ class UserController extends Controller {
 				header('Location: /?page=user');
 			}
 			else {
-				$errors = array_merge($errors, $validator->errors);
+				foreach ($validator->errors as $e) {
+					$this->addErrorMessage($e);
+				}
 			}
 		}
 
-		$this->smarty->assign('errors', $errors);
 		$this->smarty->assign('user', $user);
 	}
 
@@ -207,7 +209,6 @@ class UserController extends Controller {
 		if ($_POST) {
 			$username = $_POST['username'];
 			$password = $_POST['password'];
-			$errors = array();
 
 			try {
 				$user = UserMapper::getInstance()->getUserByUsername($username);
@@ -221,13 +222,12 @@ class UserController extends Controller {
 					header('Location: /');
 				}
 				else {
-					$errors[] = 'Password is wrong.';
+					$this->addErrorMessage('Password is wrong.');
 				}
 			}
 			catch (\UnexpectedValueException $e) {
-				$errors[] = $e->getMessage();
+				$this->addErrorMessage($e->getMessage());
 			}
-			$this->smarty->assign('errors', $errors);
 		}
 	}
 
