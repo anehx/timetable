@@ -64,7 +64,7 @@ class DefaultController extends \lib\Controller {
 	 * @return void
 	 */
 	private function handleOverview() {
-		$this->tpl = 'list.tpl';
+		$this->tpl = 'timetable.tpl';
 
 		if (isset($_GET['id'])) {
 			$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);

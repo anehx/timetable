@@ -1,12 +1,11 @@
 {extends 'index.tpl'}
 
 {block 'content'}
-	<div id="time" class="center-text"></div>
+	{include 'time.tpl'}
 	{if $course}
-		<h1 class="center-text">{$course->name}</h1>
 		<table class="table table-striped">
 			<thead>
-				<th></th>
+				<th>Course {$course->name}</th>
 				{foreach $weekdays as $d}
 					<th>{$d}</th>
 				{/foreach}
@@ -26,5 +25,5 @@
 {/block}
 
 {block 'scripts'}
-<script src="/js/time.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/js/time.js"></script>
 {/block}

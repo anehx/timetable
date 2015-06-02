@@ -1,21 +1,18 @@
 jQuery(function() {
 	'use strict'
 
-	function checkTime(i) {
-		return (i < 10) ? "0" + i : i;
+	function updateClock(){
+		var now = new Date()
+		var second = now.getSeconds() * 6
+		var minute = now.getMinutes() * 6 + second / 60
+		var hour = ((now.getHours() % 12) / 12) * 360 + 90 + minute / 12
+
+		$('#hour').css("transform", "rotate(" + hour + "deg)")
+		$('#minute').css("transform", "rotate(" + minute + "deg)")
+		$('#second').css("transform", "rotate(" + second + "deg)")
 	}
 
-	function startTime() {
-		var today = new Date()
-		var h = checkTime(today.getHours())
-		var m = checkTime(today.getMinutes())
-		var s = checkTime(today.getSeconds())
+	updateClock()
 
-		$('#time').html(h + ":" + m + ":" + s)
-
-		setTimeout(function() {
-			startTime()
-		}, 500);
-	}
-	startTime();
+	setInterval(updateClock, 1000)
 })
