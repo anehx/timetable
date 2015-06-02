@@ -1,10 +1,11 @@
 <footer>
 	<div class="container">
-		<div class="col-md-6">
-			<a href="/doc">API Documentation</a>
-		</div>
-		<div class="col-md-6 text-right">
-			<em>&copy; 2015 Jonas Metzener &amp; Fabian Jäiser </em>
-		</div>
+		<ul>
+			<li class="hidden-xs"><a href="/doc"><i class="fa fa-code"></i>&nbsp;API Documentation</a></li>
+			<li class="hidden-xs">|</li>
+			<li class="hidden-xs"><a href="https://github.com/anehx/timetable"><i class="fa fa-github"></i>&nbsp;Source on Github</a></li>
+			<li class="hidden-xs">|</li>
+			<li><em>&copy; 2015 Jonas Metzener &amp; Fabian Jäiser </em></li>
+		</ul>
 	</div>
 </footer>
