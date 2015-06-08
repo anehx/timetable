@@ -27,7 +27,7 @@ util\DbManager::getConnection()->query("TRUNCATE TABLE `lesson`");
 
 foreach ($courses as $course) {
 	print("Generating lessons for course $course->name...\n");
-	foreach (Lesson::WEEKDAY_MAP as $key => $val) {
+	foreach (Lesson::$weekday_map as $key => $val) {
 		if ($key > 5) {
 			continue;
 		}
