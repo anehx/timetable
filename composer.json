@@ -5,7 +5,8 @@
         "smarty/smarty": "^3.1"
     },
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "2.*"
+        "phpdocumentor/phpdocumentor": "2.*",
+		"phpdocumentor/graphviz": "^1.0"
     },
     "autoload": {
         "classmap": [ "app/" ]

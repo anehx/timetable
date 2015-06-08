@@ -160,7 +160,7 @@ class LessonController extends \lib\Controller {
 		}
 
 		$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());
-		$this->smarty->assign('weekdays', Lesson::WEEKDAY_MAP);
+		$this->smarty->assign('weekdays', Lesson::$weekday_map);
 		$this->smarty->assign('course', $course);
 		$this->smarty->assign('lesson', $lesson);
 	}

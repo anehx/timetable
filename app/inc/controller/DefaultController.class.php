@@ -70,7 +70,7 @@ class DefaultController extends \lib\Controller {
 			$course = CourseMapper::getInstance()->getCourseByID($_GET['id']);
 			$this->smarty->assign('course', $course);
 			$this->smarty->assign('lessonTimes', LessonTimeMapper::getInstance()->getLessonTimes());
-			$this->smarty->assign('weekdays', Lesson::WEEKDAY_MAP);
+			$this->smarty->assign('weekdays', Lesson::$weekday_map);
 			$this->smarty->assign('lessons', LessonMapper::getInstance()->getLessonsByCourse($_GET['id']));
 		}
 	}

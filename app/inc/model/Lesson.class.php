@@ -25,7 +25,7 @@ class Lesson extends \lib\Model {
 	 *
 	 * @var array
 	 */
-	const WEEKDAY_MAP = array(
+	public static $weekday_map = array(
 		1 => 'Monday',
 		2 => 'Tuesday',
 		3 => 'Wednesday',
@@ -94,7 +94,7 @@ class Lesson extends \lib\Model {
 	 * @return string
 	 */
 	public function getWeekday() {
-		return self::WEEKDAY_MAP[$this->weekday];
+		return self::$weekday_map[$this->weekday];
 	}
 
 	/**

@@ -62,7 +62,7 @@ class LessonValidator extends \lib\Validator {
 	 * @return void
 	 */
 	private function validateWeekday() {
-		if (!array_key_exists($this->model->weekday, Lesson::WEEKDAY_MAP)) {
+		if (!array_key_exists($this->model->weekday, Lesson::$weekday_map)) {
 			$this->errors[] = 'Invalid weekday';
 			$this->isValid = false;
 		}
