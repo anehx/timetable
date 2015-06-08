@@ -23,6 +23,13 @@ class LessonTimeController extends \lib\Controller {
 	protected $tpl = 'lessontime/list.tpl';
 
 	/**
+	 * The page title
+	 *
+	 * @var string
+	 */
+	protected $title = 'Lesson times';
+
+	/**
 	 * Handles all requests on this page
 	 *
 	 * @return void
@@ -68,6 +75,7 @@ class LessonTimeController extends \lib\Controller {
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'lessontime/edit.tpl';
+		$this->title = 'Edit lesson time';
 
 		if (isset($_GET['id'])) {
 			try {

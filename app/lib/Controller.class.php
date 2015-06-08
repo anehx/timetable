@@ -23,6 +23,13 @@ class Controller {
 	protected $tpl = 'index.tpl';
 
 	/**
+	 * The default title
+	 *
+	 * @var string
+	 */
+	protected $title = '';
+
+	/**
 	 * Global smarty object
 	 *
 	 * @var Smarty
@@ -136,6 +143,7 @@ class Controller {
 	 */
 	public function handle() {
 		$this->smarty->assign('messages', $this->messages);
+		$this->smarty->assign('title', $this->title);
 		$this->smarty->display($this->tpl);
 	}
 }

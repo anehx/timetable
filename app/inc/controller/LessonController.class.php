@@ -25,6 +25,14 @@ class LessonController extends \lib\Controller {
 	protected $tpl = 'lesson/courseList.tpl';
 
 	/**
+	 * The page title
+	 *
+	 * @var string
+	 */
+	protected $title = 'Lessons';
+
+
+	/**
 	 * Handles all requests on this page
 	 *
 	 * @return void
@@ -87,6 +95,7 @@ class LessonController extends \lib\Controller {
 			$course = null;
 		}
 
+		$this->title = 'Lessons for ' . $course->name;
 		$this->smarty->assign('course', $course);
 		$this->smarty->assign('lessons', $course ? $course->getLessons() : null);
 	}
@@ -98,7 +107,7 @@ class LessonController extends \lib\Controller {
 	 */
 	private function handleEdit() {
 		$this->tpl = 'lesson/edit.tpl';
-		$errors = [];
+		$this->title = 'Edit lesson';
 		$lesson = null;
 		$course = null;
 		

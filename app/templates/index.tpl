@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>timetable</title>
+		<title>timetable{if $title} - {$title}{/if}</title>
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/main.css">

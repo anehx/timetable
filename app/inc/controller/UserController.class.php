@@ -23,6 +23,13 @@ class UserController extends \lib\Controller {
 	protected $tpl = 'user/list.tpl';
 
 	/**
+	 * The page title
+	 *
+	 * @var string
+	 */
+	protected $title = 'Users';
+
+	/**
 	 * Handles all requests on this page
 	 *
 	 * @return void
@@ -76,6 +83,7 @@ class UserController extends \lib\Controller {
 	 */
 	private function handlePassword() {
 		$this->tpl = 'user/password.tpl';
+		$this->title = 'Edit password';
 
 		if (isset($_GET['id'])) {
 			try {
@@ -134,6 +142,7 @@ class UserController extends \lib\Controller {
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'user/edit.tpl';
+		$this->title = 'Edit user';
 
 		if (isset($_GET['id'])) {
 			try {
@@ -206,6 +215,7 @@ class UserController extends \lib\Controller {
 	 */
 	private function handleLogin() {
 		$this->tpl = 'user/login.tpl';
+		$this->title = 'Login';
 
 		if (isset($_SESSION['username'])) {
 			header('Location: /');

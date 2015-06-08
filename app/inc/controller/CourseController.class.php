@@ -24,6 +24,13 @@ class CourseController extends \lib\Controller {
 	protected $tpl = 'course/list.tpl';
 
 	/**
+	 * The page title
+	 *
+	 * @var string
+	 */
+	protected $title = 'Courses';
+
+	/**
 	 * Handles all requests on this page
 	 *
 	 * @return void
@@ -68,6 +75,7 @@ class CourseController extends \lib\Controller {
 	private function handleEdit() {
 		$this->requireSuperuser();
 		$this->tpl = 'course/edit.tpl';
+		$this->title = 'Edit course';
 
 		if (isset($_GET['id'])) {
 			try {
