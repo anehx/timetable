@@ -51,6 +51,8 @@ class Controller {
 	 */
 	protected function requireSuperuser() {
 		if (!isset($_SESSION['isSuperuser']) || !$_SESSION['isSuperuser']) {
+			$this->smarty->assign('messages', $this->messages);
+			$this->smarty->assign('title', 'Access denied');
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}
@@ -104,6 +106,8 @@ class Controller {
 	 */
 	protected function requireCourseOwnage(\inc\model\Course $course) {
 		if ($_SESSION['userID'] !== $course->userID) {
+			$this->smarty->assign('messages', $this->messages);
+			$this->smarty->assign('title', 'Access denied');
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}
@@ -117,6 +121,8 @@ class Controller {
 	 */
 	protected function requireLogin() {
 		if (!isset($_SESSION['username'])) {
+			$this->smarty->assign('messages', $this->messages);
+			$this->smarty->assign('title', 'Access denied');
 			$this->smarty->display('access_denied.tpl');
 			exit;
 		}

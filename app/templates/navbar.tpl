@@ -29,7 +29,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				{if !isset($smarty.session.username)}
-					<li {if isset($smarty.get.page) && $smarty.get.page == 'user' && $smarty.get.action == 'login'}class="active"{/if}><a href="?page=user&amp;action=login">Login</a></li>
+					<li {if isset($smarty.get.page) && $smarty.get.page == 'user' && isset($smarty.get.action) && $smarty.get.action == 'login'}class="active"{/if}><a href="?page=user&amp;action=login">Login</a></li>
 				{else}
 					<li class="hidden-xs"><p class="navbar-text login-name">Logged in as</p></li>
 					<li class="dropdown">
