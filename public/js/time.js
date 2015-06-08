@@ -1,6 +1,9 @@
 jQuery(function() {
 	'use strict'
 
+	/**
+	 * Updates the rotation of the analog clock
+	 */
 	function updateClock(){
 		var now = new Date()
 		var second = now.getSeconds() * 6
@@ -12,6 +15,9 @@ jQuery(function() {
 		$('#second').css("transform", "rotate(" + second + "deg)")
 	}
 
+	/**
+	 * Main function to highlight current lesson
+	 */
 	function updateHighlight() {
 		var now = new Date()
 		var weekday = now.getDay()
@@ -24,12 +30,18 @@ jQuery(function() {
 		}
 	}
 
+	/**
+	 * Highlight current lesson in the big desktop table
+	 */
 	function updateDesktopTable(now) {
 		$('#timetable tbody tr').each(function(){
 			$(this).find('td[data-weekday="'+now.getDay()+'"]').toggleClass('highlight', timeIsBetween($(this).data('time-from'), $(this).data('time-to'), now))
 		})
 	}
 
+	/**
+	 * Highlight current lesson in the small mobile tables
+	 */
 	function updateMobileTable(now) {
 		var $table = $('#timetable-wd-'+now.getDay()+' tbody')
 
@@ -38,6 +50,9 @@ jQuery(function() {
 		})
 	}
 
+	/**
+	 * Checks if a given time is between two given times
+	 */
 	function timeIsBetween(from, to, now) {
 		var dtFrom = new Date()
 		var dtTo   = new Date()
@@ -50,9 +65,12 @@ jQuery(function() {
 		return dtNow < dtTo && dtNow > dtFrom
 	}
 
+	// Initially run update functions
 	updateClock()
 	updateHighlight()
 
+	// Update clock every second
 	setInterval(updateClock, 1000)
+	// Update highlight every 10 seconds
 	setInterval(updateHighlight, 10000)
 })

@@ -1,6 +1,5 @@
 jQuery(function($, document) {
 	'use strict'
-	'use strict'
 
 	var $submit = $('input[type="submit"]')
 	var validator = new Validator($submit)
