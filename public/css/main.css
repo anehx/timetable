@@ -31,15 +31,9 @@ footer ul li:first-child {
 	padding: 0;
 }
 
-.fully-center {
-	position: absolute;
-	top: 0; right: 0; bottom: 0; left: 0;
-	margin: auto;
-}
-
 .login {
 	width: 250px;
-	height: 700px;
+	margin: 100px auto 0;
 }
 
 .login button {

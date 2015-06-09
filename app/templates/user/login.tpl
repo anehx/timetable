@@ -2,7 +2,7 @@
 
 {block 'content'}
 	<form method="post" action="?page=user&amp;action=login">
-		<div class="login fully-center">
+		<div class="login">
 			<img class="logo" src="/images/logo.png">
 			<h1>Please log in!</h1>
 			<div class="form-group">
