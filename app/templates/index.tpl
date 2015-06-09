@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/main.css">
 		<link href='http://fonts.googleapis.com/css?family=Raleway:100,200' rel='stylesheet' type='text/css'>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		{block 'styles'}{/block}
 		<link rel="icon" href="/images/logo.png">
 	</head>
