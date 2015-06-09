@@ -7,7 +7,10 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/"><img id="logo" src="/images/logo.png">timetable.</a>
+			<a class="navbar-brand" href="/">
+				<img class="logo" src="/images/logo.png">
+				<p>timetable.</p>
+			</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar">

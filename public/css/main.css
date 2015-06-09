@@ -39,10 +39,14 @@ footer ul li:first-child {
 
 .login {
 	width: 250px;
-	height: 400px;
+	height: 700px;
 }
 
 .login button {
+	width: 100%;
+}
+
+.login .logo {
 	width: 100%;
 }
 
@@ -56,9 +60,18 @@ footer ul li:first-child {
 	font-weight: 100;
 }
 
-#logo {
+.navbar-brand .logo {
 	height: 100%;
 	display: inline;
+}
+
+.navbar-brand p {
+	margin: 10px 0;
+	display: inline;
+}
+
+.navbar-brand {
+	padding: 0;
 }
 
 .login-name {
