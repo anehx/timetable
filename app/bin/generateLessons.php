@@ -7,16 +7,16 @@ use inc\datamapper\CourseMapper;
 use inc\model\Lesson;
 
 $lessons = array(
-	'Englisch',
-	'Französisch',
-	'Deutsch',
-	'Chemie',
-	'Math',
-	'Biologie',
-	'Physik',
-	'Sport',
-	'Musik',
-	'Wirtschaft'
+	'English',
+	'French',
+	'German',
+	'Chemistry',
+	'Maths',
+	'Biology',
+	'Physics',
+	'Sports',
+	'Music',
+	'Economy'
 );
 
 $courses = CourseMapper::getInstance()->getCourses();
